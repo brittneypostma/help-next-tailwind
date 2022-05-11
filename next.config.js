@@ -1,19 +1,20 @@
 module.exports = 
 {
-    webpack: (configuration) => 
-    {
-      configuration.module.rules.push(
-        {
-            test: /\.md$/,
-            use: 
-            [
-                {
-                    loader: 'frontmatter-markdown-loader',
-                    options: { mode: ['react-component'] }
-                }
-            ]
-        }
-      )
-      return configuration
-    },
-  }
+  webpack: (configuration) => 
+  {
+    configuration.module.rules.push(
+      {
+          test: /\.md$/,
+          use: 
+          [
+              {
+                  loader: 'frontmatter-markdown-loader',
+                  options: { mode: ['react-component'] }
+              }
+          ]
+      }
+    )
+    return configuration
+  },
+  distDir: "./build"
+}

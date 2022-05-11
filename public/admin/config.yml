@@ -1,8 +1,8 @@
 backend:
-  name: test-repo
-  branch: main # Branch to update (optional; defaults to master)
-media_folder: public/img
-public_folder: img
+  name: git-gateway
+  branch: main
+media_folder: public/media/uploads
+public_folder: media/uploads
 collections:
   - name: "pages"
     label: "Pages"

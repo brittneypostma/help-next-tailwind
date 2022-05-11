@@ -38,7 +38,7 @@ export default class HomePage extends React.Component
                                 </div>
                             </div>
                         </Link>
-                        <Link href="/projects">
+                        <Link href="/project">
                             <div id="Projects" className="NavigationPane">
                                 <div className="Title">
                                     <div className="IconContainer">

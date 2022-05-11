@@ -58,3 +58,4 @@ typings/
 
 .DS_Store
 out/
+build/

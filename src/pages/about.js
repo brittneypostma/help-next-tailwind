@@ -1,15 +1,31 @@
 import React from "react";
+import { faComment, faHome, faUser } from "@fortawesome/free-solid-svg-icons";
+
+import ContentPageTemplate from "../components/ContentPageTemplate/ContentPageTemplate";
+
+
 
 export default class AboutPage extends React.Component
 {
 
     render()
     {
+
         return(
-            <div>
-                <h1>About Page</h1>
-            </div>
-        );
+            <ContentPageTemplate
+                Page={{
+                    Title: "About",
+                    Icon: faUser
+                }}
+                Header={{
+                    LeftButton:{ Icon: faHome, Href: "/home" },
+                    RightButton:{ Icon: faComment, Href: "/contact" }
+                }}
+            >
+
+            </ContentPageTemplate>
+        )
+
     }
 
 }

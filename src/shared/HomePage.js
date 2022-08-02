@@ -1,19 +1,34 @@
 import React from "react";
+import Head from "next/head"
 import Link from "next/link"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faCode, faComment, faFileAlt, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 import PageTemplate from "../components/PageTemplate/PageTemplate";
-import { attributes } from '../content/home.md';
+import NavigationButton from "../components/NavigationButton/NavigationButton";
 
 
 
 export default class HomePage extends React.Component
 {
 
+    GetNavButtonTitle(Title, Icon)
+    {
+
+        return (<>
+            <span className="text-eucalyptus font-medium whitespace-pre">page </span>
+            <span className="text-cookies-and-cream font-bold whitespace-pre">{Title}</span>
+            <span className="text-gainsboro font-bold whitespace-pre">(</span>
+            <span className="relative w-fit h-fit aspect-square text-carolina-blue">
+                <FontAwesomeIcon icon={Icon}/>
+            </span>
+            <span className="text-gainsboro font-bold whitespace-pre">);</span>
+        </>);
+
+    }
+
     render()
     {
-        let titles = attributes.titles;
 
         const Title = 
         <>
@@ -27,8 +42,16 @@ export default class HomePage extends React.Component
             <span className="text-eucalyptus font-bold whitespace-pre">GraphicsProgrammer</span>
         </>;
 
+        const AboutButtonTitle = this.GetNavButtonTitle("About", faUser);
+        const ProjectsButtonTitle = this.GetNavButtonTitle("Projects", faCode);
+        const ContactButtonTitle = this.GetNavButtonTitle("Contact", faComment);
+
         return(
             <>
+
+                <Head>
+                    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+                </Head>
             
                 <PageTemplate
                     Header={{
@@ -55,19 +78,19 @@ export default class HomePage extends React.Component
                                 className="relative flex flex-col space-y-2 box-border w-max h-fit max-w-full max-h-full"
                             >
                                 <NavigationButton
-                                    Title={"About"}
-                                    Icon={faUser}
-                                    Href={"/about"}
+                                    RenderTitle={()=>{ return AboutButtonTitle; }}
+                                    Subtitle="Go to function definition "
+                                    Href="/about"
                                 />
                                 <NavigationButton
-                                    Title={"Projects"}
-                                    Icon={faCode}
-                                    Href={"/projects"}
+                                    RenderTitle={()=>{ return ProjectsButtonTitle; }}
+                                    Subtitle="Go to function definition "
+                                    Href="/projects"
                                 />
                                 <NavigationButton
-                                    Title={"Contact"}
-                                    Icon={faComment}
-                                    Href={"/contact"}
+                                    RenderTitle={()=>{ return ContactButtonTitle; }}
+                                    Subtitle="Go to function definition "
+                                    Href="/contact"
                                 />
                             </div>
                             <div id="Content-Footer"
@@ -81,46 +104,6 @@ export default class HomePage extends React.Component
 
             </>
         );
-    }
-
-}
-
-
-
-class NavigationButton extends React.Component
-{
-
-    render()
-    {
-
-        return(
-            <Link href={encodeURI(this.props.Href ?? "/")}>
-                <div
-                    className="group relative flex flex-col box-border w-full h-fit px-4 py-2 bg-eerie-black rounded-lg"
-                >
-                    <div
-                        className="relative inline-block text-lg"
-                    >
-                        <span className="text-eucalyptus font-medium whitespace-pre">page </span>
-                        <span className="text-cookies-and-cream font-bold whitespace-pre">{this.props.Title}</span>
-                        <span className="text-gainsboro font-bold whitespace-pre">(</span>
-                        <span className="relative w-fit h-fit aspect-square text-carolina-blue">
-                            <FontAwesomeIcon icon={this.props.Icon ?? faFileAlt}/>
-                        </span>
-                        <span className="text-gainsboro font-bold whitespace-pre">);</span>
-                    </div>
-                    <div
-                        className="relative inline-block text-quick-silver any-hover:group-hover:text-gainsboro no-hover:text-gainsboro  text-xs"
-                    >
-                        <span className="font-normal whitespace-pre">Go to function definition </span>
-                        <span className="relative w-fit h-fit aspect-square">
-                            <FontAwesomeIcon icon={faArrowRight}/>
-                        </span>
-                    </div>  
-                </div>
-            </Link>
-        );
-
     }
 
 }

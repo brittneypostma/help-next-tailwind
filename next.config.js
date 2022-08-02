@@ -1,7 +1,8 @@
 module.exports = 
 {
-  webpack: (configuration) => 
+  webpack: (configuration, { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }) => 
   {
+
     configuration.module.rules.push(
       {
           test: /\.md$/,
@@ -9,12 +10,29 @@ module.exports =
           [
               {
                   loader: 'frontmatter-markdown-loader',
-                  options: { mode: ['react-component'] }
+                  // options: { mode: ['react-component'] }
               }
           ]
       }
-    )
-    return configuration
+    );
+
+    return configuration;
   },
+
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/home',
+        permanent: true
+      },
+      {
+        source: '/project',
+        destination: '/projects',
+        permanent: true
+      }
+    ]
+  },
+
   distDir: "./build"
 }

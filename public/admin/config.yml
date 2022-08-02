@@ -1,55 +1,194 @@
 backend:
-  name: test-repo
+  name: git-gateway
   branch: main
-media_folder: public/media/uploads
-public_folder: media/uploads
+local_backend: true
+media_folder: "public/media"
+public_folder: "/media"
+
 collections:
+
   - name: "pages"
     label: "pages"
+    extension: "json"
     files:
-      - name: "home"
-        label: "home"
-        file: "content/home.md"
+    
+      - name: "about"
+        label: "about"
+        file: "content/pages/about.json"
         fields:
-          - name: "headbar"
-            widget: "object"
-            fields:
-              - name: "title-left"
-                label: "title-left"
-                widget: "string"
-              - name: "title-right"
-                label: "title-right"
-                widget: "string"
-              - name: "title-icon"
-                label: "title-icon"
+          - name: "title"
+            label: "title"
+            widget: "string"
+
+      - name: "contact"
+        label: "contact"
+        file: "content/pages/contact.json"
+        fields:
+          - name: "title"
+            label: "title"
+            widget: "string"
+
+  - name: "projects"
+    label: "projects"
+    extension: "json"
+    folder: "content/projects"
+    path: '{{slug}}'
+    slug: "{{fields.year}}/{{slug}}"
+    create: true
+    summary: "({{fields.details.type}}) {{fields.year}} - {{slug}}"
+    fields:
+      - name: "title"
+        label: "Project Title"
+        widget: "string"
+      - name: "year"
+        label: "Project Year"
+        widget: "datetime"
+        format: "YYYY"
+        date_format: "YYYY"
+        time_format: false
+      - name: "featured"
+        label: "Featured Project"
+        widget: "boolean"
+        required: false
+      - name: "priority"
+        label: "Project Priority"
+        widget: "number"
+        value_type: "int"
+        default: 0
+        min: 0
+      - name: "thumbnail"
+        label: "Thumbnail"
+        widget: "list"
+        min: 1
+        max: 1
+        types:
+        - name: "image"
+          label: "Image"
+          widget: "object"
+          fields:
+          - name: "image"
+            label: "Image"
+            widget: "image"
+            media_folder: "/public/media/projects/{{fields.year}}/{{slug}}/images/"
+        - name: "video"
+          label: "Video"
+          widget: "object"
+          fields:
+          - name: "video"
+            label: "Video"
+            widget: "file"
+            media_folder: "/public/media/projects/{{fields.year}}/{{slug}}/videos/"
+        - name: "slideshow"
+          label: "Slideshow"
+          widget: "object"
+          fields:
+          - name: "content"
+            label: "Content"
+            widget: "list"
+            min: 2
+            types:
+            - name: "image_slide"
+              label: "Image slide"
+              widget: "object"
+              fields:
+              - name: "image"
+                label: "Image"
                 widget: "image"
-                choose_url: false
-              - name: "title-decorator-ratio"
-                label: "title-decorator-ratio"
-                widget: "number"
-                value_type: "float"
-                min: 0.0
-                max: 1.0
-                step: 0.05
-                default: 0.0
-          - name: "navigation"
-            widget: "object"
-            fields:
-              - name: "about"
-                label: "about"
-                widget: "object"
-                fields:
-                  - name: "title"
-                    widget: "string"
-              - name: "projects"
-                label: "projects"
-                widget: "object"
-                fields:
-                  - name: "title"
-                    widget: "string"
-              - name: "contact"
-                label: "contact"
-                widget: "object"
-                fields:
-                  - name: "title"
-                    widget: "string"
+                media_folder: "/public/media/projects/{{fields.year}}/{{slug}}/images/"
+            - name: "video_slide"
+              label: "Video slide"
+              widget: "object"
+              fields:
+              - name: "video"
+                label: "Video"
+                widget: "file"
+                media_folder: "/public/media/projects/{{fields.year}}/{{slug}}/videos/"
+      - name: "details"
+        label: "Project Details"
+        widget: "object"
+        fields:
+          - { name: "type", label: "Project Type", widget: "select", options: ["Personal Project", "School Project", "Professional Project", "Other"] }
+          - { name: "duration", label: "Project Duration", widget: "string" }
+          - { name: "goals", label: "Project Goals", widget: "string", required: false }
+          - { name: "team_size", label: "Team Size", widget: "string", required: false }
+          - { name: "roles", label: "Roles", widget: "string", required: false }
+          - { name: "tech_and_tools", label: "Tech & Tools", widget: "string", required: false }
+          - { name: "languages_and_frameworks", label: "Languages & Frameworks", widget: "string", required: false }
+      - name: "summary"
+        label: "Project Summary"
+        widget: "text"
+        required: false
+      - name: "body"
+        label: "Project Body"
+        widget: "list"
+        types:
+        - name: "header"
+          label: "Header"
+          widget: "object"
+          fields:
+          - { name: "text", label: "Text", widget: "string" }
+          - { name: "size", label: "Size", widget: "select", options: ["1", "2", "3"] }
+        - name: "textblock"
+          label: "Text-block"
+          widget: "object"
+          fields:
+          - { name: "text", label: "Text", widget: "text" }
+        - name: "image"
+          label: "Image"
+          widget: "object"
+          fields:
+          - name: "image"
+            label: "Image"
+            widget: "image"
+            media_library:
+              media_folder: "/public/media/projects/{{fields.year}}/{{slug}}/images/"
+        - name: "video"
+          label: "Video"
+          widget: "object"
+          fields:
+          - name: "video"
+            label: "Video"
+            widget: "file"
+            media_library:
+              media_folder: "/public/media/projects/{{fields.year}}/{{slug}}/videos/"
+        - name: "slideshow"
+          label: "Slideshow"
+          widget: "object"
+          fields:
+          - name: "content"
+            label: "Content"
+            widget: "list"
+            min: 2
+            types:
+            - name: "image_slide"
+              label: "Image slide"
+              widget: "object"
+              fields:
+              - name: "image"
+                label: "Image"
+                widget: "image"
+                media_library:
+                  media_folder: "/public/media/projects/{{fields.year}}/{{slug}}/images/"
+            - name: "video_slide"
+              label: "Video slide"
+              widget: "object"
+              fields:
+              - name: "video"
+                label: "Video" 
+                widget: "file"
+                media_library:
+                  media_folder: "/public/media/projects/{{fields.year}}/{{slug}}/videos/"
+        - name: "button"
+          label: "Button"
+          widget: "object"
+          fields:
+          - { name: "icon", label: "Icon", widget: "string" }
+          - { name: "text", label: "Text", widget: "string" }
+        - name: "line"
+          label: "Line"
+          widget: "object"
+          fields:
+          - { name: "thickness", label: "Thickness", widget: "number", value_type: "float"}
+
+
+

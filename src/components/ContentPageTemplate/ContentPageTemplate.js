@@ -23,7 +23,7 @@ export default class ContentPageTemplate extends React.Component
             <span className="text-gainsboro font-medium whitespace-pre">::</span>
             <span className="text-cookies-and-cream font-medium whitespace-pre">{this.props.Page?.Title}</span>
             <span className="text-gainsboro font-bold whitespace-pre">(</span>
-            <span className="relative w-fit h-fit aspect-square text-carolina-blue">
+            <span className="relative inline-block w-fit h-fit aspect-square text-carolina-blue">
                 <FontAwesomeIcon icon={this.props.Page?.Icon ?? faFileAlt}/>
             </span>
             <span className="text-gainsboro font-bold whitespace-pre">)</span>
@@ -61,18 +61,24 @@ export default class ContentPageTemplate extends React.Component
                         >
                             <div className="text-gainsboro">&#123;</div>
                             <div className="pl-4">
-                                <span className="text-eucalyptus whitespace-pre">page_content_t</span>
-                                <span className="text-gainsboro whitespace-pre">* </span>
+                                <span className="text-eucalyptus whitespace-pre">vector</span>
+                                <span className="text-gainsboro whitespace-pre">&#60;</span>
+                                <span className="text-eucalyptus whitespace-pre">content</span>
+                                <span className="text-gainsboro whitespace-pre">*</span>
+                                <span className="text-gainsboro whitespace-pre">&#62; </span>
                                 <span className="text-winter-wizard whitespace-pre">contents</span>
-                                <span className="text-gainsboro whitespace-pre">&#91;&#93; =</span>
+                                <span className="text-gainsboro whitespace-pre"> =</span>
                             </div>
-                            <div className="pl-4 text-gainsboro"> &#123;</div>
+                            <div className="pl-4 text-eucalyptus"> &#123;</div>
                         </div>
                         {this.props.children}
                         <div id="Content-Footer"
                             className="relative block mt-4 text-sm font-medium"
                         >
-                            <div className="pl-4 text-gainsboro">&#125;;</div>
+                            <div className="pl-4">
+                                <span className="text-eucalyptus whitespace-pre">&#125;</span>
+                                <span className="text-gainsboro whitespace-pre">;</span>
+                            </div>
                             <div className="pl-4">
                                 <span className="text-carolina-blue whitespace-pre">return </span>
                                 <span className="text-eucalyptus whitespace-pre">page&#40;</span>

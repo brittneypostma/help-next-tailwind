@@ -1,0 +1,28 @@
+{
+  "category": "Featured",
+  "priority": 0,
+  "details": {
+    "type": "Other",
+    "goals": "Test the cms",
+    "teamsize": "1",
+    "roles": "developer and tester",
+    "techandtools": "visual studio code",
+    "languagesandframeworks": "Javascript, ReactJS, NextJS, etc."
+  },
+  "year": "2022",
+  "title": "Test",
+  "thumbnail": [
+    {
+      "type": "thumbnail_image",
+      "image": "/public/media/projects/2022/test/images/1967-mustang-wallpaper-free-download.jpg"
+    }
+  ],
+  "summary": "Testing the portfolio website CMS functionality.",
+  "body": [
+    {
+      "type": "header",
+      "size": "Large",
+      "content": "Test the netlify CMS functionality integrated for the portfolio website."
+    }
+  ]
+}

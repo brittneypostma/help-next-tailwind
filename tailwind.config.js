@@ -18,7 +18,7 @@ module.exports = {
         'eerie-black': '#1E1E1E',           //black-ish
         'black-olive': '#3C3C3C',           //black-ish
         'dark-charcoal': '#333333',         //black-ish
-        'quick-silver': '#A5A5A5',       //gray-ish
+        'quick-silver': '#A5A5A5',          //gray-ish
         'cookies-and-cream': '#DCDCAA',     //yellow-ish
         'winter-wizard': '#9CDCFE'          //blue-ish
       },

@@ -11,17 +11,17 @@ export default class ProjectOverviewPage extends React.Component
     render()
     {
         return(
-            <ContentPageTemplate
-                Page={{
-                    Title: "Projects",
-                    Icon: faCode
-                }}
-                Header={{
-                    LeftButton:{ Icon: faHome, Href: "/home" },
-                    RightButton:{ Icon: faComment, Href: "/contact" }
-                }}
-            >
-            </ContentPageTemplate>
+                <ContentPageTemplate
+                    Page={{
+                        Title: "Projects",
+                        Icon: faCode
+                    }}
+                    Header={{
+                        LeftButton:{ Icon: faHome, Href: "/home" },
+                        RightButton:{ Icon: faComment, Href: "/contact" }
+                    }}
+                >
+                </ContentPageTemplate>
         );
     }
 

@@ -16,10 +16,10 @@ export default class HeaderButtonTemplate extends React.Component
         return(
             <Link href={encodeURI(this.props.Href ?? "/")}>
                 <div
-                    className="Header-Button relative inline-flex justify-center items-center box-border w-8 h-8 aspect-square bg-dark-charcoal rounded-lg"
+                    className="Header-Button relative inline-flex justify-center items-center box-border w-8 h-8 aspect-square bg-dark-charcoal rounded-full"
                 >
                     <div
-                        className="Icon-Wrapper relative inline-flex justify-center items-center w-4 h-4 aspect-square text-carolina-blue"
+                        className="Icon-Wrapper relative inline-flex justify-center items-center w-4 h-4 aspect-square text-smw text-carolina-blue"
                     >
                         <FontAwesomeIcon icon={this.props.Icon}/>
                     </div>

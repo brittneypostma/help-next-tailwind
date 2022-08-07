@@ -1,21 +1,12 @@
 import React from "react";
 
-import ErrorPageTemplate from "../components/ErrorPageTemplate/ErrorPageTemplate";
+import Error from "./_error";
 
 
 
-export default class Page404 extends React.Component
+export default class ErrorPage404 extends React.Component
 {
 
-    render()
-    {
-        return(
-            <ErrorPageTemplate
-                Page={{Error: "404"}}
-            >
-                Page not found
-            </ErrorPageTemplate>
-        )
-    }
+    render(){ return Error({statusCode: 404}); }
 
 }

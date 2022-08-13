@@ -1,7 +1,7 @@
 import React from "react";
 import { faCode, faComment } from "@fortawesome/free-solid-svg-icons";
 
-import ContentPageTemplate from "../../../components/ContentPageTemplate/ContentPageTemplate";
+import ContentPageTemplate from "../../../templates/ContentPageTemplate/ContentPageTemplate";
 import { FetchProjectsContent } from "../../../CMS/projects";
 import { projectDirectory } from "../../../CMS/config";
 

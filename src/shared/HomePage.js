@@ -1,10 +1,10 @@
 import React from "react";
-import Head from "next/head"
+import Script from "next/script"
 import Link from "next/link"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faCode, faComment, faFileAlt, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
-import PageTemplate from "../components/PageTemplate/PageTemplate";
+import PageTemplate from "../templates/PageTemplate/PageTemplate";
 import NavigationButton from "../components/NavigationButton/NavigationButton";
 
 
@@ -49,9 +49,9 @@ export default class HomePage extends React.Component
         return(
             <>
 
-                <Head>
+                <Script>
                     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-                </Head>
+                </Script>
             
                 <PageTemplate
                     Header={{
@@ -68,10 +68,10 @@ export default class HomePage extends React.Component
                             <div id="Content-Header"
                                 className="relative block mb-4 font-medium"
                             >
-                                <div className="text-gainsboro">&#123;</div>
+                                <div className="text-gainsboro-800">&#123;</div>
                                 <div>
-                                    <span className="text-carolina-blue">public</span>
-                                    <span className="text-gainsboro">:</span>
+                                    <span className="text-carolina-blue-700">public</span>
+                                    <span className="text-gainsboro-800">:</span>
                                 </div>
                             </div>
                             <div id="Navigation"
@@ -96,7 +96,7 @@ export default class HomePage extends React.Component
                             <div id="Content-Footer"
                                 className="relative block mt-4"
                             >
-                                <div className="text-gainsboro font-medium">&#125;;</div>
+                                <div className="text-gainsboro-800 font-medium">&#125;;</div>
                             </div>
                         </div>
                     </div>

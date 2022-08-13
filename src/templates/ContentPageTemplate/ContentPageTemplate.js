@@ -51,44 +51,45 @@ export default class ContentPageTemplate extends React.Component
                 }}
             >
                 <div
-                    className="relative flex justify-center items-start w-full h-full overflow-hidden"
+                    className="relative flex flex-col justify-start items-center w-full h-full overflow-hidden"
                 >
-                    <div
-                        className="relative block box-border w-fit h-fit px-2 py-2"
-                    >
+                    
                         <div id="Content-Header"
-                            className="relative block mb-4 text-sm font-medium"
+                            className="relative block w-full m-2 px-4 text-sm font-medium"
                         >
-                            <div className="text-gainsboro">&#123;</div>
+                            <div className="text-gainsboro-800">&#123;</div>
                             <div className="pl-4">
-                                <span className="text-eucalyptus whitespace-pre">vector</span>
-                                <span className="text-gainsboro whitespace-pre">&#60;</span>
-                                <span className="text-eucalyptus whitespace-pre">content</span>
-                                <span className="text-gainsboro whitespace-pre">*</span>
-                                <span className="text-gainsboro whitespace-pre">&#62; </span>
-                                <span className="text-winter-wizard whitespace-pre">contents</span>
-                                <span className="text-gainsboro whitespace-pre"> =</span>
+                                <span className="text-eucalyptus-700 whitespace-pre">vector</span>
+                                <span className="text-gainsboro-800 whitespace-pre">&#60;</span>
+                                <span className="text-eucalyptus-700 whitespace-pre">content</span>
+                                <span className="text-gainsboro-800 whitespace-pre">*</span>
+                                <span className="text-gainsboro-800 whitespace-pre">&#62; </span>
+                                <span className="text-winter-wizard-700 whitespace-pre">contents</span>
+                                <span className="text-gainsboro-800 whitespace-pre"> =</span>
                             </div>
-                            <div className="pl-4 text-eucalyptus"> &#123;</div>
+                            <div className="pl-4 text-eucalyptus-700"> &#123;</div>
                         </div>
-                        {this.props.children}
+                        <div
+                            className="relative block w-full px-4"
+                        >
+                            {this.props.children}
+                        </div>
                         <div id="Content-Footer"
-                            className="relative block mt-4 text-sm font-medium"
+                            className="relative block w-full m-2 px-4 text-sm font-medium"
                         >
                             <div className="pl-4">
-                                <span className="text-eucalyptus whitespace-pre">&#125;</span>
-                                <span className="text-gainsboro whitespace-pre">;</span>
+                                <span className="text-eucalyptus-700 whitespace-pre">&#125;</span>
+                                <span className="text-gainsboro-800 whitespace-pre">;</span>
                             </div>
                             <div className="pl-4">
-                                <span className="text-carolina-blue whitespace-pre">return </span>
-                                <span className="text-eucalyptus whitespace-pre">page&#40;</span>
-                                <span className="text-winter-wizard whitespace-pre">contents</span>
-                                <span className="text-eucalyptus whitespace-pre">&#41;</span>
-                                <span className="text-gainsboro whitespace-pre">;</span>
+                                <span className="text-carolina-blue-700 whitespace-pre">return </span>
+                                <span className="text-eucalyptus-700 whitespace-pre">page&#40;</span>
+                                <span className="text-winter-wizard-700 whitespace-pre">contents</span>
+                                <span className="text-eucalyptus-700 whitespace-pre">&#41;</span>
+                                <span className="text-gainsboro-800 whitespace-pre">;</span>
                             </div>
-                            <div className="text-gainsboro">&#125;</div>
+                            <div className="text-gainsboro-800">&#125;</div>
                         </div>
-                    </div>
                 </div>
             </PageTemplate>
         );

@@ -4,7 +4,7 @@ import { faExplosion, faHome } from "@fortawesome/free-solid-svg-icons";
 
 import PageTemplate from "../PageTemplate/PageTemplate";
 import HeaderButtonTemplate from "../HeaderButtonTemplate/HeaderButtonTemplate";
-import NavigationButton from "../NavigationButton/NavigationButton";
+import NavigationButton from "../../components/NavigationButton/NavigationButton";
 
 
 

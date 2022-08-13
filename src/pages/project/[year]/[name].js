@@ -23,6 +23,7 @@ export default class ProjectPage extends React.Component
                     RightButton:{ Icon: faComment, Href: "/contact" }
                 }}
             >
+                {this.props.children}
             </ContentPageTemplate>
         );
     }

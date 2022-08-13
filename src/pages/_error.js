@@ -13,7 +13,7 @@ import {
     faRuler, 
     faScaleUnbalancedFlip} from "@fortawesome/free-solid-svg-icons";
 
-import ErrorPageTemplate from "../components/ErrorPageTemplate/ErrorPageTemplate";
+import ErrorPageTemplate from "../templates/ErrorPageTemplate/ErrorPageTemplate";
 
 
 let errorIcons = new Map();

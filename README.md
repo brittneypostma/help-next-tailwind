@@ -8,3 +8,6 @@ Body content types:
 - Video
 - Slideshow
 - Button
+
+Ideas:
+- Typing animation for titles when transition pages or sections from collapsed to uncollapsed.

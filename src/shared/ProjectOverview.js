@@ -2,9 +2,8 @@ import React from "react";
 import { faCode, faHome, faComment } from "@fortawesome/free-solid-svg-icons";
 
 import ContentPageTemplate from "../templates/ContentPageTemplate/ContentPageTemplate";
-import Divider from "../components/Divider/Divider";
-import ContentContainer from "../components/ContentContainer/ContentContainer";
-import BodyItem from "../components/BodyItem/BodyItem";
+import BodySection from "../components/BodySection/BodySection";
+import ProjectNavigationButton from "../templates/ProjectNavigationButton/ProjectNavigationButton";
 
 
 
@@ -34,28 +33,28 @@ export default class ProjectOverviewPage extends React.Component
                         RightButton:{ Icon: faComment, Href: "/contact" }
                     }}
                 >
-                    <BodyItem
-                        ItemType="Section"
-                        ItemName="Featured_Projects"
+                    <BodySection
+                        SectionName="Featured_Projects"
+                        TypeSize="text-sm"
+                        NameSize="text-base"
                     >
-                    </BodyItem>
-                    <div>
+                        <ProjectNavigationButton
+                            ProjectName="Test_Project"
+                        />
+                    </BodySection>
+                    <BodySection
+                        SectionName="Other_Projects"
+                        TypeSize="text-sm"
+                        NameSize="text-base"
+                        Collapsible={true}
+                        StartCollapsed={true}
+                    >
                         {
-                            this.state.ShowAll ?
-                            <BodyItem
-                                ItemType="Section"
-                                ItemName="Other_Projects"
-                            >
-                            </BodyItem> :
+                            this.state.ShowAll ? 
+                            null :
                             null
                         }
-                        <Divider/>
-                        {
-                            this.state.ShowAll ?
-                            <div/> :    //Button to hide all
-                            <div/>      //Button to show all
-                        }
-                    </div>
+                    </BodySection>
                 </ContentPageTemplate>
         );
     }

@@ -10,6 +10,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      aspectRatio: {
+        '4/3': '4 / 3',
+        '16/9': '16 / 9'
+      },
       colors: { //Generated using https://www.color-name.com/
         // transparent: 'transparent',
         // current: 'currentColor',

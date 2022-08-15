@@ -70,7 +70,7 @@ export default class ContentPageTemplate extends React.Component
                             <div className="pl-4 text-eucalyptus-700"> &#123;</div>
                         </div>
                         <div
-                            className="relative block w-full px-4"
+                            className="relative block w-full px-2"
                         >
                             {this.props.children}
                         </div>

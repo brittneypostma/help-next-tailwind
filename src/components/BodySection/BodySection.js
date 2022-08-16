@@ -53,8 +53,13 @@ export default class BodySection extends React.Component
 
                     {
                         this.props.Collapsible ?
-                            <div className="relative inline-flex justify-center items-center w-4 h-4 aspect-square float-right
-                                            text-gainsboro-600 text-lg leading-none align-middle">
+                            <div className=
+                                {
+                                    "relative inline-flex justify-center items-center w-4 h-4 aspect-square float-right " +
+                                    "text-gainsboro-600 leading-none align-middle " +
+                                    (this.props.NameSize?? "")
+                                }
+                            >
                                 {this.state.IsCollapsed ? 
                                 <FontAwesomeIcon icon={faChevronCircleDown}/> :
                                 <FontAwesomeIcon icon={faChevronCircleUp}/> }
@@ -72,12 +77,17 @@ export default class BodySection extends React.Component
                             <span className="text-eucalyptus-700 whitespace-pre">&#123;</span>
                         </div>
                         <div 
-                            className={"relative block box-border w-full h-fit px-1 py-2 bg-dark-charcoal " + (this.props.className ?? "")}
+                            className={"relative block box-border w-full h-fit px-1.5 py-2 bg-dark-charcoal " + (this.props.className ?? "")}
                         >
                             {this.props.children}
                         </div>
                         <div className={"relative block w-full h-4 px-2 mt-2 leading-none align-middle font-medium " + (this.props.TypeSize ?? "")}>
-                            <span className="text-eucalyptus-700 whitespace-pre">&#125;</span>
+                            <span className="text-eucalyptus-700 whitespace-pre">
+                                {String.fromCodePoint(125)}
+                            </span>
+                            <span className="text-gainsboro whitespace-pre">
+                                {(this.props.LastSection ? "" : ",")}
+                            </span>
                         </div> 
                     </> :
                     null

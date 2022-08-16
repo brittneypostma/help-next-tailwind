@@ -19,7 +19,7 @@ export default class HeaderButtonTemplate extends React.Component
                     className="relative inline-flex justify-center items-center box-border w-8 h-8 aspect-square bg-dark-charcoal rounded-full"
                 >
                     <div
-                        className="relative inline-flex justify-center items-center w-4 h-4 aspect-square text-smw text-gainsboro-600"
+                        className="relative inline-flex justify-center items-center w-4 h-4 aspect-square text-smw text-gainsboro-500"
                     >
                         <FontAwesomeIcon icon={this.props.Icon}/>
                     </div>

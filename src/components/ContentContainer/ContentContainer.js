@@ -14,7 +14,7 @@ export default class ContentContainer extends React.Component
 
         return(
             <div
-                className={"relative flex flex-col box-border w-full h-fit bg-eerie-black rounded-lg " + (this.props.className ?? "")}
+                className={"relative flex flex-col box-border w-full h-fit overflow-hidden bg-eerie-black rounded-lg " + (this.props.className ?? "")}
             >
                 {this.props.children}
             </div>

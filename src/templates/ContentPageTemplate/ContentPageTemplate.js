@@ -51,23 +51,23 @@ export default class ContentPageTemplate extends React.Component
                 }}
             >
                 <div
-                    className="relative flex flex-col justify-start items-center w-full h-full overflow-hidden"
+                    className="relative flex flex-col justify-start items-center w-full h-full overflow-x-hidden overflow-y-auto"
                 >
                     
                         <div id="Content-Header"
-                            className="relative block w-full m-2 px-4 text-sm font-medium"
+                            className="relative block w-full m-2 px-4 text-xs leading-none align-middle font-medium"
                         >
-                            <div className="text-gainsboro-800">&#123;</div>
+                            <div className="text-gainsboro-800">{String.fromCodePoint(123)}</div>
                             <div className="pl-4">
                                 <span className="text-eucalyptus-700 whitespace-pre">vector</span>
-                                <span className="text-gainsboro-800 whitespace-pre">&#60;</span>
+                                <span className="text-gainsboro-800 whitespace-pre">{String.fromCodePoint(60)}</span>
                                 <span className="text-eucalyptus-700 whitespace-pre">content</span>
                                 <span className="text-gainsboro-800 whitespace-pre">*</span>
-                                <span className="text-gainsboro-800 whitespace-pre">&#62; </span>
+                                <span className="text-gainsboro-800 whitespace-pre">{String.fromCodePoint(62) + " "}</span>
                                 <span className="text-winter-wizard-700 whitespace-pre">contents</span>
                                 <span className="text-gainsboro-800 whitespace-pre"> =</span>
                             </div>
-                            <div className="pl-4 text-eucalyptus-700"> &#123;</div>
+                            <div className="pl-4 text-eucalyptus-700">{String.fromCodePoint(123)}</div>
                         </div>
                         <div
                             className="relative block w-full px-2"
@@ -75,7 +75,7 @@ export default class ContentPageTemplate extends React.Component
                             {this.props.children}
                         </div>
                         <div id="Content-Footer"
-                            className="relative block w-full m-2 px-4 text-sm font-medium"
+                            className="relative block w-full m-2 px-4 text-xs leading-none align-middle font-medium"
                         >
                             <div className="pl-4">
                                 <span className="text-eucalyptus-700 whitespace-pre">&#125;</span>

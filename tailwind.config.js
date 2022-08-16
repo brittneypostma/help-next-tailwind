@@ -12,7 +12,12 @@ module.exports = {
     extend: {
       aspectRatio: {
         '4/3': '4 / 3',
-        '16/9': '16 / 9'
+        '16/9': '16 / 9',
+        '2/1' : '2 / 1'
+      },
+      blur: {
+        xxs: '1px',
+        xs: '2px'
       },
       colors: { //Generated using https://www.color-name.com/
         // transparent: 'transparent',

@@ -34,7 +34,7 @@ export default class ProjectPage extends React.Component
 
 export async function getStaticPaths()
 {
-    const projects = FetchProjectsContent(projectDirectory).slice().sort((left, right)=>{ left.meta.priority < right.meta.priority});
+    const projects = FetchProjectsContent(projectDirectory);
 
     const paths = projects.map((project)=>
     {

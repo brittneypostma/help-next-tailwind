@@ -64,16 +64,16 @@ export function FetchProjectsContent(projectDir)
                 {
                     
                 },
+                description: projectContentsJson.summary,
                 details:
                 {
-                    type: projectContentsJson.details?.type,
-                    goals: projectContentsJson.details?.goals,
-                    teamSize: projectContentsJson.details?.teamsize,
-                    roles: projectContentsJson.details?.roles,
-                    techAndTools: projectContentsJson.details?.techandtools,
-                    languagesAndFrameworks: projectContentsJson.details?.languagesandframeworks
+                    type:       (projectContentsJson.details?.type                      ?? null),
+                    goals:      (projectContentsJson.details?.goals                     ?? null),
+                    teamSize:   (projectContentsJson.details?.teamsize                  ?? null),
+                    roles:      (projectContentsJson.details?.roles                     ?? null),
+                    tech:       (projectContentsJson.details?.techandtools              ?? null),
+                    languages:  (projectContentsJson.details?.languagesandframeworks    ?? null)
                 },
-                summary: projectContentsJson.summary,
                 body:
                 {
 
@@ -87,7 +87,7 @@ export function FetchProjectsContent(projectDir)
     });
 
     projectsCache.directory = projectDir;
-    projectsCache.contents = projectsContent;
+    projectsCache.contents = projectsContent.sort((left, right)=>{ left.meta.priority < right.meta.priority});
 
     return projectsCache.contents;
 

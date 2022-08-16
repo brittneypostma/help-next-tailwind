@@ -33,7 +33,7 @@ export default class PageTemplate extends React.Component
                                 RenderRightButton={this.props.Header?.RenderRightButton}
                             />
                             <div id="Content-Body"
-                                className="relative block box-border w-full h-full"
+                                className="relative block box-border w-full h-full overflow-hidden"
                             >
                                 {this.props.children}
                             </div>

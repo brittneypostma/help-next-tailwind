@@ -19,6 +19,9 @@ module.exports = {
         xxs: '1px',
         xs: '2px'
       },
+      opacity: {
+        '85': '.85'
+      },
       colors: { //Generated using https://www.color-name.com/
         // transparent: 'transparent',
         // current: 'currentColor',

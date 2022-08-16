@@ -77,7 +77,7 @@ export default class BodySection extends React.Component
                             <span className="text-eucalyptus-700 whitespace-pre">&#123;</span>
                         </div>
                         <div 
-                            className={"relative block box-border w-full h-fit px-1.5 py-2 bg-dark-charcoal " + (this.props.className ?? "")}
+                            className={"relative block box-border w-full h-fit px-1.5 py-3 bg-dark-charcoal " + (this.props.className ?? "")}
                         >
                             {this.props.children}
                         </div>

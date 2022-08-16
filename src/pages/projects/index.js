@@ -44,7 +44,7 @@ export default class ProjectOverviewPage extends React.Component
                         NameSize="text-base"
                     >
                         <div
-                            className="relative flex flex-col gap-y-4 w-full h-fit"
+                            className="relative flex flex-col gap-y-2 w-full h-fit"
                         >
                             {
                                 this.props.FeaturedProjects.length > 0  ?

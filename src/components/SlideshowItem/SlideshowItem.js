@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircle, faCircleDot, faCaretLeft, faCaretRight, faCaretUp, faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import { faCircle, faCircleDot, faPause, faPlay } from "@fortawesome/free-solid-svg-icons";
 
 import BodyItem from "../BodyItem/BodyItem";
 
@@ -87,7 +87,7 @@ class ImageSlide extends React.Component
                 transition={slideTransitions}
                 drag={this.props.MotionDrag}
                 dragConstraints={this.props.MotionDrag == "x" ? { left: 0, right: 0 } : { top: 0, bottom: 0 }}
-                dragElastic={0.5}
+                dragElastic={1}
                 onDragStart={()=>{ this.props.OnDragBegin?.(); }}
                 onDragEnd={(e, {offset, velocity})=>{
                     const swipe = swipePower(
@@ -122,11 +122,6 @@ class VideoSlide extends React.Component
     {
         super(props);
 
-        this.state =
-        {
-            currentSlide: false
-        };
-
         this.videoRef = React.createRef();
         this.OnVideoPlayCallback = this.OnVideoPlay.bind(this);
         this.OnVideoPauseCallback = this.OnVideoPause.bind(this);
@@ -139,7 +134,8 @@ class VideoSlide extends React.Component
 
     OnVideoPause()
     {
-        this.props.OnVideoPaused();
+        const finished = this.videoRef.current.ended;
+        this.props.OnVideoPaused(finished);
     }
 
     ParseVideoFit()
@@ -227,7 +223,7 @@ class VideoSlide extends React.Component
                 transition={slideTransitions}
                 drag={this.props.MotionDrag}
                 dragConstraints={this.props.MotionDrag == "x" ? { left: 0, right: 0 } : { top: 0, bottom: 0 }}
-                dragElastic={0.5}
+                dragElastic={1}
                 onDragStart={()=>{ this.props.OnDragBegin?.(); }}
                 onDragEnd={(e, {offset, velocity})=>{
                     const swipe = swipePower(
@@ -318,7 +314,10 @@ export default class SlideshowItem extends React.Component
         this.state = 
         {
             currentSlide: 0,
-            slideDirection: 0
+            slideDirection: 0,
+            slideIsDragged: false,
+            slideVideoPlaying: false,
+            autoPlayPaused: false
         }
 
         this.numSlides = this.props.SlideshowSlides.length;
@@ -342,38 +341,51 @@ export default class SlideshowItem extends React.Component
     GetDecreasedSlideIndex()
     {
         let decSlideIndex = this.state.currentSlide -1;
-        if(decSlideIndex <= 0){return this.numSlides -1; }
+        if(decSlideIndex < 0){return this.numSlides -1; }
         else return decSlideIndex;
     }
 
     StartWaitForNextSlide()
     {
+        if(this.timeout)
+        {
+            console.warn("tried to wait for next slide while already waiting!"); 
+            return;
+        }
+
         const currentSlideTime = this.slides[this.state.currentSlide].showTime * 1000;
         const nextSlideIndex = this.GetIncreasedSlideIndex();
 
-        this.timeout = setTimeout(this.SetSlide.bind(this, nextSlideIndex), currentSlideTime)
+        this.timeout = setTimeout(this.SetSlide.bind(this, nextSlideIndex), currentSlideTime);
     }
 
     StopWaitForSlide()
     {
-        if(this.timeout){ clearTimeout(this.timeout); this.timeout = null; }
+        if(this.timeout)
+        { 
+            clearTimeout(this.timeout); 
+            this.timeout = null;
+        }
     }
 
     SetSlide(slideIndex)
     {
 
+        if(slideIndex == this.state.currentSlide){ return; }
         //Immediately cancel any timeout waiting to increase to next slide.
         this.StopWaitForSlide();
 
         //Determine if the slide is going forwards or backwards.
-        const slideBackwards = (this.state.currentSlide != this.numSlides -1) ? slideIndex < this.state.currentSlide : slideIndex != 0;
+        const slideBackwards = (this.state.currentSlide != 0 && this.state.currentSlide != this.numSlides -1) ? 
+                                slideIndex < this.state.currentSlide : 
+                                (this.state.currentSlide == 0 ? slideIndex == this.numSlides -1 : slideIndex != 0);
 
         this.setState(
             {
                 currentSlide: slideIndex,
                 direction: (slideBackwards ? -1 : 1)
             },
-            ()=>{ this.StartWaitForNextSlide(); }
+            ()=>{ if(this.props.SlideshowAutoPlay){ this.StartWaitForNextSlide(); }}
         );
 
     }
@@ -381,11 +393,52 @@ export default class SlideshowItem extends React.Component
     OnVideoSlidePlay()
     {
         if(this.props.SlideshowAutoPlay){ this.StopWaitForSlide(); }
+        this.setState({slideVideoPlaying: true});
     }
 
-    OnVideoSlidePaused()
+    OnVideoSlidePaused(finished)
     {
-        if(this.props.SlideshowAutoPlay){ this.StartWaitForNextSlide(); }
+        if(  this.props.SlideshowAutoPlay &&
+            !this.state.autoPlayPaused &&
+            !this.state.slideIsDragged)
+        { 
+            if(finished)
+            {
+                const nextSlideIndex = this.GetIncreasedSlideIndex();
+                this.SetSlide(nextSlideIndex);
+            }
+            else{ this.StartWaitForNextSlide(); }
+        }
+        this.setState({slideVideoPlaying: false});
+    }
+
+    OnSlideDragBegin()
+    {
+        if(this.props.SlideshowAutoPlay){ this.StopWaitForSlide(); }
+        this.setState({slideIsDragged: true});
+    }
+
+    OnSlideDragEnd()
+    {
+        if(  this.props.SlideshowAutoPlay   &&
+            !this.state.autoPlayPaused      &&
+            !this.state.slideVideoPlaying){ this.StartWaitForNextSlide(); }
+        this.setState({slideIsDragged: false});
+    }
+
+    OnSlideDrag(slideIndex)
+    {
+        this.SetSlide(slideIndex);
+        this.setState({slideIsDragged: false});
+    }
+
+    ToggleAutoPlayPaused()
+    {
+        this.setState({autoPlayPaused: !this.state.autoPlayPaused}, ()=>
+        {
+            if(this.state.autoPlayPaused){ this.StopWaitForSlide(); }
+            else{ this.StartWaitForNextSlide(); }    
+        })
     }
 
     ParseSlideAxisMotion()
@@ -472,10 +525,10 @@ export default class SlideshowItem extends React.Component
                     ImageAlt={null}
                     MotionCustom={{direction: this.state.direction, axis: slideAxis}}
                     MotionDrag={slideAxis}
-                    OnDragForward={this.SetSlide.bind(this, this.GetIncreasedSlideIndex())}
-                    OnDragBackward={this.SetSlide.bind(this, this.GetDecreasedSlideIndex())}
-                    OnDragBegin={this.StopWaitForSlide.bind(this)}
-                    OnDragEnd={this.StartWaitForNextSlide.bind(this)}
+                    OnDragForward={this.OnSlideDrag.bind(this, this.GetIncreasedSlideIndex())}
+                    OnDragBackward={this.OnSlideDrag.bind(this, this.GetDecreasedSlideIndex())}
+                    OnDragBegin={this.OnSlideDragBegin.bind(this)}
+                    OnDragEnd={this.OnSlideDragEnd.bind(this)}
                     key={this.state.currentSlide}
                 />;
                 break;  
@@ -493,10 +546,10 @@ export default class SlideshowItem extends React.Component
                     OnVideoPaused={this.OnVideoSlidePaused.bind(this)}
                     MotionCustom={{direction: this.state.direction, axis: slideAxis}}
                     MotionDrag={slideAxis}
-                    OnDragForward={this.SetSlide.bind(this, this.GetIncreasedSlideIndex())}
-                    OnDragBackward={this.SetSlide.bind(this, this.GetDecreasedSlideIndex())}
-                    OnDragBegin={this.StopWaitForSlide.bind(this)}
-                    OnDragEnd={this.StartWaitForNextSlide.bind(this)}
+                    OnDragForward={this.OnSlideDrag.bind(this, this.GetIncreasedSlideIndex())}
+                    OnDragBackward={this.OnSlideDrag.bind(this, this.GetDecreasedSlideIndex())}
+                    OnDragBegin={this.OnSlideDragBegin.bind(this)}
+                    OnDragEnd={this.OnSlideDragEnd.bind(this)}
                     key={this.state.currentSlide}
                 />;
                 break;
@@ -519,9 +572,7 @@ export default class SlideshowItem extends React.Component
                     className=
                     {
                         "relative grid w-full h-full justify-items-center items-center " + 
-                        (/*this.props.SlideshowAxis == "horizontal"*/ false ? 
-                        "grid-rows-slideshow-x grid-cols-slideshow-x " : 
-                        "grid-rows-slideshow-y grid-cols-slideshow-y " ) +
+                        "grid-rows-slideshow grid-cols-slideshow " + 
                         this.ParseSlideshowAspectRatio() + " " +
                         this.ParseSlideAxis()
                     } 
@@ -533,31 +584,53 @@ export default class SlideshowItem extends React.Component
                         {slideObject}
                     </AnimatePresence>
                     { this.props.SlideshowControls ?
-                        <div
-                            className={
-                                "relative flex items-center justify-center rounded-full box-border p-1 overflow-hidden " +
-                                "bg-eerie-black/75 text-gainsboro-700 " +
-                                (/*this.props.SlideshowAxis == "horizontal"*/ false ?
-                                "row-start-1 col-start-1 w-fit h-fit w-max-full flex-row gap-x-1.5 mt-1" :
-                                "row-start-1 col-start-2 w-fit h-fit h-max-full flex-col gap-y-1.5 mr-1")
+                        <>
+                            {
+                                this.props.SlideshowAutoPlay ?
+                                <div
+                                    className={
+                                        "relative flex items-center justify-center w-6 h-6 aspect-square rounded-full mt-1 mr-1 " +
+                                        "bg-eerie-black/80 text-gainsboro-600 " +
+                                        "row-start-1 col-start-2 "
+                                    } 
+                                >
+                                    <FontAwesomeIcon
+                                        icon={this.state.autoPlayPaused ? faPlay : faPause}
+                                        className="relative inline-flex items-center justify-center w-fit aspect-square text-xs leading-none"
+                                        onClick={()=>{this.ToggleAutoPlayPaused()}}
+                                    />
+                                </div>:
+                                null
                             }
-                        >
-                            {this.props.SlideshowSlides.map((value, index)=>{
-                                if(index == this.state.currentSlide)
-                                {
-                                    return <FontAwesomeIcon icon={faCircle} 
-                                            className="relative inline-flex items-center justify-center w-fit aspect-square text-2xs leading-none"
-                                        />
+                            <div
+                                className={
+                                    "relative flex items-center justify-center rounded-full box-border p-1 overflow-hidden " +
+                                    "bg-eerie-black/80 text-gainsboro-600 " +
+                                    "row-start-2 col-start-2 w-fit h-fit h-max-full flex-col gap-y-1.5"
                                 }
-                                else
-                                {
-                                    return <FontAwesomeIcon icon={faCircleDot} 
-                                            className="relative inline-flex items-center justify-center w-fit aspect-square text-2xs leading-none"
-                                            onClick={this.SetSlide.bind(this, index)}
-                                        />
-                                }
-                            })}
-                        </div>:
+                            >
+                                {this.props.SlideshowSlides.map((value, index)=>{
+                                    if(index == this.state.currentSlide)
+                                    {
+                                        return <FontAwesomeIcon 
+                                                icon={faCircle} 
+                                                key={index}
+                                                className="relative inline-flex items-center justify-center w-fit aspect-square text-2xs leading-none"
+                                            />
+                                    }
+                                    else
+                                    {
+                                        return <FontAwesomeIcon 
+                                                icon={faCircleDot} 
+                                                key={index}
+                                                className="relative inline-flex items-center justify-center w-fit aspect-square text-2xs leading-none"
+                                                onClick={this.SetSlide.bind(this, index)}
+                                            />
+                                    }
+                                })}
+                            </div>
+                        </>
+                        :
                         null
                     }
                 </div>

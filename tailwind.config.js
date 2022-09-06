@@ -100,12 +100,10 @@ module.exports = {
       },
       gridTemplateColumns:{
         'header' : '1fr auto 1fr',
-        'slideshow-x' : '1fr',
-        'slideshow-y' : '1fr auto'
+        'slideshow' : '1fr auto'
       },
       gridTemplateRows:{
-        'slideshow-x': 'auto 1fr',
-        'slideshow-y': '1fr'
+        'slideshow' : 'auto 1fr'
       },
       fontFamily: {
         'sans' : ['Roboto', ...defaultTheme.fontFamily.sans]

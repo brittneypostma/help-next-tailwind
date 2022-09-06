@@ -24,8 +24,6 @@ export default class ProjectOverviewPage extends React.Component
 
     render()
     {
-
-        console.log(this.props);
         
         return(
                 <ContentPageTemplate
@@ -42,6 +40,8 @@ export default class ProjectOverviewPage extends React.Component
                         SectionName="Featured_Projects"
                         TypeSize="text-sm"
                         NameSize="text-base"
+                        OpenBracketInline
+                        LastSection={this.props.OtherProjects.length == 0}
                     >
                         <div
                             className="relative flex flex-col gap-y-2 w-full h-fit"
@@ -70,6 +70,7 @@ export default class ProjectOverviewPage extends React.Component
                             SectionName="Other_Projects"
                             TypeSize="text-sm"
                             NameSize="text-base"
+                            OpenBracketInline
                             Collapsible={true}
                             StartCollapsed={!this.state.ShowAll}
                             LastSection={true}
@@ -109,7 +110,7 @@ function extractProjectData(project)
 {
     const projectData = 
     {
-        path: ("project/" + encodeURIComponent(project.meta.year) + "/" + encodeURIComponent(project.meta.name)),
+        path: ("project/" + encodeURIComponent(project.meta.year) + "/" + project.meta.name.replaceAll(' ','-')),
         name: (project.meta.name ?? null),
         thumbnail: (project.thumbnail ?? null),
         description: (project.description ?? null),

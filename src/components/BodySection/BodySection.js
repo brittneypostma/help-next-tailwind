@@ -31,11 +31,14 @@ export default class BodySection extends React.Component
                 className=" py-2 my-2"
             >
                 <div
-                    className={"relative block w-full h-4 px-2 leading-none align-middle font-medium " + (this.props.TypeSize ?? "")}
+                    className={
+                        "relative block w-full h-4 px-2 leading-none align-middle font-medium " + 
+                        (this.props.TypeSize ?? "") + 
+                        (!(this.props.Collapsible && this.state.IsCollapsed) && this.props.OpenBracketInline ? " mb-2" : "")}
                     onClick={this.SetCollapsedState.bind(this, !this.state.IsCollapsed)}
                 >
                     <span
-                        className="text-eucalyptus-800 whitespace-pre leading-none align-middle"
+                        className="text-eucalyptus-700 whitespace-pre leading-none align-middle"
                     >
                         {"Section "} 
                     </span>
@@ -47,7 +50,13 @@ export default class BodySection extends React.Component
                     
                     {
                         this.props.Collapsible && this.state.IsCollapsed ?
-                        <span className="text-eucalyptus-800 whitespace-pre"> &#123; &#125;</span>:
+                        <span className="text-eucalyptus-800 whitespace-pre"> {String.fromCodePoint(123)} {String.fromCodePoint(125)}</span>:
+                        null
+                    }
+                    
+                    {
+                        !(this.props.Collapsible && this.state.IsCollapsed) && this.props.OpenBracketInline ?
+                        <span className="text-eucalyptus-700 whitespace-pre"> {String.fromCodePoint(123)}</span> :
                         null
                     }
 
@@ -73,9 +82,14 @@ export default class BodySection extends React.Component
                 {
                     !this.props.Collapsible || !this.state.IsCollapsed ?
                     <>
-                        <div className={"relative block w-full h-4 px-2 mb-2 leading-none align-middle font-medium " + (this.props.TypeSize ?? "")}>
-                            <span className="text-eucalyptus-700 whitespace-pre">&#123;</span>
-                        </div>
+                        {
+                            !this.props.OpenBracketInline ?
+                            <div className={"relative block w-full h-4 px-2 mb-2 leading-none align-middle font-medium " + (this.props.TypeSize ?? "")}>
+                                <span className="text-eucalyptus-700 whitespace-pre">&#123;</span>
+                            </div> :
+                            null
+                        }
+                        
                         <div 
                             className={"relative block box-border w-full h-fit px-1.5 py-3 bg-dark-charcoal " + (this.props.className ?? "")}
                         >

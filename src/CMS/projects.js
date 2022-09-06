@@ -4,7 +4,7 @@ import path from "path"
 let projectsCache = 
 {
     directory: null,
-    contents: null
+    contents: new Array()
 };
 
 export function FetchProjectsContent(projectDir)
@@ -60,24 +60,19 @@ export function FetchProjectsContent(projectDir)
                     category: String(projectContentsJson.category),
                     priority: Number.parseInt(projectContentsJson.priority),
                 },
-                thumbnail:
-                {
-                    
-                },
-                description: projectContentsJson.summary,
+                thumbnail: projectContentsJson.thumbnail,
+                description: projectContentsJson.description,
                 details:
                 {
                     type:       (projectContentsJson.details?.type                      ?? null),
+                    duration:   (projectContentsJson.details?.duration                  ?? null),
                     goals:      (projectContentsJson.details?.goals                     ?? null),
                     teamSize:   (projectContentsJson.details?.teamsize                  ?? null),
                     roles:      (projectContentsJson.details?.roles                     ?? null),
-                    tech:       (projectContentsJson.details?.techandtools              ?? null),
-                    languages:  (projectContentsJson.details?.languagesandframeworks    ?? null)
+                    tech:       (projectContentsJson.details?.tech                      ?? null),
+                    languages:  (projectContentsJson.details?.languages                 ?? null)
                 },
-                body:
-                {
-
-                }
+                body: projectContentsJson.body
             }
             
             projectsContent.push(projectObject);

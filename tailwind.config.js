@@ -10,10 +10,21 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontSize: {
+        '2xs': '.625rem'
+      },
       aspectRatio: {
+        '1/1': '1 / 1',
+        '2/1': '2 / 1',
+        '3/2': '3 / 2',
         '4/3': '4 / 3',
+        '5/4': '5 / 4',
         '16/9': '16 / 9',
-        '2/1' : '2 / 1'
+        '1/2': '1 / 2',
+        '2/3': '2 / 3',
+        '3/4': '3 / 4',
+        '4/5': '4 / 5',
+        '9/16': '9 / 16'
       },
       blur: {
         xxs: '1px',
@@ -88,7 +99,13 @@ module.exports = {
         }
       },
       gridTemplateColumns:{
-        'header' : '1fr auto 1fr'
+        'header' : '1fr auto 1fr',
+        'slideshow-x' : '1fr',
+        'slideshow-y' : '1fr auto'
+      },
+      gridTemplateRows:{
+        'slideshow-x': 'auto 1fr',
+        'slideshow-y': '1fr'
       },
       fontFamily: {
         'sans' : ['Roboto', ...defaultTheme.fontFamily.sans]

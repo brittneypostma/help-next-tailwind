@@ -8,6 +8,63 @@ const projectVideoMediaFolder = "/public/media/projects/{{fields.year}}/{{slug}}
 
 
 
+function TextSizeOption(configLabel)
+{
+    return({
+        name: "size",
+        label: configLabel,
+        widget: "select",
+        options: 
+        [
+            {label: "Extra Small", value: "xs"},
+            {label: "Small", value: "sm"},
+            {label: "Normal", value: "base"},
+            {label: "Large", value: "lg"},
+            {label: "Extra Large", value: "xl"}
+        ]
+    });
+
+}
+
+function TextWeightOption(configLabel)
+{
+    return({
+        name: "weight",
+        label: configLabel,
+        widget: "select",
+        options:
+        [
+            {label: "Extra Light", value: "extralight"},
+            {label: "Light", value: "light"},
+            {label: "Normal", value: "normal"},
+            {label: "Medium", value: "medium"},
+            {label: "Semi Bold", value: "semibold"},
+            {label: "Bold", value: "bold"},
+            {label: "Extra Bold", value: "extrabold"},
+            {label: "Black", value: "black"}
+        ]
+    });
+}
+
+function TextAlignmentOption(configLabel)
+{
+    return({
+        name: "alignment",
+        label: configLabel,
+        widget: "select",
+        options:
+        [
+            "left",
+            "right",
+            "center",
+            "justify"
+        ],
+        default: "center"
+    });
+}
+
+
+
 const headerObjectConfig = 
 {
     name: "header",
@@ -20,20 +77,9 @@ const headerObjectConfig =
             label: "Header Content",
             widget: "string"
         },
-        {
-            name: "size",
-            label: "Header Size",
-            widget: "select",
-            options: 
-            [
-                "Extra Small",
-                "Small",
-                "Medium",
-                "Large",
-                "Extra large"
-            ],
-            default: "Large"
-        }
+        TextSizeOption("Header Size"),
+        TextWeightOption("Header Weight"),
+        TextAlignmentOption("Header Alignment")
     ]
 }
 
@@ -45,11 +91,65 @@ const textBlockObjectConfig =
     fields: 
     [
         {
-            name: "text",
+            name: "content",
             label: "Text",
             widget: "text"
-        }
+        },
+        TextSizeOption("Text Size"),
+        TextWeightOption("Text Weight"),
+        TextAlignmentOption("Text Alignment")
     ]
+}
+
+const dividerObjectConfig =
+{
+    name: "divider",
+    label: "Divider",
+    widget: "object",
+    fields: 
+    [
+        {
+            name: "thickness",
+            label: "Line Thickness",
+            widget: "select",
+            options:
+            [
+                "px",
+                "0.5",
+                "1",
+                "1.5",
+                "2",
+                "2.5",
+                "3",
+                "3.5",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8"
+            ],
+            default: "1"
+        },
+        {
+            name: "text",
+            label: "Text",
+            widget: "object",
+            required: false,
+            collapsed: true,
+            fields:
+            [
+                {
+                    name: "content",
+                    label: "Text",
+                    widget: "string",
+                    required: false
+                },
+                TextSizeOption("Text Size"),
+                TextWeightOption("Text Weight"),
+                TextAlignmentOption("Text Alignment")
+            ]
+        }
+    ]   
 }
 
 const buttonObjectConfig =
@@ -61,60 +161,118 @@ const buttonObjectConfig =
     [
         {
             name: "icon",
-            label: "Button Icon",
+            label: "Icon",
             widget: "string"    //TODO: change to be able to select fa icons.
         },
         {
             name: "title",
-            label: "Button Title",
+            label: "Title",
             widget: "string"
         },
-        //TODO: add action
-    ]
-}
-
-const lineObjectConfig =
-{
-    name: "line",
-    label: "Line",
-    widget: "object",
-    fields: 
-    [
-        {
-            name: "thickness",
-            label: "Line Thickness",
-            widget: "number",
-            value_type: "float",
-            min: 0.0
-        }
+        TextSizeOption("Title Size"),
+        TextWeightOption("Title Weight"),
+        TextAlignmentOption("Title Alignment")
+        // {
+        //     name: "actiontype",
+        //     label: "Action Type",
+        //     widget: "select",
+        //     options:
+        //     [
+                
+        //     ],
+        //     // default: 
+        // }
     ]
 }
 
 
 
-function ImageObjectConfig(configName, configLabel, mediaFolder)
+function ImageObjectConfig(configLabel, mediaFolder)
 {
     return(
     {
-        name: configName,
+        name: "image",
         label: configLabel,
         widget: "object",
         fields:
         [
             {
                 name: "image",
-                label: "Image",
+                label: "Image Source",
                 widget: "image",
                 media_folder: mediaFolder
+            },
+            {
+                name: "aspectRatio",
+                label: "Image Aspect-Ratio",
+                widget: "select",
+                options:
+                [
+                    "1/1",
+                    "2/1",
+                    "3/2",
+                    "4/3",
+                    "5/4",
+                    "16/9",
+                    "1/2",
+                    "2/3",
+                    "3/4",
+                    "4/5",
+                    "9/16"
+                ],
+                default: "4/3"
+            },
+            {
+                name: "fit",
+                label: "Image Fit",
+                widget: "select",
+                options:
+                [
+                    "fill",
+                    "contain",
+                    "cover",
+                    "none",
+                    "scale-down"
+                ],
+                default: "cover"
+            },
+            {
+                name: "layout",
+                label: "Image Layout",
+                widget: "select",
+                options: 
+                [
+                    "intrinsic",
+                    "fixed",
+                    "responsive",
+                    "fill"
+                ],
+                default: "fill"
+            },
+            {
+                name: "width",
+                label: "Image Width",
+                widget: "number",
+                value_type: "int",
+                min: 1,
+                required: false
+            },
+            {
+                name: "height",
+                label: "Image Height",
+                widget: "number",
+                value_type: "int",
+                min: 1,
+                required: false
             }
         ]
     });
 } 
 
-function VideoObjectConfig(configName, configLabel, mediaFolder)
+function VideoObjectConfig(configLabel, mediaFolder)
 {
     return({
-        name: configName,
+        name: "video",
         label: configLabel,
         widget: "object",
         fields:
@@ -123,17 +281,107 @@ function VideoObjectConfig(configName, configLabel, mediaFolder)
                 name: "video",
                 label: "Video",
                 widget: "file",
-                // pattern: ["", ""],
+                pattern: [".+\.(mp4|webm|ogg)", "File has to be of type .mp4, .webm or .ogg"],
                 media_folder: mediaFolder
+            },
+            {
+                name: "aspectRatio",
+                label: "Video Aspect-Ratio",
+                widget: "select",
+                options:
+                [
+                    "1/1",
+                    "2/1",
+                    "3/2",
+                    "4/3",
+                    "5/4",
+                    "16/9",
+                    "1/2",
+                    "2/3",
+                    "3/4",
+                    "4/5",
+                    "9/16"
+                ],
+                default: "4/3"
+            },
+            {
+                name: "fit",
+                label: "Video Fit",
+                widget: "select",
+                options:
+                [
+                    "fill",
+                    "contain",
+                    "cover",
+                    "none",
+                    "scale-down"
+                ],
+                default: "cover"
+            },
+            {
+                name: "controls",
+                label: "Video Controls",
+                widget: "boolean",
+                default: true
+            },
+            {
+                name: "autoPlay",
+                label: "Video Auto Play",
+                widget: "boolean",
+                default: false
+            },
+            {
+                name: "muted",
+                label: "Video Muted",
+                widget: "boolean",
+                default: false
+            },
+            {
+                name: "looped",
+                label: "Video Looped",
+                widget: "boolean",
+                default: false
             }
         ]
     });
 }
 
-function SlideShowObjectConfig(configName, configLabel, imageMediaFolder, videoMediaFolder)
+function SlideShowObjectConfig(configLabel, imageMediaFolder, videoMediaFolder)
 {
+
+    let slideshowImage = ImageObjectConfig("Image Slide", imageMediaFolder);
+    let slideshowVideo = VideoObjectConfig("Video Slide", videoMediaFolder);
+
+    slideshowImage.fields.push(
+        {
+            name: "time",
+            label: "Slide Show Time",
+            widget: "number",
+            value_type: "float",
+            min: 0.01,
+            default: 5.0,
+            hint: "Time the slide is shown in seconds"
+        }
+    );
+
+    slideshowVideo.fields.push(
+        {
+            name: "time",
+            label: "Slide Show Time",
+            widget: "number",
+            value_type: "float",
+            min: 0.01,
+            default: 5.0,
+            hint: "Time the slide is shown in seconds, if the video isnt playing."
+        }
+    );
+
+    slideshowVideo.fields.splice(slideshowVideo.fields.findIndex((value)=>{return value.name == "looped";}), 1);
+
+
+
     return({
-        name: configName,
+        name: "slideshow",
         label: configLabel,
         widget: "object",
         fields:
@@ -145,9 +393,52 @@ function SlideShowObjectConfig(configName, configLabel, imageMediaFolder, videoM
                 min: 2,
                 types:
                 [
-                    ImageObjectConfig("slide_image", "Image Slide", imageMediaFolder),
-                    VideoObjectConfig("slide_video", "Video Slide", videoMediaFolder)
+                    slideshowImage,
+                    slideshowVideo
                 ]
+            },
+            {
+                name: "aspectRatio",
+                label: "Slideshow Aspect-Ratio",
+                widget: "select",
+                options:
+                [
+                    "1/1",
+                    "2/1",
+                    "3/2",
+                    "4/3",
+                    "5/4",
+                    "16/9",
+                    "1/2",
+                    "2/3",
+                    "3/4",
+                    "4/5",
+                    "9/16"
+                ],
+                default: "4/3"
+            },
+            {
+                name: "controls",
+                label: "Slide Controls",
+                widget: "boolean",
+                default: true
+            },
+            {
+                name: "autoPlay",
+                label: "Slide Autoplay",
+                widget: "boolean",
+                default: true
+            },
+            {
+                name: "direction",
+                label: "Slide Direction",
+                widget: "select",
+                options:
+                [
+                    "horizontal",
+                    "vertical"
+                ],
+                default: "vertical"
             }
         ]
     });
@@ -175,10 +466,10 @@ function PageConfig(pageName)
                 [
                     headerObjectConfig,
                     textBlockObjectConfig,
-                    lineObjectConfig,
-                    ImageObjectConfig("image", "Image", pageImageMediaFolder),
-                    VideoObjectConfig("video", "Video", pageVideoMediaFolder),
-                    SlideShowObjectConfig("slideshow", "Slideshow", pageImageMediaFolder, pageVideoMediaFolder),
+                    dividerObjectConfig,
+                    ImageObjectConfig("Image", pageImageMediaFolder),
+                    VideoObjectConfig("Video", pageVideoMediaFolder),
+                    SlideShowObjectConfig("Slideshow", pageImageMediaFolder, pageVideoMediaFolder),
                     buttonObjectConfig
                 ]
             }
@@ -220,15 +511,16 @@ const CMSConfig =
             extension: "json",
             folder: projectDirectory,
             create: true,
-            path: "{{slug}}",
-            slug: "{{fields.year}}/{{slug}}",
-            summary: "({{fields.details.type}}) {{fields.year}} - {{slug}}",
+            path: "{{year}}/{{slug}}",
+            slug: "{{slug}}",
+            summary: "({{fields.details.type}}) {{fields.year}} - {{fields.title}}",
             fields:
             [
                 {
                     name: "title",
                     label: "Project Title",
-                    widget: "string"
+                    widget: "string",
+                    pattern: ["[A-Za-z0-9\ ]{2,32}", "must be name from a-z and 0-9"]
                 },
                 {
                     name: "year",
@@ -267,9 +559,9 @@ const CMSConfig =
                     max: 1,
                     types:
                     [
-                        ImageObjectConfig("thumbnail_image", "Thumbnail Image", projectImageMediaFolder),
-                        VideoObjectConfig("thumbnail_video", "Thumbnail Video", projectVideoMediaFolder),
-                        SlideShowObjectConfig("thumbnail_slideshow", "Thumbnail Slideshow", projectImageMediaFolder, projectVideoMediaFolder)
+                        ImageObjectConfig("Thumbnail Image", projectImageMediaFolder),
+                        VideoObjectConfig("Thumbnail Video", projectVideoMediaFolder),
+                        SlideShowObjectConfig("Thumbnail Slideshow", projectImageMediaFolder, projectVideoMediaFolder)
                     ]
                 },
                 {
@@ -292,6 +584,12 @@ const CMSConfig =
                             default: "Other"
                         },
                         {
+                            name: "duration",
+                            label: "Project Duration",
+                            widget: "string",
+                            required: false
+                        },
+                        {
                             name: "goals",
                             label: "Project Goals",
                             widget: "string",
@@ -310,22 +608,22 @@ const CMSConfig =
                             required: false
                         },
                         {
-                            name: "techandtools",
+                            name: "tech",
                             label: "Tech & Tools",
                             widget: "string",   //TODO: change to relation widget
                             required: false
                         },
                         {
-                            name: "languagesandframeworks",
-                            label: "Languages, Frameworks, Etc.",
+                            name: "languages",
+                            label: "Languages, Frameworks, APIs, Etc.",
                             widget: "string",   //TODO: change to relation widget
                             required: false
                         }
                     ]
                 },
                 {
-                    name: "summary",
-                    label: "Project Summary",
+                    name: "description",
+                    label: "Project Description",
                     widget: "text",
                     required: false,
                 },
@@ -337,10 +635,10 @@ const CMSConfig =
                     [
                         headerObjectConfig,
                         textBlockObjectConfig,
-                        lineObjectConfig,
-                        ImageObjectConfig("image", "Image", projectImageMediaFolder),
-                        VideoObjectConfig("video", "Video", projectVideoMediaFolder),
-                        SlideShowObjectConfig("slideshow", "Slideshow", projectImageMediaFolder, projectVideoMediaFolder),
+                        dividerObjectConfig,
+                        ImageObjectConfig("Image", projectImageMediaFolder),
+                        VideoObjectConfig("Video", projectVideoMediaFolder),
+                        SlideShowObjectConfig("Slideshow", projectImageMediaFolder, projectVideoMediaFolder),
                         buttonObjectConfig
                     ]
                 }

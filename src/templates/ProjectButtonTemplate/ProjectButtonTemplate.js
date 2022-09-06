@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBullseye, faClock, faLanguage, faScrewdriverWrench, faTags, faUsers, faUserTag } from "@fortawesome/free-solid-svg-icons";
 
 import ContentContainer from "../../components/ContentContainer/ContentContainer"
+import { ParseContentItem } from "../../CMS/content"
 
 let detailNames = new Map();
 detailNames.set("type", "Project Type");
@@ -65,11 +66,7 @@ export default class ProjectNavigationButton extends React.Component
                             <div
                                 className="absolute block w-full h-full aspect-4/3 blur-xxs"
                             >
-                                <Image
-                                    className="object-cover"
-                                    src="/media/projects/2022/test/images/mustang.jpg"
-                                    layout="fill"
-                                />
+                                {ParseContentItem(this.props.ProjectThumbnail, null)}
                             </div>
                             
                             <div
@@ -85,12 +82,12 @@ export default class ProjectNavigationButton extends React.Component
                                 </div>
                                 
                                 <div
-                                    className="relative block w-full h-fit pl-4 pr-2 text-sm text-gainsboro"
+                                    className="relative block w-full h-fit pl-3 pr-2 text-sm text-gainsboro"
                                 >
                                     {
                                         this.props.ProjectDescription ?
                                         <div>
-                                            <div className="relative block w-full h-4 mb-2 leading-normal align-middle">
+                                            <div className="relative block w-full h-4 mb-3 leading-normal align-middle font-medium">
                                                 <span className={"text-eucalyptus-700 whitespace-pre " + (TitleSize ?? "")}>
                                                     {"Description" + String.fromCodePoint(123)}
                                                 </span>
@@ -98,10 +95,13 @@ export default class ProjectNavigationButton extends React.Component
                                             <div className="pl-0">
                                                 {this.props.ProjectDescription}
                                             </div>
-                                            <div className="relative block w-full h-4 mt-1 mb-2 leading-normal align-middle">
+                                            <div className="relative block w-full h-4 mt-2   mb-2 leading-normal align-middle font-medium">
                                                 <span className={"text-eucalyptus-700 whitespace-pre " + (TitleSize ?? "")}>
                                                     {String.fromCodePoint(125)}
                                                 </span>
+                                                {this.props.ProjectDetails ? 
+                                                    <span className="text-gainsboro whitespace-pre">,</span> : 
+                                                    null}
                                             </div>
                                         </div>:
                                         null
@@ -111,7 +111,7 @@ export default class ProjectNavigationButton extends React.Component
                                         <div
                                             className="relative flex flex-col"
                                         >
-                                            <div className="relative block w-full h-4 mb-2 leading-normal align-middle">
+                                            <div className="relative block w-full h-4 mb-3 leading-normal align-middle font-medium">
                                                 <span className={"text-eucalyptus-700 whitespace-pre " + (TitleSize ?? "")}>
                                                     {"Details" + String.fromCodePoint(123)}
                                                 </span>
@@ -140,7 +140,7 @@ export default class ProjectNavigationButton extends React.Component
                                                     })
                                                 }
                                             </div>
-                                            <div className="relative block w-full h-4 mt-1 leading-normal align-middle">
+                                            <div className="relative block w-full h-4 mt-2 leading-normal align-middle font-medium">
                                                 <span className={"text-eucalyptus-700 whitespace-pre " + (TitleSize ?? "")}>
                                                     {String.fromCodePoint(125)}
                                                 </span>

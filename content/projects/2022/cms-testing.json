@@ -1,0 +1,110 @@
+{
+  "category": "Featured",
+  "priority": 0,
+  "details": {
+    "type": "Other",
+    "duration": "Infinitely",
+    "goals": "A perfect portfolio website",
+    "teamsize": "Just me, which means just 1 person.",
+    "roles": "All of them.",
+    "tech": "Whatever needed",
+    "languages": "Whatever wanted"
+  },
+  "year": "2022",
+  "title": "CMS Testing",
+  "thumbnail": [
+    {
+      "type": "image",
+      "aspectRatio": "4/3",
+      "fit": "cover",
+      "layout": "fill",
+      "image": "/public/media/projects/2022/cms-testing/images/glassknight.jpg"
+    }
+  ],
+  "body": [
+    {
+      "type": "header",
+      "alignment": "center",
+      "content": "CMS Testing",
+      "size": "lg",
+      "weight": "bold"
+    },
+    {
+      "type": "textblock",
+      "alignment": "center",
+      "content": "Test the cms configuration and if the content created through the cms creates the right content on the project pages.",
+      "size": "base",
+      "weight": "normal"
+    },
+    {
+      "type": "divider",
+      "thickness": "1",
+      "text": {
+        "alignment": "center",
+        "content": "Divider",
+        "size": "sm",
+        "weight": "light"
+      }
+    },
+    {
+      "type": "image",
+      "aspectRatio": "4/3",
+      "fit": "cover",
+      "layout": "fill",
+      "image": "/public/media/projects/2022/cms-testing/images/screenshot286-174042.png"
+    },
+    {
+      "type": "video",
+      "aspectRatio": "4/3",
+      "fit": "cover",
+      "controls": true,
+      "autoPlay": false,
+      "muted": true,
+      "looped": true,
+      "video": "/public/media/projects/2022/cms-testing/videos/2021-06-11-15-44-36_trim.mp4"
+    },
+    {
+      "type": "slideshow",
+      "slides": [
+        {
+          "type": "image",
+          "aspectRatio": "4/3",
+          "fit": "cover",
+          "layout": "fill",
+          "image": "/public/media/projects/2022/cms-testing/images/result_tavern_01.png",
+          "time": 5
+        },
+        {
+          "type": "image",
+          "aspectRatio": "4/3",
+          "fit": "cover",
+          "layout": "fill",
+          "image": "/public/media/projects/2022/cms-testing/images/screenshot296-15425.png",
+          "time": 5
+        },
+        {
+          "type": "video",
+          "aspectRatio": "4/3",
+          "fit": "cover",
+          "controls": true,
+          "autoPlay": true,
+          "muted": false,
+          "time": 5,
+          "video": "/public/media/projects/2022/cms-testing/videos/2021-06-11-15-44-36_trim.mp4"
+        }
+      ],
+      "aspectRatio": "4/3",
+      "controls": true,
+      "autoPlay": true,
+      "direction": "horizontal"
+    },
+    {
+      "type": "button",
+      "alignment": "center",
+      "icon": "fa-test",
+      "title": "Button",
+      "size": "lg",
+      "weight": "bold"
+    }
+  ]
+}

@@ -96,7 +96,75 @@ module.exports = {
           700: '#91B7CC',
           800: '#8BA5B2',
           900: '869299'
-        }
+        },
+        'Icon-CPP' : '#00599C',
+        'Icon-CSharp' : '#239120',
+        'Icon-Java' : '#007396',
+        'Icon-Javascript' : '#f7df1e',
+        'Icon-HTML5' : '#e34f26',
+        'Icon-CSS3' : '#1572b6',
+        'Icon-VisualStudio' : '#5c2d91',
+        'Icon-VisualStudio-Code' : '#007acc',
+        'Icon-CMake' :
+        {
+          'Part-1' : '#07508c',
+          'Part-2' : '#bd212a',
+          'Part-3' : '#209849',
+          'Part-4' : '#cccccd'
+        },
+        'Icon-Jenkins':
+        {
+          'Part-1' : '#d33833',
+          'Part-2' : '#ef3d3a',
+          'Part-3' : '#231f20',
+          'Part-4' : '#6d6b6d',
+          'Part-5' : '#dcd9d8',
+          'Part-6' : '#ffffff',
+          'Part-7' : '#81b0c4',
+          'Part-8' : '#335061',
+          'Part-9' : '#49728b',
+          'Part-10' : '#f0d6b7',
+          'Part-11' : '#221e1e'
+        },
+        'Icon-Github-Actions' : '#2088ff',
+        'Icon-UnrealEngine' : '#0e1128',
+        'Icon-Git' : '#f05032',
+        'Icon-Github' : '#181717',
+        'Icon-Gitkraken' : '#179287',
+        'Icon-Perforce' : '#404040',
+        'Icon-Jira' : '#0052cc',
+        'Icon-Trello' : '#0052cc',
+        'Icon-Toggl' : '#e57cd8',
+        'Icon-Microsoft-Teams' : '#6264a7',
+        'Icon-Slack' : 
+        {
+          'Part-1' : '#e01e5a',
+          'Part-2' : '#36c5f0',
+          'Part-3' : '#2eb67d',
+          'Part-4' : '#ecb22e'
+        },
+        'Icon-Discord' : '#5865f2',
+        'Icon-DX11' : '#1ca813',
+        'Icon-DX12' : '#1ca813',
+        'Icon-OpenGL' : '#5586a4',
+        'Icon-OpenGL-ES' : '#ba2a8d',
+        'Icon-Optix' : '#76b900',
+        'Icon-CUDA' : '#76b900',
+        'Icon-SDL2' : '#103255',
+        'Icon-React' : '#61dafb',
+        'Icon-NodeJS' : '#339933',
+        'Icon-GLTF' : '#86c540',
+        'Icon-JSON' : '#000000',
+        'Icon-Windows' : '#0078d6',
+        'Icon-RaspberryPi' :
+        {
+          'Part-1' : '#75a928',
+          'Part-2' : '#bc1142',
+          'Part-3' : '#000000'
+        },
+        'Icon-Oculus' : '#1c1e20',
+        'Icon-Vive' : '#00bae5',
+        'IconColor' : 'rgb(var(--IconColor))'
       },
       gridTemplateColumns:{
         'header' : '1fr auto 1fr',

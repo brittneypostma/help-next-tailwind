@@ -12,3 +12,307 @@ body
     margin-left: 0;
     margin-right: 0;
 }
+
+
+
+.CustomIcon
+{
+    --IconColor: 0, 0, 0;
+    width: 1em;
+    height: 1em;
+}
+
+*.IconColor > .CustomIcon path
+{
+    fill: rgb(var(--IconColor));
+}
+
+*:not(.IconColor) > .CustomIcon path
+{
+    fill: currentColor;
+}
+
+.CustomIcon#CPP
+{
+    --IconColor: 0, 89, 156;
+}
+
+.CustomIcon#CSharp
+{
+    --IconColor: 35, 145, 32;
+}
+
+.CustomIcon#Java
+{
+    --IconColor: 0, 115, 150;
+}
+
+.CustomIcon#JavaScript
+{
+    --IconColor: 247, 223, 30;
+}
+
+.CustomIcon#HTML5
+{
+    --IconColor: 227, 79, 38;
+}
+
+.CustomIcon#CSS3
+{
+    --IconColor: 21, 114, 182;
+}
+
+.CustomIcon#VisualStudio
+{
+    --IconColor: 92, 45, 145;
+}
+
+.CustomIcon#VisualStudioCode
+{
+    --IconColor: 0, 122, 204;
+}
+
+.CustomIcon#CMake #Part-1
+{
+    --IconColor: 7,80,140;
+}
+
+.CustomIcon#CMake #Part-2
+{
+    --IconColor: 189,33,42;
+}
+
+.CustomIcon#CMake #Part-3
+{
+    --IconColor: 32,152,73;
+}
+
+.CustomIcon#CMake #Part-4
+{
+    --IconColor: 204,204,205;
+}
+
+*:not(.IconColor) > .CustomIcon#Jenkins path:not(#Part-11)
+{
+    fill: none;
+}
+
+.CustomIcon#Jenkins #Part-1
+{
+    --IconColor: 211, 56, 51;
+}
+
+.CustomIcon#Jenkins #Part-2
+{
+    --IconColor: 239, 61, 58;
+}
+
+.CustomIcon#Jenkins #Part-3
+{
+    --IconColor: 35, 31, 32;
+}
+
+.CustomIcon#Jenkins #Part-4
+{
+    --IconColor: 109, 107, 109;
+}
+
+.CustomIcon#Jenkins #Part-5
+{
+    --IconColor: 220, 217, 216;
+}
+
+.CustomIcon#Jenkins #Part-6
+{
+    --IconColor: 255, 255, 255;
+}
+
+.CustomIcon#Jenkins #Part-7
+{
+    --IconColor: 129, 176, 196;
+}
+
+.CustomIcon#Jenkins #Part-8
+{
+    --IconColor: 51, 80, 97;
+}
+
+.CustomIcon#Jenkins #Part-9
+{
+    --IconColor: 73, 114, 139;
+}
+
+.CustomIcon#Jenkins #Part-10
+{
+    --IconColor: 240, 214, 183;
+}
+
+.CustomIcon#Jenkins #Part-11
+{
+    --IconColor: 34, 30, 30;
+}
+
+.CustomIcon#GitHubActions
+{
+    --IconColor: 32, 136, 255;
+}
+
+.CustomIcon#UnrealEngine
+{
+    --IconColor: 14, 17, 40;
+}
+
+.CustomIcon#Git
+{
+    --IconColor: 240, 80, 50;
+}
+
+.CustomIcon#GitHub
+{
+    --IconColor: 24, 23, 23;
+}
+
+.CustomIcon#GitKraken
+{
+    --IconColor: 23, 146, 135;
+}
+
+.CustomIcon#Perforce
+{
+    --IconColor: 64, 64, 64;
+}
+
+.CustomIcon#Jira
+{
+    --IconColor: 0, 82, 204;
+}
+
+.CustomIcon#Trello
+{
+    --IconColor: 0, 82, 204;
+}
+
+.CustomIcon#Toggl
+{
+    --IconColor: 229,124,216;
+}
+
+.CustomIcon#MSTeams
+{
+    --IconColor: 98, 100, 167;
+}
+
+.CustomIcon#Slack #Part-1
+{
+    --IconColor: 224 30 90;
+}
+
+.CustomIcon#Slack #Part-2
+{
+    --IconColor: 54 197 240;
+}
+
+.CustomIcon#Slack #Part-3
+{
+    --IconColor: 46 182 125;
+}
+
+.CustomIcon#Slack #Part-4
+{
+    --IconColor: 236 178 46;
+}
+
+.CustomIcon#Discord
+{
+    --IconColor: 88, 101, 242;
+}
+
+.CustomIcon#DX11
+{
+    --IconColor: 28,168,19;
+}
+
+.CustomIcon#DX12
+{
+    --IconColor: 28,168,19;
+}
+
+.CustomIcon#OpenGL
+{
+    --IconColor: 85, 134, 164;
+}
+
+.CustomIcon#OpenGLES
+{
+    --IconColor: 186, 42, 141;
+}
+
+.CustomIcon#Optix
+{
+    --IconColor: 118,185,0;
+}
+
+.CustomIcon#CUDA
+{
+    --IconColor: 118,185,0;
+}
+
+.CustomIcon#SDL2
+{
+    --IconColor: 16,50,85;
+}
+
+.CustomIcon#ImGUI
+{
+    --IconColor: 0, 0 ,0;
+}
+
+.CustomIcon#React
+{
+    --IconColor: 97, 218, 251;
+}
+
+.CustomIcon#NodeJS
+{
+    --IconColor: 51, 153, 51;
+}
+
+.CustomIcon#GLTF
+{
+    --IconColor: 134, 197, 64;
+}
+
+.CustomIcon#JSON
+{
+    --IconColor: 0, 0, 0;
+}
+
+.CustomIcon#Windows
+{
+    --IconColor: 0, 120, 214;
+}
+
+.CustomIcon#Oculus
+{
+    --IconColor: 28, 30, 32;
+}
+
+.CustomIcon#Vive
+{
+    --IconColor: 0,186,229;
+}
+
+.CustomIcon#RaspberryPi #Part-1
+{
+    --IconColor: 117,169,40;
+}
+
+.CustomIcon#RaspberryPi #Part-2
+{
+    --IconColor: 188,17,66;
+}
+
+.CustomIcon#RaspberryPi #Part-3
+{
+    --IconColor: 0,0,0;
+}

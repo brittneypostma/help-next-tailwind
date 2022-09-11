@@ -100,11 +100,37 @@
     },
     {
       "type": "button",
+      "iconAlignment": "left",
       "alignment": "center",
-      "icon": "fa-test",
-      "title": "Button",
-      "size": "lg",
-      "weight": "bold"
+      "title": "Test Button",
+      "icon": {
+        "iconType": [
+          {
+            "type": "custom",
+            "iconName": "CMake"
+          }
+        ],
+        "size": "lg"
+      },
+      "size": "base",
+      "weight": "semibold"
+    },
+    {
+      "type": "button",
+      "iconAlignment": "left",
+      "alignment": "center",
+      "icon": {
+        "iconType": [
+          {
+            "type": "fontawesome",
+            "iconName": "FaBed"
+          }
+        ],
+        "size": "lg"
+      },
+      "title": "Another button",
+      "size": "base",
+      "weight": "black"
     }
   ]
 }

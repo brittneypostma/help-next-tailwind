@@ -4,6 +4,8 @@ import DividerItem from "../components/DividerItem/DividerItem";
 import ImageItem from "../components/ImageItem/ImageItem";
 import VideoItem from "../components/VideoItem/VideoItem";
 import SlideshowItem from "../components/SlideshowItem/SlideshowItem";
+import BodyItem from "../components/BodyItem/BodyItem";
+import ButtonItem from "../components/ButtonItem/ButtonItem";
 
 
 
@@ -164,6 +166,20 @@ function CreateSlideshowItem(description, itemIndex)
 function CreateButtonItem(description, itemIndex)
 {
 
-    return(<div key={itemIndex}/>);
+    console.log(description);
+
+    return(
+        <ButtonItem 
+            IconType={description.icon.iconType[0]?.type ?? "none"}
+            IconName={description.icon.iconType[0]?.iconName}
+            IconSize={description.icon.size}
+            IconAlignment={description.iconAlignment}
+            Title={description.title}
+            TitleSize={description.size}
+            TitleWeight={description.weight}
+            TitleAlignment={description.alignment}
+            key={itemIndex}
+        />
+    );
 
 }

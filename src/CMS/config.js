@@ -1,3 +1,6 @@
+import * as FontAwesomeIcons from "react-icons/fa";
+import Icons from "../components/CustomIcon/Icons";
+
 export const pageDirectory = "content/pages/";
 const pageImageMediaFolder = "/public/media/pages/{{slug}}/images";
 const pageVideoMediaFolder = "/public/media/pages/{{slug}}/videos";
@@ -159,10 +162,17 @@ const buttonObjectConfig =
     widget: "object",
     fields:
     [
+        IconObjectConfig("Button Icon", false),
         {
-            name: "icon",
-            label: "Icon",
-            widget: "string"    //TODO: change to be able to select fa icons.
+            name: "iconAlignment",
+            label: "Icon Alignment",
+            widget: "select",
+            options:
+            [
+                "left",
+                "right"
+            ],
+            default: "left"
         },
         {
             name: "title",
@@ -172,20 +182,65 @@ const buttonObjectConfig =
         TextSizeOption("Title Size"),
         TextWeightOption("Title Weight"),
         TextAlignmentOption("Title Alignment")
-        // {
-        //     name: "actiontype",
-        //     label: "Action Type",
-        //     widget: "select",
-        //     options:
-        //     [
-                
-        //     ],
-        //     // default: 
-        // }
     ]
 }
 
 
+
+function IconObjectConfig(configLabel, optional)
+{
+
+    return({
+        name: "icon",
+        label: configLabel,
+        widget: "object",
+        required: optional ?? true,
+        fields:
+        [
+            {
+                name: "iconType",
+                label: "Icon",
+                widget: "list",
+                min: 1,
+                max: 1,
+                types:
+                [
+                    {
+                        name: "fontawesome",
+                        label: "Fontawesome Icon",
+                        widget: "object",
+                        fields:
+                        [
+                            {
+                                name: "iconName",
+                                label: "Icon Name",
+                                widget: "select",
+                                options: Object.keys(FontAwesomeIcons)
+                            }
+                        ]
+                    },
+                    {
+                        name: "custom",
+                        label: "Custom Icon",
+                        widget: "object",
+                        fields:
+                        [
+                            {
+                                name: "iconName",
+                                label: "Icon Name",
+                                widget: "select",
+                                options: Object.keys(Icons)
+                            }
+                        ]
+                    }
+                ]
+            },
+            TextSizeOption("Icon Size")
+        ]
+
+    });
+
+}
 
 function ImageObjectConfig(configLabel, mediaFolder)
 {

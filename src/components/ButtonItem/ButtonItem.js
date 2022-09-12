@@ -89,6 +89,22 @@ export default class ButtonItem extends React.Component
         }
     }
 
+    ParseActionHRef()
+    {
+        switch(this.props.ActionData.type)
+        {
+            case "download":
+                return this.props.ActionData.target;
+            case "redirect":
+                return this.props.ActionData.target;
+        }
+    }
+
+    IsLocalRedirect()
+    {
+        return (this.props.ActionData.type == "redirect" && this.props.ActionData.target.startsWith('/'));
+    }
+
     render()
     {
 
@@ -96,7 +112,10 @@ export default class ButtonItem extends React.Component
             <div
                 className=
                 {
-                    "relative flex items-center justify-center w-fit aspect-square mx-4 " +
+                    "relative flex items-center justify-center w-fit aspect-square mx-2 " +
+                    (   this.props.IconAttached ?
+                        "mx-2 " :
+                        this.props.IconAlignment == "left" ? "ml-4 mr-2 " : "ml-2 mr-4 ") +
                     this.ParseIconSize()
                 }
             >
@@ -107,7 +126,9 @@ export default class ButtonItem extends React.Component
             <div
                 className=
                 {
-                    "relative flex items-center w-full h-fit h-max-full text-gainsboro " +
+                    (this.props.IconAttached ? "w-fit " : "w-full ") + 
+                    "relative flex items-center h-fit w-max-full h-max-full " +
+                    "decoration-from-font no-hover:underline group-hover:underline " +
                     this.ParseTitleSize() + " " + 
                     this.ParseTitleWeight() + " " + 
                     this.ParseTitleAlignment()
@@ -116,6 +137,10 @@ export default class ButtonItem extends React.Component
                 {this.props.Title}
             </div>
 
+        const localRedirect = this.IsLocalRedirect();
+        const actionHRef = this.ParseActionHRef();
+        const downloadPath = this.props.ActionData.type == "download" ? actionHRef.slice(actionHRef.lastIndexOf('/') +1) : null;
+
         return (
             <BodyItem
                 ItemType="Button"
@@ -123,20 +148,25 @@ export default class ButtonItem extends React.Component
                 TypeSize="text-2xs"
                 NameSize="text-xs"
                 OpenBracketInline
+                IsGroup
+                HRef={actionHRef}
+                LocalHRef={localRedirect}
+                Download={downloadPath}
             >
                 <div
-                    className="relative flex flex-row flex-nowrap items-center justify-center"
+                    className="relative w-full h-fit flex flex-row flex-nowrap items-center justify-center text-gainsboro"
                 >   
                     {
                         this.props.IconAlignment == "left" ?
                         <>
                             {icon}
                             {title}
-                        </> :
+                        </>:
                         <>
                             {title}
                             {icon}
                         </>
+                        
                     }
                 </div>
             </BodyItem>

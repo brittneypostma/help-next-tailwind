@@ -167,6 +167,11 @@ function CreateButtonItem(description, itemIndex)
 {
 
     console.log(description);
+    let actionData = description.action[0];
+    if(actionData.type == "download")
+    {
+        actionData.target = actionData.target.replace('/public/media', '/media');
+    }
 
     return(
         <ButtonItem 
@@ -174,10 +179,12 @@ function CreateButtonItem(description, itemIndex)
             IconName={description.icon.iconType[0]?.iconName}
             IconSize={description.icon.size}
             IconAlignment={description.iconAlignment}
+            IconAttached={description.iconAttached}
             Title={description.title}
             TitleSize={description.size}
             TitleWeight={description.weight}
             TitleAlignment={description.alignment}
+            ActionData={actionData}
             key={itemIndex}
         />
     );

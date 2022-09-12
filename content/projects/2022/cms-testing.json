@@ -99,10 +99,17 @@
       "direction": "horizontal"
     },
     {
-      "type": "button",
-      "iconAlignment": "left",
+      "size": "base",
       "alignment": "center",
+      "iconAlignment": "left",
+      "action": [
+        {
+          "type": "download",
+          "target": "/public/media/downloads/depthbuffer.png"
+        }
+      ],
       "title": "Test Button",
+      "weight": "semibold",
       "icon": {
         "iconType": [
           {
@@ -112,13 +119,21 @@
         ],
         "size": "lg"
       },
-      "size": "base",
-      "weight": "semibold"
+      "type": "button",
+      "iconAttached": true
     },
     {
-      "type": "button",
-      "iconAlignment": "left",
+      "size": "base",
       "alignment": "center",
+      "iconAlignment": "right",
+      "action": [
+        {
+          "type": "redirect",
+          "target": "/home"
+        }
+      ],
+      "title": "Another button",
+      "weight": "black",
       "icon": {
         "iconType": [
           {
@@ -128,9 +143,8 @@
         ],
         "size": "lg"
       },
-      "title": "Another button",
-      "size": "base",
-      "weight": "black"
+      "type": "button",
+      "iconAttached": false
     }
   ]
 }

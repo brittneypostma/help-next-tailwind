@@ -1,13 +1,20 @@
 import * as FontAwesomeIcons from "react-icons/fa";
 import Icons from "../components/CustomIcon/Icons";
 
+const downloadsMediaFolder = "/public/media/downloads/";
+const downloadsPublicFolder = "/media/downloads/";
+
 export const pageDirectory = "content/pages/";
 const pageImageMediaFolder = "/public/media/pages/{{slug}}/images";
+const pageImagePublicFolder = "/media/pages/{{slug}}/images";
 const pageVideoMediaFolder = "/public/media/pages/{{slug}}/videos";
+const pageVideoPublicFolder = "/media/pages/{{slug}}/videos";
 
 export const projectDirectory = "content/projects/";
 const projectImageMediaFolder = "/public/media/projects/{{fields.year}}/{{slug}}/images/";
+const projectImagePublicFolder = "/media/projects/{{fields.year}}/{{slug}}/images/";
 const projectVideoMediaFolder = "/public/media/projects/{{fields.year}}/{{slug}}/videos/";
+const projectVideoPublicFolder = "/media/projects/{{fields.year}}/{{slug}}/videos/";
 
 
 
@@ -175,13 +182,64 @@ const buttonObjectConfig =
             default: "left"
         },
         {
+            name: "iconAttached",
+            label: "Attach Icon",
+            widget: "boolean",
+            default: true,
+            hint: "Determines if the icon is attached to the title or if it is statically placed left or right."
+        },
+        {
             name: "title",
             label: "Title",
             widget: "string"
         },
         TextSizeOption("Title Size"),
         TextWeightOption("Title Weight"),
-        TextAlignmentOption("Title Alignment")
+        TextAlignmentOption("Title Alignment"),
+        {
+            name: "action",
+            label: "Button Action",
+            widget: "list",
+            min: 1,
+            max: 1,
+            types:
+            [
+                {
+                    name: "download",
+                    label: "Download Action",
+                    widget: "object",
+                    fields:
+                    [
+                        {
+                            name: "target",
+                            label: "Download Target",
+                            widget: "file",
+                            allow_multiple: true,
+                            media_folder: downloadsMediaFolder,
+                            // public_folder: downloadsPublicFolder
+                        }
+                    ]
+                },
+                {
+                    name: "redirect",
+                    label: "Redirect Action",
+                    widget: "object",
+                    fields:
+                    [
+                        {
+                            name: "target",
+                            label: "Redirect Target",
+                            widget: "string",
+                            pattern: 
+                            [ 
+                                RegExp("^(?:http:\\/\\/|https:\\/\\/|\\/){1}(?:[\\/?#@:\\[\\]=!\\$&()\\*+,;A-Za-z0-9-_~\\.]+)*"), 
+                                "The target has to be a relative or absolute url"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
     ]
 }
 
@@ -242,7 +300,7 @@ function IconObjectConfig(configLabel, optional)
 
 }
 
-function ImageObjectConfig(configLabel, mediaFolder)
+function ImageObjectConfig(configLabel, mediaFolder, publicFolder)
 {
     return(
     {
@@ -255,7 +313,8 @@ function ImageObjectConfig(configLabel, mediaFolder)
                 name: "image",
                 label: "Image Source",
                 widget: "image",
-                media_folder: mediaFolder
+                media_folder: mediaFolder,
+                // public_folder: publicFolder
             },
             {
                 name: "aspectRatio",
@@ -324,7 +383,7 @@ function ImageObjectConfig(configLabel, mediaFolder)
     });
 } 
 
-function VideoObjectConfig(configLabel, mediaFolder)
+function VideoObjectConfig(configLabel, mediaFolder, publicFolder)
 {
     return({
         name: "video",
@@ -336,8 +395,9 @@ function VideoObjectConfig(configLabel, mediaFolder)
                 name: "video",
                 label: "Video",
                 widget: "file",
-                pattern: [".+\.(mp4|webm|ogg)", "File has to be of type .mp4, .webm or .ogg"],
-                media_folder: mediaFolder
+                pattern: [RegExp(".+\\.(mp4|webm|ogg)"), "File has to be of type .mp4, .webm or .ogg"],
+                media_folder: mediaFolder,
+                // public_folder: publicFolder
             },
             {
                 name: "aspectRatio",
@@ -401,11 +461,11 @@ function VideoObjectConfig(configLabel, mediaFolder)
     });
 }
 
-function SlideShowObjectConfig(configLabel, imageMediaFolder, videoMediaFolder)
+function SlideShowObjectConfig(configLabel, imageMediaFolder, videoMediaFolder, imagePublicFolder, videoPublicFolder)
 {
 
-    let slideshowImage = ImageObjectConfig("Image Slide", imageMediaFolder);
-    let slideshowVideo = VideoObjectConfig("Video Slide", videoMediaFolder);
+    let slideshowImage = ImageObjectConfig("Image Slide", imageMediaFolder, imagePublicFolder);
+    let slideshowVideo = VideoObjectConfig("Video Slide", videoMediaFolder, videoPublicFolder);
 
     slideshowImage.fields.push(
         {
@@ -522,9 +582,13 @@ function PageConfig(pageName)
                     headerObjectConfig,
                     textBlockObjectConfig,
                     dividerObjectConfig,
-                    ImageObjectConfig("Image", pageImageMediaFolder),
-                    VideoObjectConfig("Video", pageVideoMediaFolder),
-                    SlideShowObjectConfig("Slideshow", pageImageMediaFolder, pageVideoMediaFolder),
+                    ImageObjectConfig("Image", pageImageMediaFolder, pageImagePublicFolder),
+                    VideoObjectConfig("Video", pageVideoMediaFolder, pageVideoPublicFolder),
+                    SlideShowObjectConfig("Slideshow", 
+                        pageImageMediaFolder, 
+                        pageVideoMediaFolder,
+                        pageImagePublicFolder,
+                        pageVideoPublicFolder),
                     buttonObjectConfig
                 ]
             }
@@ -575,7 +639,7 @@ const CMSConfig =
                     name: "title",
                     label: "Project Title",
                     widget: "string",
-                    pattern: ["[A-Za-z0-9\ ]{2,32}", "must be name from a-z and 0-9"]
+                    pattern: [RegExp("[A-Za-z0-9\\ ]{2,32}"), "must be name from a-z and 0-9"]
                 },
                 {
                     name: "year",
@@ -614,8 +678,8 @@ const CMSConfig =
                     max: 1,
                     types:
                     [
-                        ImageObjectConfig("Thumbnail Image", projectImageMediaFolder),
-                        VideoObjectConfig("Thumbnail Video", projectVideoMediaFolder),
+                        ImageObjectConfig("Thumbnail Image", projectImageMediaFolder, projectImagePublicFolder),
+                        VideoObjectConfig("Thumbnail Video", projectVideoMediaFolder, projectVideoPublicFolder),
                         SlideShowObjectConfig("Thumbnail Slideshow", projectImageMediaFolder, projectVideoMediaFolder)
                     ]
                 },
@@ -691,9 +755,13 @@ const CMSConfig =
                         headerObjectConfig,
                         textBlockObjectConfig,
                         dividerObjectConfig,
-                        ImageObjectConfig("Image", projectImageMediaFolder),
-                        VideoObjectConfig("Video", projectVideoMediaFolder),
-                        SlideShowObjectConfig("Slideshow", projectImageMediaFolder, projectVideoMediaFolder),
+                        ImageObjectConfig("Image", projectImageMediaFolder, projectImagePublicFolder),
+                        VideoObjectConfig("Video", projectVideoMediaFolder, projectVideoPublicFolder),
+                        SlideShowObjectConfig("Slideshow", 
+                            projectImageMediaFolder, 
+                            projectVideoMediaFolder,
+                            projectImagePublicFolder,
+                            projectVideoPublicFolder),
                         buttonObjectConfig
                     ]
                 }

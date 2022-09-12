@@ -18,7 +18,13 @@ export default class BodyItem extends React.Component
 
         return(
             <ContentContainer
-                className="relative block w-full h-fit my-2"
+                className={
+                    "relative block w-full h-fit my-2 " +
+                    (this.props.IsGroup ? "group " : "")
+                }
+                IsLink={this.props.LocalHRef}
+                HRef={this.props.HRef ?? null}
+                Download={this.props.Download ?? null}
             >
                 <div className="relative flex flex-col w-full h-full">
                     <div 

@@ -197,6 +197,17 @@ const buttonObjectConfig =
         TextWeightOption("Title Weight"),
         TextAlignmentOption("Title Alignment"),
         {
+            name: "width",
+            label: "Button Width",
+            widget: "select",
+            options:
+            [
+                "fit-content",
+                "full"
+            ],
+            default: "fit-content"
+        },
+        {
             name: "action",
             label: "Button Action",
             widget: "list",
@@ -238,6 +249,92 @@ const buttonObjectConfig =
                         }
                     ]
                 }
+            ]
+        }
+    ]
+}
+
+const flexLayoutObjectConfig = 
+{
+    name: "flexLayout",
+    label: "Flex Layout",
+    widget: "object",
+    fields:
+    [
+        {
+            name: "direction",
+            label: "Flex Direction",
+            widget: "select",
+            options:
+            [
+                "row",
+                "column",
+                "row-reverse",
+                "column-reverse"
+            ],
+            default: "row"
+        },
+        {
+            name: "wrap",
+            label: "Flex Wrapping",
+            widget: "select",
+            options:
+            [
+                "no-wrap",
+                "wrap",
+                "wrap-reverse"
+            ],
+            default: "no-wrap"
+        },
+        {
+            name: "align",
+            label: "Flex Item Align",
+            widget: "select",
+            options:
+            [
+                "start",
+                "center",
+                "end",
+                "stretch",
+                "baseline"
+            ],
+            default: "start",
+            hint: "Alignment of the items along the cross axis"
+        },
+        {
+            name: "justify",
+            label: "Flex Item Justify",
+            widget: "select",
+            options:
+            [
+                "start",
+                "center",
+                "end",
+                "space-between",
+                "space-around",
+                "space-evenly"
+            ],
+            default: "start",
+            hint: "Alignment of the items along the main axis"
+        },
+        {
+            name: "content",
+            label: "Flex Content",
+            widget: "list",
+            min: 1,
+            types:
+            [
+                headerObjectConfig,
+                textBlockObjectConfig,
+                dividerObjectConfig,
+                ImageObjectConfig("Image", projectImageMediaFolder, projectImagePublicFolder),
+                VideoObjectConfig("Video", projectVideoMediaFolder, projectVideoPublicFolder),
+                SlideShowObjectConfig("Slideshow", 
+                    projectImageMediaFolder, 
+                    projectVideoMediaFolder,
+                    projectImagePublicFolder,
+                    projectVideoPublicFolder),
+                buttonObjectConfig
             ]
         }
     ]
@@ -288,6 +385,17 @@ function IconObjectConfig(configLabel, optional)
                                 label: "Icon Name",
                                 widget: "select",
                                 options: Object.keys(Icons)
+                            },
+                            {
+                                name: "iconColor",
+                                label: "Icon Color",
+                                widget: "select",
+                                options: 
+                                [
+                                    "current",
+                                    "icon"
+                                ],
+                                default: "icon"
                             }
                         ]
                     }
@@ -762,7 +870,8 @@ const CMSConfig =
                             projectVideoMediaFolder,
                             projectImagePublicFolder,
                             projectVideoPublicFolder),
-                        buttonObjectConfig
+                        buttonObjectConfig,
+                        flexLayoutObjectConfig
                     ]
                 }
             ]

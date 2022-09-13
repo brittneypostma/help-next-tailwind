@@ -19,8 +19,9 @@ export default class BodyItem extends React.Component
         return(
             <ContentContainer
                 className={
-                    "relative block w-full h-fit my-2 " +
-                    (this.props.IsGroup ? "group " : "")
+                    "relative block h-fit " +
+                    (this.props.IsGroup ? "group " : "") + 
+                    (this.props.Width ?? "w-full ")
                 }
                 IsLink={this.props.LocalHRef}
                 HRef={this.props.HRef ?? null}

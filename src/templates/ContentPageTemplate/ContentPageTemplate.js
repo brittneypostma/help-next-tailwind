@@ -70,7 +70,7 @@ export default class ContentPageTemplate extends React.Component
                             <div className="pl-4 text-eucalyptus-700">{String.fromCodePoint(123)}</div>
                         </div>
                         <div
-                            className="relative block w-full px-2"
+                            className="relative flex flex-col items-center justify-start gap-y-2 w-full px-2"
                         >
                             {this.props.children}
                         </div>

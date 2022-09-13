@@ -9,6 +9,17 @@ import CustomIcon from "../CustomIcon/CustomIcon"
 export default class ButtonItem extends React.Component
 {
 
+    ParseButtonWidth()
+    {
+        switch(this.props.Width)
+        {
+            case "fit-content":
+                return "w-fit";
+            case "full":
+                return "w-full";
+        }
+    }
+    
     ParseIcon()
     {
         switch(this.props.IconType)
@@ -25,7 +36,7 @@ export default class ButtonItem extends React.Component
                     );
                 }
             case "custom":
-                return(<CustomIcon IconName={this.props.IconName} IconColor={true} />);
+                return(<CustomIcon IconName={this.props.IconName} IconColor={this.props.IconColor == "icon"} />);
             default:
                 return null;
         }
@@ -112,10 +123,8 @@ export default class ButtonItem extends React.Component
             <div
                 className=
                 {
-                    "relative flex items-center justify-center w-fit aspect-square mx-2 " +
-                    (   this.props.IconAttached ?
-                        "mx-2 " :
-                        this.props.IconAlignment == "left" ? "ml-4 mr-2 " : "ml-2 mr-4 ") +
+                    "relative flex items-center justify-center w-fit aspect-square " +
+                    (this.props.IconAlignment == "left" ? "mr-2 " : "ml-2 ") +
                     this.ParseIconSize()
                 }
             >
@@ -147,6 +156,7 @@ export default class ButtonItem extends React.Component
                 ItemName={this.props.ButtonName ?? null}
                 TypeSize="text-2xs"
                 NameSize="text-xs"
+                Width={this.ParseButtonWidth()}
                 OpenBracketInline
                 IsGroup
                 HRef={actionHRef}
@@ -154,7 +164,7 @@ export default class ButtonItem extends React.Component
                 Download={downloadPath}
             >
                 <div
-                    className="relative w-full h-fit flex flex-row flex-nowrap items-center justify-center text-gainsboro"
+                    className="relative w-full h-fit flex flex-row flex-nowrap items-center justify-center px-4 text-gainsboro"
                 >   
                     {
                         this.props.IconAlignment == "left" ?

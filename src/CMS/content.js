@@ -4,8 +4,8 @@ import DividerItem from "../components/DividerItem/DividerItem";
 import ImageItem from "../components/ImageItem/ImageItem";
 import VideoItem from "../components/VideoItem/VideoItem";
 import SlideshowItem from "../components/SlideshowItem/SlideshowItem";
-import BodyItem from "../components/BodyItem/BodyItem";
 import ButtonItem from "../components/ButtonItem/ButtonItem";
+import FlexLayoutItem from "../components/FlexLayoutItem/FlexLayoutItem";
 
 
 
@@ -47,6 +47,10 @@ export function ParseContentItem(itemDescription, itemIndex)
 
         case "button":
             return CreateButtonItem(itemDescription, itemIndex);
+            break;
+
+        case "flexLayout":
+            return CreateFlexLayoutItem(itemDescription, itemIndex);
             break;
     }
 
@@ -165,8 +169,6 @@ function CreateSlideshowItem(description, itemIndex)
 
 function CreateButtonItem(description, itemIndex)
 {
-
-    console.log(description);
     let actionData = description.action[0];
     if(actionData.type == "download")
     {
@@ -177,6 +179,7 @@ function CreateButtonItem(description, itemIndex)
         <ButtonItem 
             IconType={description.icon.iconType[0]?.type ?? "none"}
             IconName={description.icon.iconType[0]?.iconName}
+            IconColor={description.icon.iconType[0]?.iconColor ?? null}
             IconSize={description.icon.size}
             IconAlignment={description.iconAlignment}
             IconAttached={description.iconAttached}
@@ -184,9 +187,27 @@ function CreateButtonItem(description, itemIndex)
             TitleSize={description.size}
             TitleWeight={description.weight}
             TitleAlignment={description.alignment}
+            Width={description.width}
             ActionData={actionData}
             key={itemIndex}
         />
     );
 
+}
+
+function CreateFlexLayoutItem(description, itemIndex)
+{
+
+    return(
+        <FlexLayoutItem
+            Direction={description.direction}
+            Wrap={description.wrap}
+            AlignItems={description.align}
+            JustifyContent={description.justify}
+            key={itemIndex}
+        >
+            {ParseContentItems(description.content)}
+        </FlexLayoutItem>
+    ); 
+    
 }

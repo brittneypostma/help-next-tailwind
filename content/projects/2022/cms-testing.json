@@ -99,52 +99,64 @@
       "direction": "horizontal"
     },
     {
-      "size": "base",
-      "alignment": "center",
-      "iconAlignment": "left",
-      "action": [
+      "type": "flexLayout",
+      "direction": "row",
+      "wrap": "wrap",
+      "align": "start",
+      "justify": "center",
+      "content": [
         {
-          "type": "download",
-          "target": "/public/media/downloads/depthbuffer.png"
-        }
-      ],
-      "title": "Test Button",
-      "weight": "semibold",
-      "icon": {
-        "iconType": [
-          {
-            "type": "custom",
-            "iconName": "CMake"
-          }
-        ],
-        "size": "lg"
-      },
-      "type": "button",
-      "iconAttached": true
-    },
-    {
-      "size": "base",
-      "alignment": "center",
-      "iconAlignment": "right",
-      "action": [
+          "size": "base",
+          "alignment": "center",
+          "width": "fit-content",
+          "iconAlignment": "left",
+          "action": [
+            {
+              "type": "redirect",
+              "target": "https://github.com/"
+            }
+          ],
+          "title": "Project Source Code",
+          "weight": "bold",
+          "icon": {
+            "iconType": [
+              {
+                "type": "custom",
+                "iconName": "Github",
+                "iconColor": "current"
+              }
+            ],
+            "size": "xl"
+          },
+          "type": "button",
+          "iconAttached": true
+        },
         {
-          "type": "redirect",
-          "target": "/home"
+          "size": "base",
+          "alignment": "center",
+          "width": "fit-content",
+          "iconAlignment": "left",
+          "action": [
+            {
+              "type": "download",
+              "target": "/public/media/downloads/depthbuffer.png"
+            }
+          ],
+          "title": "Download File",
+          "weight": "black",
+          "icon": {
+            "iconType": [
+              {
+                "type": "fontawesome",
+                "iconName": "FaFile"
+              }
+            ],
+            "size": "xl"
+          },
+          "type": "button",
+          "iconAttached": true
         }
-      ],
-      "title": "Another button",
-      "weight": "black",
-      "icon": {
-        "iconType": [
-          {
-            "type": "fontawesome",
-            "iconName": "FaBed"
-          }
-        ],
-        "size": "lg"
-      },
-      "type": "button",
-      "iconAttached": false
+      ]
     }
   ]
 }

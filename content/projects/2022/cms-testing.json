@@ -158,5 +158,14 @@
         }
       ]
     }
+  ],
+  "background": [
+    {
+      "type": "image",
+      "aspectRatio": "4/3",
+      "fit": "cover",
+      "layout": "fill",
+      "image": "/public/media/projects/2022/cms-testing/images/glassknight.jpg"
+    }
   ]
 }

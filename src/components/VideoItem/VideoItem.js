@@ -63,12 +63,16 @@ export default class VideoItem extends React.Component
         return(
             <BodyItem
                 ItemType="Video"
-                ItemName={this.props.VideoName ?? null}
+                ItemName={(this.props.VideoName ?? null)}
                 TypeSize="text-2xs"
                 NameSize="text-xs"
                 OpenBracketInline
                 FullItemContent
                 TypeNameBackgrounds
+                NoTypeNames={this.props.BackgroundItem}
+                Width={this.props.BackgroundItem ? "w-fit" : null}
+                Height={this.props.BackgroundItem ? "h-full" : null}
+                AspectRatio={this.props.BackgroundItem ? this.ParseVideoAspectRatio() : null}
             >
                 <div
                     className={"relative block w-full " + this.ParseVideoAspectRatio() }

@@ -14,7 +14,7 @@ export function ParseContentItems(itemDescriptions)
     return itemDescriptions.map((description, index) => { return ParseContentItem(description, index); });
 }
 
-export function ParseContentItem(itemDescription, itemIndex)
+export function ParseContentItem(itemDescription, itemIndex, backgroundItem)
 {
 
     let itemType = itemDescription.type;
@@ -34,15 +34,15 @@ export function ParseContentItem(itemDescription, itemIndex)
             break;
 
         case "image":
-            return CreateImageItem(itemDescription, itemIndex);
+            return CreateImageItem(itemDescription, itemIndex, backgroundItem);
             break;
 
         case "video":
-            return CreateVideoItem(itemDescription, itemIndex);
+            return CreateVideoItem(itemDescription, itemIndex, backgroundItem);
             break;
 
         case "slideshow":
-            return CreateSlideshowItem(itemDescription, itemIndex);
+            return CreateSlideshowItem(itemDescription, itemIndex, backgroundItem);
             break;
 
         case "button":
@@ -99,7 +99,7 @@ function CreateDividerItem(description, itemIndex)
     );
 }
 
-function CreateImageItem(description, itemIndex)
+function CreateImageItem(description, itemIndex, backgroundItem)
 {
     let imagePath = description.image.replace('/public/media', '/media');
 
@@ -112,12 +112,13 @@ function CreateImageItem(description, itemIndex)
             ImageLayout={description.layout}
             ImageFit={description.fit}
             ImageAlt={null}
+            BackgroundItem={backgroundItem}
             key={itemIndex}
         />
     );
 }
 
-function CreateVideoItem(description, itemIndex)
+function CreateVideoItem(description, itemIndex, backgroundItem)
 {
     let videoPath = description.video.replace('/public/media', '/media');
 
@@ -131,13 +132,14 @@ function CreateVideoItem(description, itemIndex)
             VideoAspectRatio={description.aspectRatio}
             VideoLayout={description.layout}
             VideoFit={description.fit}
+            BakgroundItem={backgroundItem}
             key={itemIndex}
         />
     );
 
 }
 
-function CreateSlideshowItem(description, itemIndex)
+function CreateSlideshowItem(description, itemIndex, backgroundItem)
 {
 
     let slides = description.slides.map((slide)=>
@@ -161,6 +163,7 @@ function CreateSlideshowItem(description, itemIndex)
             SlideshowControls={description.controls}
             SlideshowAxis={description.direction}
             SlideshowSlides={slides}
+            BackgroundItem={backgroundItem}
             key={itemIndex}
         />
     );

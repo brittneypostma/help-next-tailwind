@@ -682,6 +682,21 @@ function PageConfig(pageName)
                 default: pageName
             },
             {
+                name: "background",
+                label: "Project Background",
+                widget: "list",
+                min: 1,
+                max: 1,
+                types:
+                [
+                    ImageObjectConfig("Background Image", projectImageMediaFolder, projectImagePublicFolder),
+                    VideoObjectConfig("Background Video", projectVideoMediaFolder, projectVideoPublicFolder),
+                    SlideShowObjectConfig("Background Slideshow",
+                        projectImageMediaFolder, projectVideoMediaFolder,
+                        projectImagePublicFolder, projectVideoPublicFolder)
+                ]
+            },
+            {
                 name: "body",
                 label: "PageBody",
                 widget: "list",
@@ -729,7 +744,30 @@ const CMSConfig =
             files:
             [
                 PageConfig("About"),
-                PageConfig("Contact")
+                PageConfig("Contact"),
+                {
+                    name: "Projects",
+                    label: "Projects",
+                    file: pageDirectory + "Projects.json",
+                    fields:
+                    [
+                        {
+                            name: "background",
+                            label: "Project Background",
+                            widget: "list",
+                            min: 1,
+                            max: 1,
+                            types:
+                            [
+                                ImageObjectConfig("Background Image", projectImageMediaFolder, projectImagePublicFolder),
+                                VideoObjectConfig("Background Video", projectVideoMediaFolder, projectVideoPublicFolder),
+                                SlideShowObjectConfig("Background Slideshow",
+                                    projectImageMediaFolder, projectVideoMediaFolder,
+                                    projectImagePublicFolder, projectVideoPublicFolder)
+                            ]
+                        }
+                    ]
+                }
             ]
         },
         {
@@ -788,7 +826,24 @@ const CMSConfig =
                     [
                         ImageObjectConfig("Thumbnail Image", projectImageMediaFolder, projectImagePublicFolder),
                         VideoObjectConfig("Thumbnail Video", projectVideoMediaFolder, projectVideoPublicFolder),
-                        SlideShowObjectConfig("Thumbnail Slideshow", projectImageMediaFolder, projectVideoMediaFolder)
+                        SlideShowObjectConfig("Thumbnail Slideshow", 
+                            projectImageMediaFolder, projectVideoMediaFolder,
+                            projectImagePublicFolder, projectVideoPublicFolder)
+                    ]
+                },
+                {
+                    name: "background",
+                    label: "Project Background",
+                    widget: "list",
+                    min: 1,
+                    max: 1,
+                    types:
+                    [
+                        ImageObjectConfig("Background Image", projectImageMediaFolder, projectImagePublicFolder),
+                        VideoObjectConfig("Background Video", projectVideoMediaFolder, projectVideoPublicFolder),
+                        SlideShowObjectConfig("Background Slideshow",
+                            projectImageMediaFolder, projectVideoMediaFolder,
+                            projectImagePublicFolder, projectVideoPublicFolder)
                     ]
                 },
                 {

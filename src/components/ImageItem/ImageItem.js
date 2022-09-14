@@ -74,6 +74,10 @@ export default class ImageItem extends React.Component
                 OpenBracketInline
                 FullItemContent
                 TypeNameBackgrounds
+                NoTypeNames={this.props.BackgroundItem}
+                Width={this.props.BackgroundItem ? "w-fit" : null}
+                Height={this.props.BackgroundItem ? "h-full" : null}
+                AspectRatio={this.props.BackgroundItem ? this.ParseImageAspectRatio() : null}
             >
                 <div
                     className={"relative block w-full " + this.ParseImageAspectRatio() }

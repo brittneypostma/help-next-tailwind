@@ -49,6 +49,7 @@ export default class ContentPageTemplate extends React.Component
                     RenderLeftButton: this.props.Header?.LeftButton ? ()=>{ return LeftButton; } : null,
                     RenderRightButton: this.props.Header?.RightButton ? ()=>{ return RightButton; } : null
                 }}
+                RenderBackground={this.props.RenderBackground ?? null}
             >
                 <div
                     className="relative flex flex-col justify-start items-center w-full h-full overflow-x-hidden overflow-y-auto"

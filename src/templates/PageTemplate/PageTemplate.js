@@ -21,10 +21,12 @@ export default class PageTemplate extends React.Component
                     className="absolute block box-border w-screen h-screen p-2 overflow-hidden"
                 >
                     <div id="Glass-Background"
-                        className="relative block box-border w-full h-full px-2 rounded-lg overflow-hidden bg-black-olive/50 backdrop-blur"
+                        className="relative flex flex-col flex-nowrap items-center box-border w-full h-full px-2 
+                                   rounded-lg overflow-hidden bg-black-olive/50 backdrop-blur"
                     >
                         <div id="Content-Wrapper"
-                            className="relative flex flex-col flex-nowrap box-border w-full h-full overflow-hidden bg-eerie-black/80"
+                            className="relative flex flex-col flex-nowrap box-border w-full sm:w-4/5 h-full 
+                                       overflow-hidden bg-eerie-black/80"
                         >
                             <HeaderTemplate
                                 RenderTitle={this.props.Header?.RenderTitle}

@@ -2,8 +2,9 @@ import React from "react";
 import { faCode, faComment } from "@fortawesome/free-solid-svg-icons";
 
 import ContentPageTemplate from "../../../templates/ContentPageTemplate/ContentPageTemplate";
+import Background from "../../../components/Background/Background";
 import { FetchProjectsContent } from "../../../CMS/projects";
-import { ParseContentItems } from "../../../CMS/content";
+import { ParseContentItems, ParseContentItem } from "../../../CMS/content";
 import { projectDirectory } from "../../../CMS/config";
 
 
@@ -23,6 +24,16 @@ export default class ProjectPage extends React.Component
                     LeftButton:{ Icon: faCode, Href: "/projects" },
                     RightButton:{ Icon: faComment, Href: "/contact" }
                 }}
+                RenderBackground=
+                {
+                    ()=>{
+                        return(
+                            <Background>
+                                {ParseContentItem(this.props.ProjectBackground, null, true)}
+                            </Background>
+                        );
+                    }
+                }
             >
                 { ParseContentItems(this.props.ProjectBody) }
             </ContentPageTemplate>
@@ -67,6 +78,7 @@ export async function getStaticProps(context)
     return { props: 
     {
         ProjectTitle: projectData?.meta.name ?? null,
-        ProjectBody:  projectData?.body ?? null
+        ProjectBody:  projectData?.body ?? null,
+        ProjectBackground: projectData?.background ?? null
     }};
 }

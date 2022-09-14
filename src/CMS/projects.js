@@ -60,7 +60,8 @@ export function FetchProjectsContent(projectDir)
                     category: String(projectContentsJson.category),
                     priority: Number.parseInt(projectContentsJson.priority),
                 },
-                thumbnail: projectContentsJson.thumbnail,
+                thumbnail: projectContentsJson.thumbnail[0],
+                background: projectContentsJson.background[0],
                 description: projectContentsJson.description,
                 details:
                 {

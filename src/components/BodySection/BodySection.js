@@ -91,13 +91,11 @@ export default class BodySection extends React.Component
                         }
                         
                         <div 
-                            className=
-                            {
-                                "relative block box-border w-full h-fit px-1.5 py-3 bg-dark-charcoal "
-                            }
+                            className="relative block box-border w-full h-fit bg-dark-charcoal/75"
                         >
                             {this.props.children}
                         </div>
+
                         <div className={"relative block w-full h-4 px-2 mt-2 leading-none align-middle font-medium " + (this.props.TypeSize ?? "")}>
                             <span className="text-eucalyptus-700 whitespace-pre">
                                 {String.fromCodePoint(125)}

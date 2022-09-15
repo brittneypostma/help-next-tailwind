@@ -1,3 +1,3 @@
-import HomePage from "../shared/HomePage";
+import HomePage from "./home";
 
 export default HomePage;

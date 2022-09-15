@@ -22,11 +22,12 @@ export default class PageTemplate extends React.Component
                 >
                     <div id="Glass-Background"
                         className="relative flex flex-col flex-nowrap items-center box-border w-full h-full px-2 
-                                   rounded-lg overflow-hidden bg-black-olive/50 backdrop-blur"
+                                   rounded-lg overflow-hidden bg-black-olive/60 backdrop-blur-sm"
                     >
                         <div id="Content-Wrapper"
-                            className="relative flex flex-col flex-nowrap box-border w-full sm:w-4/5 h-full 
-                                       overflow-hidden bg-eerie-black/80"
+                            className="relative flex flex-col flex-nowrap box-border 
+                                       w-full sm:w-4/5 md:w-3/4 lg:w-2/3 xl:w-3/5 2xl:w-1/2
+                                       h-full overflow-hidden bg-eerie-black/60 backdrop-blur-sm"
                         >
                             <HeaderTemplate
                                 RenderTitle={this.props.Header?.RenderTitle}

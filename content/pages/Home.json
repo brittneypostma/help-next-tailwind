@@ -1,0 +1,11 @@
+{
+  "background": [
+    {
+      "type": "image",
+      "aspectRatio": "16/9",
+      "fit": "cover",
+      "layout": "fill",
+      "image": "/public/media/pages/Home/images/finalresult_bistrointerior1.jpg"
+    }
+  ]
+}

@@ -23,7 +23,8 @@ export default class BodyItem extends React.Component
                     (this.props.IsGroup ? "group" : "") + " " + 
                     (this.props.Width ?? "w-full") + " " +
                     (this.props.Height ?? "h-fit") + " " +
-                    (this.props.AspectRatio ?? "")
+                    (this.props.AspectRatio ?? "") + " " +
+                    (this.props.Styles ?? "")
                 }
                 IsLink={this.props.LocalHRef}
                 HRef={this.props.HRef ?? null}

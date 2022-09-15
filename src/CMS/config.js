@@ -5,10 +5,10 @@ const downloadsMediaFolder = "/public/media/downloads/";
 const downloadsPublicFolder = "/media/downloads/";
 
 export const pageDirectory = "content/pages/";
-const pageImageMediaFolder = "/public/media/pages/{{slug}}/images";
-const pageImagePublicFolder = "/media/pages/{{slug}}/images";
-const pageVideoMediaFolder = "/public/media/pages/{{slug}}/videos";
-const pageVideoPublicFolder = "/media/pages/{{slug}}/videos";
+function pageImageMediaFolder(pageName){return `/public/media/pages/${pageName}/images`;}
+function pageImagePublicFolder(pageName){return `/media/pages/${pageName}/images`;}
+function pageVideoMediaFolder(pageName){return `/public/media/pages/${pageName}/videos`;}
+function pageVideoPublicFolder(pageName){return `/media/pages/${pageName}/videos`;}
 
 export const projectDirectory = "content/projects/";
 const projectImageMediaFolder = "/public/media/projects/{{fields.year}}/{{slug}}/images/";
@@ -667,35 +667,53 @@ function SlideShowObjectConfig(configLabel, imageMediaFolder, videoMediaFolder, 
     });
 }
 
-function PageConfig(pageName)
+function PageBackgroundObjectConfig(configLabel, imageMediaFolder, videoMediaFolder, imagePublicFolder, videoPublicFolder)
 {
     return({
-        name: pageName,
-        label: pageName,
-        file: pageDirectory + pageName + ".json",
-        fields:
+        name: "background",
+        label: configLabel,
+        widget: "list",
+        min: 1,
+        max: 1,
+        types:
         [
-            {
-                name: "title",
-                label: "Title",
-                widget: "hidden",
-                default: pageName
-            },
-            {
-                name: "background",
-                label: "Project Background",
-                widget: "list",
-                min: 1,
-                max: 1,
-                types:
-                [
-                    ImageObjectConfig("Background Image", projectImageMediaFolder, projectImagePublicFolder),
-                    VideoObjectConfig("Background Video", projectVideoMediaFolder, projectVideoPublicFolder),
-                    SlideShowObjectConfig("Background Slideshow",
-                        projectImageMediaFolder, projectVideoMediaFolder,
-                        projectImagePublicFolder, projectVideoPublicFolder)
-                ]
-            },
+            ImageObjectConfig("Background Image", imageMediaFolder, imagePublicFolder),
+            VideoObjectConfig("Background Video", videoMediaFolder, videoPublicFolder),
+            SlideShowObjectConfig("Background Slideshow",
+                imageMediaFolder, videoMediaFolder,
+                imagePublicFolder, videoPublicFolder)
+        ]
+    });
+}
+
+function PageConfig(pageName, hasBody)
+{
+    const imageMediaFolder = pageImageMediaFolder(pageName);
+    const imagePublicFolder = pageImagePublicFolder(pageName);
+    const videoMediaFolder = pageVideoMediaFolder(pageName);
+    const videoPublicFolder = pageVideoPublicFolder(pageName);
+
+    let PageConfig = 
+        {
+            name: pageName,
+            label: pageName,
+            file: pageDirectory + pageName + ".json",
+            fields:
+            [
+                {
+                    name: "title",
+                    widget: "hidden",
+                    default: pageName
+                },
+                PageBackgroundObjectConfig("Page Background", 
+                    imageMediaFolder, videoMediaFolder, 
+                    imagePublicFolder, videoPublicFolder)
+            ]
+        };
+
+    if(hasBody)
+    {
+        PageConfig.fields.push( 
             {
                 name: "body",
                 label: "PageBody",
@@ -705,18 +723,17 @@ function PageConfig(pageName)
                     headerObjectConfig,
                     textBlockObjectConfig,
                     dividerObjectConfig,
-                    ImageObjectConfig("Image", pageImageMediaFolder, pageImagePublicFolder),
-                    VideoObjectConfig("Video", pageVideoMediaFolder, pageVideoPublicFolder),
+                    ImageObjectConfig("Image", imageMediaFolder, imagePublicFolder),
+                    VideoObjectConfig("Video", videoMediaFolder, videoPublicFolder),
                     SlideShowObjectConfig("Slideshow", 
-                        pageImageMediaFolder, 
-                        pageVideoMediaFolder,
-                        pageImagePublicFolder,
-                        pageVideoPublicFolder),
+                        imageMediaFolder, videoMediaFolder,
+                        imagePublicFolder, videoPublicFolder),
                     buttonObjectConfig
                 ]
-            }
-        ]
-    });
+            });
+    }
+
+    return(PageConfig);
 }
 
 
@@ -743,31 +760,10 @@ const CMSConfig =
             extension: "json",
             files:
             [
-                PageConfig("About"),
-                PageConfig("Contact"),
-                {
-                    name: "Projects",
-                    label: "Projects",
-                    file: pageDirectory + "Projects.json",
-                    fields:
-                    [
-                        {
-                            name: "background",
-                            label: "Project Background",
-                            widget: "list",
-                            min: 1,
-                            max: 1,
-                            types:
-                            [
-                                ImageObjectConfig("Background Image", projectImageMediaFolder, projectImagePublicFolder),
-                                VideoObjectConfig("Background Video", projectVideoMediaFolder, projectVideoPublicFolder),
-                                SlideShowObjectConfig("Background Slideshow",
-                                    projectImageMediaFolder, projectVideoMediaFolder,
-                                    projectImagePublicFolder, projectVideoPublicFolder)
-                            ]
-                        }
-                    ]
-                }
+                PageConfig("Home",      false),
+                PageConfig("About",     true),
+                PageConfig("Contact",   true),
+                PageConfig("Projects",  false)
             ]
         },
         {
@@ -831,21 +827,9 @@ const CMSConfig =
                             projectImagePublicFolder, projectVideoPublicFolder)
                     ]
                 },
-                {
-                    name: "background",
-                    label: "Project Background",
-                    widget: "list",
-                    min: 1,
-                    max: 1,
-                    types:
-                    [
-                        ImageObjectConfig("Background Image", projectImageMediaFolder, projectImagePublicFolder),
-                        VideoObjectConfig("Background Video", projectVideoMediaFolder, projectVideoPublicFolder),
-                        SlideShowObjectConfig("Background Slideshow",
-                            projectImageMediaFolder, projectVideoMediaFolder,
-                            projectImagePublicFolder, projectVideoPublicFolder)
-                    ]
-                },
+                PageBackgroundObjectConfig("Project Background", 
+                    projectImageMediaFolder, projectVideoMediaFolder, 
+                    projectImageMediaFolder, projectVideoMediaFolder),
                 {
                     name: "details",
                     label: "Project Details",

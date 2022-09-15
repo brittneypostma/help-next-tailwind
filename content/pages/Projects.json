@@ -1,0 +1,11 @@
+{
+  "background": [
+    {
+      "type": "image",
+      "aspectRatio": "16/9",
+      "fit": "cover",
+      "layout": "fill",
+      "image": "/public/media/pages/Projects/images/screenshot296-17347.png"
+    }
+  ]
+}

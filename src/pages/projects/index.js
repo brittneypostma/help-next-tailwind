@@ -2,9 +2,12 @@ import React from "react";
 import { faCode, faHome, faComment } from "@fortawesome/free-solid-svg-icons";
 
 import ContentPageTemplate from "../../templates/ContentPageTemplate/ContentPageTemplate";
+import Background from "../../components/Background/Background";
 import BodySection from "../../components/BodySection/BodySection";
 import ProjectNavigationButton from "../../templates/ProjectButtonTemplate/ProjectButtonTemplate";
+import { FetchPageContent } from "../../CMS/pages";
 import { FetchProjectsContent } from "../../CMS/projects";
+import { ParseContentItem } from "../../CMS/content";
 import { projectDirectory } from "../../CMS/config";
 
 
@@ -35,6 +38,18 @@ export default class ProjectOverviewPage extends React.Component
                         LeftButton:{ Icon: faHome, Href: "/home" },
                         RightButton:{ Icon: faComment, Href: "/contact" }
                     }}
+                    RenderBackground=
+                    {
+                        this.props.PageBackground ?
+                        ()=>{
+                            return(
+                                <Background>
+                                    {ParseContentItem(this.props.PageBackground, null, true)}
+                                </Background>
+                            );
+                        }:
+                        null
+                    }
                 >
                     <BodySection
                         SectionName="Featured_Projects"
@@ -44,7 +59,11 @@ export default class ProjectOverviewPage extends React.Component
                         LastSection={this.props.OtherProjects.length == 0}
                     >
                         <div
-                            className="relative flex flex-col gap-y-2 w-full h-fit"
+                            className="relative flex flex-col 
+                                       gap-y-2 sm:gap-y-3 md:gapy-y-4
+                                       w-full h-fit
+                                       px-2 sm:px-3 md:px-4 lg:px-5
+                                       py-3 sm:py-4 md:py-5 lg:py-6"
                         >
                             {
                                 this.props.FeaturedProjects.length > 0  ?
@@ -76,7 +95,11 @@ export default class ProjectOverviewPage extends React.Component
                             LastSection={true}
                         >
                             <div
-                                className="relative flex flex-col gap-y-4 w-full h-fit"
+                                className="relative flex flex-col 
+                                           gap-y-2 sm:gap-y-3 md:gapy-y-4
+                                           w-full h-fit
+                                           px-2 sm:px-3 md:px-4 lg:px-5
+                                           py-3 sm:py-4 md:py-5 lg:py-6"
                             >
                                 {
                                     this.state.ShowAll ? 
@@ -123,7 +146,9 @@ function extractProjectData(project)
 export async function getStaticProps(context)
 {
 
+    
     const projects = FetchProjectsContent(projectDirectory);
+    const page = FetchPageContent("Projects");
 
     const featuredProjects = new Array();
     projects.forEach((project)=>
@@ -137,5 +162,9 @@ export async function getStaticProps(context)
         if(project.meta.category != "Featured"){ otherProjects.push(extractProjectData(project)); }
     });
 
-    return { props: {FeaturedProjects: featuredProjects, OtherProjects: otherProjects}};
+    return { props: {
+        FeaturedProjects: featuredProjects, 
+        OtherProjects: otherProjects,
+        PageBackground: page?.background ?? null
+    }};
 }

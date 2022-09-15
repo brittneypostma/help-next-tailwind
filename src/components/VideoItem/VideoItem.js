@@ -73,6 +73,7 @@ export default class VideoItem extends React.Component
                 Width={this.props.BackgroundItem ? "w-fit" : null}
                 Height={this.props.BackgroundItem ? "h-full" : null}
                 AspectRatio={this.props.BackgroundItem ? this.ParseVideoAspectRatio() : null}
+                Styles={this.props.BackgroundItem ? "rounded-none" : "my-1 sm:my-1.5"}
             >
                 <div
                     className={"relative block w-full " + this.ParseVideoAspectRatio() }

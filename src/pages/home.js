@@ -66,9 +66,9 @@ export default class HomePage extends React.Component
                         this.props.PageBackground ?
                         ()=>{
                             return(
-                                <Background>
-                                    {ParseContentItem(this.props.PageBackground, null, true)}
-                                </Background>
+                                <Background
+                                    BackgroundContent={this.props.PageBackground}
+                                />
                             );
                         }:
                         null

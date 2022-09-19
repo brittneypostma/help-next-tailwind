@@ -28,9 +28,9 @@ export default class ProjectPage extends React.Component
                 {
                     ()=>{
                         return(
-                            <Background>
-                                {ParseContentItem(this.props.ProjectBackground, null, true)}
-                            </Background>
+                            <Background
+                                BackgroundContent={this.props.ProjectBackground}
+                            />
                         );
                     }
                 }

@@ -28,7 +28,7 @@ export default class BodySection extends React.Component
 
         return(
             <ContentContainer
-                className=" py-2 my-2"
+                className="w-full h-fit py-2 my-2"
             >
                 <div
                     className={

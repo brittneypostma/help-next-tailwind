@@ -11,7 +11,11 @@ import FlexLayoutItem from "../components/FlexLayoutItem/FlexLayoutItem";
 
 export function ParseContentItems(itemDescriptions)
 {
-    return itemDescriptions.map((description, index) => { return ParseContentItem(description, index); });
+    if(itemDescriptions?.length > 0)
+    {
+        return itemDescriptions.map((description, index) => { return ParseContentItem(description, index, false); });
+    }
+    return null;
 }
 
 export function ParseContentItem(itemDescription, itemIndex, backgroundItem)

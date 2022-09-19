@@ -567,7 +567,7 @@ export default class SlideshowItem extends React.Component
                 FullItemContent
                 TypeNameBackgrounds
                 NoTypeNames={this.props.BackgroundItem}
-                Width={this.props.BackgroundItem ? "w-fit" : null}
+                Width={this.props.BackgroundItem ? "w-full" : null}
                 Height={this.props.BackgroundItem ? "h-full" : null}
                 AspectRatio={this.props.BackgroundItem ? this.ParseSlideshowAspectRatio() : null}
                 Styles={this.props.BackgroundItem ? "rounded-none" : "my-1 sm:my-1.5"}

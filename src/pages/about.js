@@ -4,7 +4,7 @@ import { faComment, faHome, faUser } from "@fortawesome/free-solid-svg-icons";
 import ContentPageTemplate from "../templates/ContentPageTemplate/ContentPageTemplate";
 import Background from "../components/Background/Background";
 import { FetchPageContent } from "../CMS/pages";
-import { ParseContentItem } from "../CMS/content";
+import { ParseContentItems, ParseContentItem } from "../CMS/content";
 
 
 
@@ -29,15 +29,15 @@ export default class AboutPage extends React.Component
                     this.props.PageBackground ?
                     ()=>{
                         return(
-                            <Background>
-                                {ParseContentItem(this.props.PageBackground, null, true)}
-                            </Background>
+                            <Background
+                                BackgroundContent={this.props.PageBackground}
+                            />
                         );
                     }:
                     null
                 }
             >
-
+                { ParseContentItems(this.props.PageBody) }
             </ContentPageTemplate>
         )
 
@@ -53,7 +53,8 @@ export async function getStaticProps(context)
     const page = FetchPageContent("About");
     
     return { props: {
-        PageBackground: page?.background ?? null
+        PageBackground: page?.background ?? null,
+        PageBody: page?.body ?? null
     }};
 
 }

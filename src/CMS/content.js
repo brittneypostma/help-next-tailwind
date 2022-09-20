@@ -64,13 +64,9 @@ function CreateHeaderItem(description, itemIndex)
 {
     return (
         <HeaderItem
-            HeaderSize={description.size ?? "base"}
-            HeaderWeight={description.weight ?? "normal"}
-            HeaderAlignment={description.alignment ?? "center"}
+            HeaderContent={description.content}
             key={itemIndex}
-        >
-            {description.content}
-        </HeaderItem>
+        />
     );
 }
 
@@ -184,16 +180,14 @@ function CreateButtonItem(description, itemIndex)
 
     return(
         <ButtonItem 
-            IconType={description.icon.iconType[0]?.type ?? "none"}
-            IconName={description.icon.iconType[0]?.iconName}
-            IconColor={description.icon.iconType[0]?.iconColor ?? null}
+            IconType={description.icon.content?.[0]?.type ?? "none"}
+            IconName={description.icon.content?.[0]?.iconName}
+            IconColor={description.icon.content?.[0]?.iconColor ?? null}
+            IconAspectRatio={description.icon.aspectRatio}
             IconSize={description.icon.size}
-            IconAlignment={description.iconAlignment}
-            IconAttached={description.iconAttached}
-            Title={description.title}
-            TitleSize={description.size}
-            TitleWeight={description.weight}
-            TitleAlignment={description.alignment}
+            IconAlignment={description.icon.alignment}
+            IconAttached={description.icon.attached}
+            TitleContent={description.title}
             Width={description.width}
             ActionData={actionData}
             key={itemIndex}

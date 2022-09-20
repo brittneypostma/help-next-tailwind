@@ -90,6 +90,7 @@ export default class ImageItem extends React.Component
                         width={this.props.ImageWidth ?? null}
                         height={this.props.ImageHeight ?? null}
                         layout={this.props.ImageLayout ?? null}
+                        priority={this.props.BackgroundItem ? true : false}
                     />
                 </div>
             </BodyItem>

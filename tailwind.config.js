@@ -185,6 +185,7 @@ module.exports = {
           addVariant('any-hover', '@media (any-hover: hover)')
           addVariant('no-hover', '@media (any-hover: none)')
         }
-      )
+      ),
+      require('tailwind-scrollbar')({ nocompatible: true })
   ],
 }

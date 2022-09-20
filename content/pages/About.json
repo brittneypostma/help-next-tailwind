@@ -7,5 +7,123 @@
       "layout": "fill",
       "image": "/public/media/pages/About/images/wavefrontvolumetricstransparent.png"
     }
+  ],
+  "body": [
+    {
+      "type": "header",
+      "content": [
+        {
+          "line": {
+            "content": "Hey, my name is Bas.",
+            "size": "3xl",
+            "weight": "bold",
+            "alignment": "center"
+          }
+        },
+        {
+          "line": {
+            "content": "I am a game programmer,",
+            "size": "lg",
+            "weight": "bold",
+            "alignment": "center"
+          }
+        },
+        {
+          "line": {
+            "content": "with an interest in graphics programming",
+            "size": "lg",
+            "weight": "bold",
+            "alignment": "center"
+          }
+        }
+      ]
+    },
+    {
+      "type": "divider",
+      "thickness": "1",
+      "text": {
+        "alignment": "left",
+        "size": "base",
+        "weight": "bold",
+        "content": "Study"
+      }
+    },
+    {
+      "type": "textblock",
+      "alignment": "center",
+      "content": "I am currently studying:",
+      "size": "base",
+      "weight": "normal"
+    },
+    {
+      "type": "button",
+      "icon": {
+        "alignment": "right",
+        "attached": true,
+        "content": [
+          {
+            "type": "custom",
+            "iconColor": "icon",
+            "iconName": "BUAS"
+          }
+        ],
+        "size": "5xl",
+        "aspectRatio": "2/1"
+      },
+      "width": "fit-content",
+      "title": [
+        {
+          "line": {
+            "content": "Creative Media and Game Technology",
+            "size": "base",
+            "weight": "bold",
+            "alignment": "center"
+          }
+        },
+        {
+          "line": {
+            "content": "at",
+            "size": "base",
+            "weight": "normal",
+            "alignment": "center"
+          }
+        },
+        {
+          "line": {
+            "content": "Breda University of Applied Sciences",
+            "size": "base",
+            "weight": "bold",
+            "alignment": "center"
+          }
+        }
+      ],
+      "action": [
+        {
+          "type": "redirect",
+          "target": "https://www.buas.nl/opleidingen/bachelor-creative-media-and-game-technologies"
+        }
+      ]
+    },
+    {
+      "type": "textblock",
+      "alignment": "left",
+      "content": "I started this study in 2018 and I am currently in my fourth year planning to graduate in 2023.\n\nDuring my study I have gained experience with working both on solo and team projects. From the solo projects I have learned to solve problems on my own, whereas working on team projects taught me to work with others in an interdisciplinary, multicultural settings to efficiently work together towards the goals of the project.\n\nIn the first year we had three solo projects and one interdisciplinary team project. The first three projects were aimed at teaching us the basics of game development and programming. Whereas the fourth project taught us how to work in interdisciplinary teams. The projects that I enjoyed the most during the first year were:\n",
+      "weight": "normal",
+      "size": "base"
+    },
+    {
+      "type": "textblock",
+      "alignment": "left",
+      "content": "During the second year we had four team projects, of which one was not interdisciplinary. The project that I want to highlight from this year is:",
+      "size": "base",
+      "weight": "normal"
+    },
+    {
+      "type": "textblock",
+      "alignment": "left",
+      "content": "Throughout the entirety of the third year I worked on a project of my choice which was a team project, in a noninterdisciplinary setting. This project is featured here:",
+      "size": "base",
+      "weight": "normal"
+    }
   ]
 }

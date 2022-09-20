@@ -50,7 +50,7 @@ export default class TextBlockItem extends React.Component
                 OpenBracketInline
             >
                 <div className={
-                    "relative block w-full h-fit text-gainsboro "
+                    "relative block w-full h-fit text-gainsboro px-4 whitespace-pre-wrap "
                     + TextSize + " "
                     + TextWeight + " "
                     + TextAlignment}

@@ -56,14 +56,61 @@ export default class ButtonItem extends React.Component
                 return "text-lg";
             case "xl":
                 return "text-xl";
+            case "2xl":
+                return "text-2xl";
+            case "3xl":
+                return "text-3xl";
+            case "4xl":
+                return "text-4xl";
+            case "5xl":
+                return "text-5xl";
+            case "6xl":
+                return "text-6xl";
+            case "7xl":
+                return "text-7xl";
+            case "8xl":
+                return "text-8xl";
+            case "9xl":
+                return "text-9xl";
             default:
                 return "text-base";
         }
     }
 
-    ParseTitleSize()
+    PaseIconAspectRatio()
     {
-        switch(this.props.TitleSize)
+        switch(this.props.IconAspectRatio)
+        {
+            case "1/1":
+                return "aspect-1/1";
+            case "2/1":
+                return "aspect-2/1";
+            case "3/2":
+                return "aspect-3/2";
+            case "4/3":
+                return "aspect-4/3";
+            case "5/4":
+                return "aspect-5/4";
+            case "16/9":
+                return "aspect-16/9";
+            case "1/2":
+                return "aspect-1/2";
+            case "2/3":
+                return "aspect-2/3";
+            case "3/4":
+                return "aspect-3/4";
+            case "4/5":
+                return "aspect-4/5";
+            case "9/16":
+                return "aspect-9/16";
+            default:
+                return "4/3";
+        }
+    }
+
+    ParseTitleSize(size)
+    {
+        switch(size)
         {
             case "xs":
                 return "text-xs";
@@ -80,14 +127,14 @@ export default class ButtonItem extends React.Component
         }
     }
 
-    ParseTitleWeight()
+    ParseTitleWeight(weight)
     {
-        return "font-" + this.props.TitleWeight;
+        return "font-" + weight;
     }
 
-    ParseTitleAlignment()
+    ParseTitleAlignment(alignment)
     {
-        switch(this.props.TitleAlignment)
+        switch(alignment)
         {
             case "left":
                 return "justify-start text-left";
@@ -123,8 +170,9 @@ export default class ButtonItem extends React.Component
             <div
                 className=
                 {
-                    "relative flex items-center justify-center w-fit aspect-square " +
+                    "relative flex items-center justify-center w-auto h-fit " +
                     (this.props.IconAlignment == "left" ? "mr-2 " : "ml-2 ") +
+                    this.PaseIconAspectRatio() + " " + 
                     this.ParseIconSize()
                 }
             >
@@ -135,15 +183,27 @@ export default class ButtonItem extends React.Component
             <div
                 className=
                 {
-                    (this.props.IconAttached ? "w-fit " : "w-full ") + 
-                    "relative flex items-center h-fit w-max-full h-max-full " +
-                    "decoration-from-font no-hover:underline group-hover:underline " +
-                    this.ParseTitleSize() + " " + 
-                    this.ParseTitleWeight() + " " + 
-                    this.ParseTitleAlignment()
+                    (this.props.IconAttached ? "w-fit " : "w-full ") +
+                    "relative flex flex-col items-center h-fit w-max-full h-max-full " 
                 }
             >
-                {this.props.Title}
+                {this.props.TitleContent?.map((contentDesc, index)=>
+                {
+                    return(
+                        <div
+                            className=
+                            {
+                                "relative flex items-center w-full h-fit " +
+                                "decoration-from-font no-hover:underline group-hover:underline " +
+                                this.ParseTitleSize(contentDesc.line.size) + " " + 
+                                this.ParseTitleWeight(contentDesc.line.weight) + " " + 
+                                this.ParseTitleAlignment(contentDesc.line.alignment)
+                            }
+                            key={index}
+                        >
+                            {contentDesc.line.content}
+                        </div>);
+                })}
             </div>
 
         const localRedirect = this.IsLocalRedirect();

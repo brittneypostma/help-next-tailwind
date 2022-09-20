@@ -18,7 +18,6 @@ body
 .CustomIcon
 {
     --IconColor: 0, 0, 0;
-    width: 1em;
     height: 1em;
 }
 
@@ -315,4 +314,19 @@ body
 .CustomIcon#RaspberryPi #Part-3
 {
     --IconColor: 0,0,0;
+}
+
+.CustomIcon#BUAS #Part-1
+{
+    --IconColor: 255, 255, 255;
+}
+
+.CustomIcon#BUAS #Part-2
+{
+    --IconColor: 238, 118, 35;
+}
+
+.CustomIcon#BUAS #Part-3
+{
+    --IconColor: 0, 65, 107;
 }

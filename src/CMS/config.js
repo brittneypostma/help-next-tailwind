@@ -18,19 +18,28 @@ const projectVideoPublicFolder = "/media/projects/{{fields.year}}/{{slug}}/video
 
 
 
-function TextSizeOption(configLabel)
+function TextSizeOption(configLabel, optional)
 {
     return({
         name: "size",
         label: configLabel,
         widget: "select",
+        required: optional ?? true,
         options: 
         [
             {label: "Extra Small", value: "xs"},
             {label: "Small", value: "sm"},
             {label: "Normal", value: "base"},
             {label: "Large", value: "lg"},
-            {label: "Extra Large", value: "xl"}
+            {label: "Extra Large", value: "xl"},
+            {label: "2 Extra Large", value: "2xl"},
+            {label: "3 Extra Large", value: "3xl"},
+            {label: "4 Extra Large", value: "4xl"},
+            {label: "5 Extra Large", value: "5xl"},
+            {label: "6 Extra Large", value: "6xl"},
+            {label: "7 Extra Large", value: "7xl"},
+            {label: "8 Extra Large", value: "8xl"},
+            {label: "9 Extra Large", value: "9xl"}
         ]
     });
 
@@ -73,6 +82,60 @@ function TextAlignmentOption(configLabel)
     });
 }
 
+function AspectRatioOption(configLabel, defaultRatio, optional)
+{
+    return({
+        name: "aspectRatio",
+        label: configLabel,
+        widget: "select",
+        required: optional ?? true,
+        options:
+        [
+            "1/1",
+            "2/1",
+            "3/2",
+            "4/3",
+            "5/4",
+            "16/9",
+            "1/2",
+            "2/3",
+            "3/4",
+            "4/5",
+            "9/16"
+        ],
+        default: (defaultRatio ?? "4/3")
+    });
+}
+
+function ButtonIconObjectConfig()
+{
+    let iconObjectConfig = IconObjectConfig("Button Icon", false);
+
+    iconObjectConfig.fields.push(
+        {
+            name: "alignment",
+            label: "Icon Alignment",
+            widget: "select",
+            required: false,
+            options:
+            [
+                "left",
+                "right"
+            ],
+            default: "left"
+        },
+        {
+            name: "attached",
+            label: "Attach Icon",
+            widget: "boolean",
+            required: false,
+            default: true,
+            hint: "Determines if the icon is attached to the title or if it is statically placed left or right."
+        });
+
+    return iconObjectConfig;
+}
+
 
 
 const headerObjectConfig = 
@@ -85,11 +148,28 @@ const headerObjectConfig =
         {
             name: "content",
             label: "Header Content",
-            widget: "string"
-        },
-        TextSizeOption("Header Size"),
-        TextWeightOption("Header Weight"),
-        TextAlignmentOption("Header Alignment")
+            widget: "list",
+            summary: "{{fields.line.summary}}",
+            min: 1,
+            field:
+            {
+                name: "line",
+                label: "Header Line",
+                widget: "object",
+                summary: "{{fields.content}}",
+                fields:
+                [
+                    {
+                        name: "content",
+                        label: "Header Content",
+                        widget: "string"
+                    },
+                    TextSizeOption("Header Size"),
+                    TextWeightOption("Header Weight"),
+                    TextAlignmentOption("Header Alignment")
+                ]
+            }
+        }
     ]
 }
 
@@ -169,33 +249,30 @@ const buttonObjectConfig =
     widget: "object",
     fields:
     [
-        IconObjectConfig("Button Icon", false),
-        {
-            name: "iconAlignment",
-            label: "Icon Alignment",
-            widget: "select",
-            options:
-            [
-                "left",
-                "right"
-            ],
-            default: "left"
-        },
-        {
-            name: "iconAttached",
-            label: "Attach Icon",
-            widget: "boolean",
-            default: true,
-            hint: "Determines if the icon is attached to the title or if it is statically placed left or right."
-        },
+        ButtonIconObjectConfig(),
         {
             name: "title",
             label: "Title",
-            widget: "string"
+            widget: "list",
+            min: 1,
+            field:
+            {
+                name: "line",
+                label: "Title Line",
+                widget: "object",
+                fields:
+                [
+                    {
+                        name: "content",
+                        label: "Title Text",
+                        widget: "string"
+                    },
+                    TextSizeOption("Title Size"),
+                    TextWeightOption("Title Weight"),
+                    TextAlignmentOption("Title Alignment")
+                ]
+            }
         },
-        TextSizeOption("Title Size"),
-        TextWeightOption("Title Weight"),
-        TextAlignmentOption("Title Alignment"),
         {
             name: "width",
             label: "Button Width",
@@ -353,9 +430,10 @@ function IconObjectConfig(configLabel, optional)
         fields:
         [
             {
-                name: "iconType",
-                label: "Icon",
+                name: "content",
+                label: "Icon Content",
                 widget: "list",
+                required: optional ?? true,
                 min: 1,
                 max: 1,
                 types:
@@ -401,7 +479,8 @@ function IconObjectConfig(configLabel, optional)
                     }
                 ]
             },
-            TextSizeOption("Icon Size")
+            TextSizeOption("Icon Size", optional),
+            AspectRatioOption("Icon Aspect Ratio", "1/1", optional)
         ]
 
     });
@@ -424,26 +503,7 @@ function ImageObjectConfig(configLabel, mediaFolder, publicFolder)
                 media_folder: mediaFolder,
                 // public_folder: publicFolder
             },
-            {
-                name: "aspectRatio",
-                label: "Image Aspect-Ratio",
-                widget: "select",
-                options:
-                [
-                    "1/1",
-                    "2/1",
-                    "3/2",
-                    "4/3",
-                    "5/4",
-                    "16/9",
-                    "1/2",
-                    "2/3",
-                    "3/4",
-                    "4/5",
-                    "9/16"
-                ],
-                default: "4/3"
-            },
+            AspectRatioOption("Image Aspect Ratio"),
             {
                 name: "fit",
                 label: "Image Fit",
@@ -507,26 +567,7 @@ function VideoObjectConfig(configLabel, mediaFolder, publicFolder)
                 media_folder: mediaFolder,
                 // public_folder: publicFolder
             },
-            {
-                name: "aspectRatio",
-                label: "Video Aspect-Ratio",
-                widget: "select",
-                options:
-                [
-                    "1/1",
-                    "2/1",
-                    "3/2",
-                    "4/3",
-                    "5/4",
-                    "16/9",
-                    "1/2",
-                    "2/3",
-                    "3/4",
-                    "4/5",
-                    "9/16"
-                ],
-                default: "4/3"
-            },
+            AspectRatioOption("Video Aspect Ratio"),
             {
                 name: "fit",
                 label: "Video Fit",

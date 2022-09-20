@@ -24,10 +24,16 @@
   "body": [
     {
       "type": "header",
-      "alignment": "center",
-      "content": "CMS Testing",
-      "size": "lg",
-      "weight": "bold"
+      "content": [
+        {
+          "line": {
+            "content": "CMS testing",
+            "size": "2xl",
+            "weight": "bold",
+            "alignment": "center"
+          }
+        }
+      ]
     },
     {
       "type": "textblock",
@@ -106,55 +112,67 @@
       "justify": "center",
       "content": [
         {
-          "size": "base",
-          "alignment": "center",
-          "width": "fit-content",
-          "iconAlignment": "left",
-          "action": [
-            {
-              "type": "redirect",
-              "target": "https://github.com/"
-            }
-          ],
-          "title": "Project Source Code",
-          "weight": "bold",
-          "icon": {
-            "iconType": [
-              {
-                "type": "custom",
-                "iconName": "Github",
-                "iconColor": "current"
-              }
-            ],
-            "size": "xl"
-          },
           "type": "button",
-          "iconAttached": true
-        },
-        {
-          "size": "base",
-          "alignment": "center",
-          "width": "fit-content",
-          "iconAlignment": "left",
-          "action": [
-            {
-              "type": "download",
-              "target": "/public/media/downloads/depthbuffer.png"
-            }
-          ],
-          "title": "Download File",
-          "weight": "black",
           "icon": {
-            "iconType": [
+            "alignment": "left",
+            "attached": true,
+            "content": [
               {
                 "type": "fontawesome",
                 "iconName": "FaFile"
               }
             ],
-            "size": "xl"
+            "size": "base"
           },
+          "width": "fit-content",
+          "title": [
+            {
+              "line": {
+                "content": "Download file",
+                "size": "base",
+                "weight": "bold",
+                "alignment": "center"
+              }
+            }
+          ],
+          "action": [
+            {
+              "type": "download",
+              "target": "/public/media/downloads/depthbuffer.png"
+            }
+          ]
+        },
+        {
           "type": "button",
-          "iconAttached": true
+          "icon": {
+            "alignment": "left",
+            "attached": true,
+            "content": [
+              {
+                "type": "custom",
+                "iconColor": "icon",
+                "iconName": "Jenkins"
+              }
+            ],
+            "size": "base"
+          },
+          "width": "fit-content",
+          "title": [
+            {
+              "line": {
+                "content": "Redirection",
+                "size": "base",
+                "weight": "normal",
+                "alignment": "center"
+              }
+            }
+          ],
+          "action": [
+            {
+              "type": "redirect",
+              "target": "https://www.github.com"
+            }
+          ]
         }
       ]
     }

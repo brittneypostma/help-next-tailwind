@@ -40,7 +40,7 @@ export default class BodyItem extends React.Component
                             {
                                 (this.props.FullItemContent ? "absolute " : "relative ") + 
                                 (this.props.TypeNameBackgrounds ? TypeNameBackgroundColor : "") + 
-                                " block w-fit h-fit z-10 rounded-br-lg px-2 py-1"
+                                " block w-fit h-fit z-10 rounded-br-lg px-2 py-1 select-none"
                             }
                         >
                             <div className="relative block w-full h-4 leading-none align-middle font-medium">
@@ -90,7 +90,7 @@ export default class BodyItem extends React.Component
                             {
                                 (this.props.FullItemContent ? "absolute " : "relative ") +
                                 (this.props.TypeNameBackgrounds ? TypeNameBackgroundColor : "") + 
-                                " block w-fit h-fit px-2 py-1 z-10 bottom-0 rounded-tr-lg leading-none align-middle font-medium"
+                                " block w-fit h-fit px-2 py-1 z-10 bottom-0 rounded-tr-lg leading-none align-middle font-medium select-none"
                             }
                         >
                             <span 

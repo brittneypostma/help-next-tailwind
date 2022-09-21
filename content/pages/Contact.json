@@ -7,5 +7,132 @@
       "layout": "fill",
       "image": "/public/media/pages/Contact/images/finalresult_sanmiguel.png"
     }
+  ],
+  "body": [
+    {
+      "type": "header",
+      "content": [
+        {
+          "line": {
+            "content": "Feel free to contact me!",
+            "size": "3xl",
+            "weight": "bold",
+            "alignment": "center"
+          }
+        }
+      ]
+    },
+    {
+      "type": "textblock",
+      "alignment": "left",
+      "content": "Whether you want to discuss job opportunities or want to talk about your or my projects or interests, feel free to contact me! You can contact me with the following options:",
+      "size": "base",
+      "weight": "normal"
+    },
+    {
+      "type": "flexLayout",
+      "direction": "row",
+      "wrap": "wrap",
+      "align": "center",
+      "justify": "center",
+      "content": [
+        {
+          "type": "button",
+          "icon": {
+            "aspectRatio": "1/1",
+            "alignment": "left",
+            "attached": true,
+            "content": [
+              {
+                "type": "fontawesome",
+                "iconName": "FaEnvelope"
+              }
+            ],
+            "size": "3xl"
+          },
+          "width": "fit-content",
+          "title": [
+            {
+              "line": {
+                "content": "Send me an email",
+                "size": "base",
+                "weight": "bold",
+                "alignment": "center"
+              }
+            }
+          ],
+          "action": [
+            {
+              "type": "redirect",
+              "target": "mailto:Bas_Walhout@outlook.com"
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "icon": {
+            "aspectRatio": "1/1",
+            "alignment": "left",
+            "attached": true,
+            "content": [
+              {
+                "type": "fontawesome",
+                "iconName": "FaLinkedin"
+              }
+            ],
+            "size": "3xl"
+          },
+          "width": "fit-content",
+          "title": [
+            {
+              "line": {
+                "content": "Connect on LinkedIn",
+                "size": "base",
+                "weight": "bold",
+                "alignment": "center"
+              }
+            }
+          ],
+          "action": [
+            {
+              "type": "redirect",
+              "target": "https://www.linkedin.com/in/bas-walhout"
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "icon": {
+            "aspectRatio": "1/1",
+            "alignment": "left",
+            "attached": true,
+            "content": [
+              {
+                "type": "fontawesome",
+                "iconName": "FaGithubSquare"
+              }
+            ],
+            "size": "3xl"
+          },
+          "width": "fit-content",
+          "title": [
+            {
+              "line": {
+                "content": "Follow me on GitHub",
+                "size": "base",
+                "weight": "bold",
+                "alignment": "center"
+              }
+            }
+          ],
+          "action": [
+            {
+              "type": "redirect",
+              "target": "https://github.com/BasWalhout"
+            }
+          ]
+        }
+      ]
+    }
   ]
 }

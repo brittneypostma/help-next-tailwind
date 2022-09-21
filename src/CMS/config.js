@@ -320,7 +320,7 @@ const buttonObjectConfig =
                             widget: "string",
                             pattern: 
                             [ 
-                                RegExp("^(?:http:\\/\\/|https:\\/\\/|\\/){1}(?:[\\/?#@:\\[\\]=!\\$&()\\*+,;A-Za-z0-9-_~\\.]+)*"), 
+                                RegExp("^(?:mailto:|http:\\/\\/|https:\\/\\/|\\/){1}(?:[\\/?#@:\\[\\]=!\\$&()\\*+,;A-Za-z0-9-_~\\.]+)*"), 
                                 "The target has to be a relative or absolute url"
                             ]
                         }
@@ -769,7 +769,8 @@ function PageConfig(pageName, hasBody)
                     SlideShowObjectConfig("Slideshow", 
                         imageMediaFolder, videoMediaFolder,
                         imagePublicFolder, videoPublicFolder),
-                    buttonObjectConfig
+                    buttonObjectConfig,
+                    flexLayoutObjectConfig
                 ]
             });
     }

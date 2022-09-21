@@ -222,6 +222,7 @@ export default class ButtonItem extends React.Component
                 HRef={actionHRef}
                 LocalHRef={localRedirect}
                 Download={downloadPath}
+                Styles={"shadow-md shadow-black active:shadow"}
             >
                 <div
                     className="relative w-full h-fit flex flex-row flex-nowrap items-center justify-center px-4 text-gainsboro"

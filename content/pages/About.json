@@ -42,7 +42,7 @@
       "type": "divider",
       "thickness": "1",
       "text": {
-        "alignment": "left",
+        "alignment": "center",
         "size": "base",
         "weight": "bold",
         "content": "Study"
@@ -112,6 +112,70 @@
       "size": "base"
     },
     {
+      "type": "button",
+      "icon": {
+        "aspectRatio": "1/1",
+        "alignment": "right",
+        "attached": false,
+        "content": [
+          {
+            "type": "fontawesome",
+            "iconName": "FaArrowCircleRight"
+          }
+        ],
+        "size": "lg"
+      },
+      "width": "fit-content",
+      "action": [
+        {
+          "type": "redirect",
+          "target": "/projects/CPU-Raytracer"
+        }
+      ],
+      "title": [
+        {
+          "line": {
+            "content": "Solo project - Renderer: CPU Whitted-Style Raytracer",
+            "size": "base",
+            "weight": "bold",
+            "alignment": "center"
+          }
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "icon": {
+        "aspectRatio": "1/1",
+        "alignment": "right",
+        "attached": false,
+        "content": [
+          {
+            "type": "fontawesome",
+            "iconName": "FaArrowCircleRight"
+          }
+        ],
+        "size": "lg"
+      },
+      "width": "fit-content",
+      "title": [
+        {
+          "line": {
+            "content": "Team project - Game: Marbleground Construct",
+            "size": "base",
+            "weight": "bold",
+            "alignment": "center"
+          }
+        }
+      ],
+      "action": [
+        {
+          "type": "redirect",
+          "target": "/projects/Marbleground-Construct"
+        }
+      ]
+    },
+    {
       "type": "textblock",
       "alignment": "left",
       "content": "During the second year we had four team projects, of which one was not interdisciplinary. The project that I want to highlight from this year is:",
@@ -119,11 +183,117 @@
       "weight": "normal"
     },
     {
+      "type": "button",
+      "icon": {
+        "aspectRatio": "1/1",
+        "alignment": "right",
+        "attached": false,
+        "content": [
+          {
+            "type": "fontawesome",
+            "iconName": "FaArrowCircleRight"
+          }
+        ],
+        "size": "lg"
+      },
+      "width": "fit-content",
+      "title": [
+        {
+          "line": {
+            "content": "Team project - Game: Streamlined Mastermind",
+            "size": "base",
+            "weight": "bold",
+            "alignment": "center"
+          }
+        }
+      ],
+      "action": [
+        {
+          "type": "redirect",
+          "target": "/projects/Streamlined-Mastermind"
+        }
+      ]
+    },
+    {
       "type": "textblock",
       "alignment": "left",
       "content": "Throughout the entirety of the third year I worked on a project of my choice which was a team project, in a noninterdisciplinary setting. This project is featured here:",
       "size": "base",
       "weight": "normal"
+    },
+    {
+      "type": "button",
+      "icon": {
+        "aspectRatio": "1/1",
+        "alignment": "right",
+        "attached": false,
+        "content": [
+          {
+            "type": "fontawesome",
+            "iconName": "FaArrowCircleRight"
+          }
+        ],
+        "size": "lg"
+      },
+      "width": "fit-content",
+      "title": [
+        {
+          "line": {
+            "content": "Team project - Renderer: Tech-Renderer",
+            "size": "base",
+            "weight": "bold",
+            "alignment": "center"
+          }
+        }
+      ],
+      "action": [
+        {
+          "type": "redirect",
+          "target": "/projects/Tech-Renderer"
+        }
+      ]
+    },
+    {
+      "type": "divider",
+      "thickness": "1",
+      "text": {
+        "alignment": "center",
+        "weight": "bold",
+        "size": "base",
+        "content": "Curriculum Vitae"
+      }
+    },
+    {
+      "type": "button",
+      "icon": {
+        "aspectRatio": "1/1",
+        "alignment": "left",
+        "attached": true,
+        "content": [
+          {
+            "type": "fontawesome",
+            "iconName": "FaFile"
+          }
+        ],
+        "size": "lg"
+      },
+      "width": "fit-content",
+      "title": [
+        {
+          "line": {
+            "content": "Download my Curriculum Vitae",
+            "size": "base",
+            "weight": "bold",
+            "alignment": "center"
+          }
+        }
+      ],
+      "action": [
+        {
+          "type": "download",
+          "target": "/public/media/downloads/CV_Placeholder.pdf"
+        }
+      ]
     }
   ]
 }

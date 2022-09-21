@@ -77,7 +77,7 @@ export default class HeaderItem extends React.Component
                         return(
                             <div
                                 className={
-                                    "relative block w-full h-fit text-gainsboro " 
+                                    "relative block w-full h-fit text-gainsboro px-4 " 
                                     + textSize + " "
                                     + textWeight + " "
                                     + textAlignment}

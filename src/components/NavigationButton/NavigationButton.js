@@ -17,7 +17,7 @@ export default class NavigationButton extends React.Component
             <Link href={encodeURI(this.props.Href ?? "/")}>
                 <div className="group">
                     <ContentContainer
-                        className="px-4 py-2"
+                        className="px-4 py-2 shadow-md shadow-eerie-black active:shadow-sm"
                     >
                         <div
                             className="relative inline-block text-lg"

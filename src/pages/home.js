@@ -75,7 +75,7 @@ export default class HomePage extends React.Component
                     }
                 >
                     <div
-                        className="relative flex justify-center items-center w-full h-full overflow-hidden"
+                        className="relative flex justify-center items-center w-full h-full overflow-x-hidden overflow-y-auto"
                     >
                         <div
                             className="relative block box-border w-fit h-fit px-2"
@@ -83,7 +83,7 @@ export default class HomePage extends React.Component
                             <div id="Content-Header"
                                 className="relative block mb-4 font-medium"
                             >
-                                <div className="text-gainsboro-800">&#123;</div>
+                                <div className="text-gainsboro-800">{String.fromCodePoint(123)}</div>
                                 <div>
                                     <span className="text-carolina-blue-700">public</span>
                                     <span className="text-gainsboro-800">:</span>
@@ -111,7 +111,7 @@ export default class HomePage extends React.Component
                             <div id="Content-Footer"
                                 className="relative block mt-4"
                             >
-                                <div className="text-gainsboro-800 font-medium">&#125;;</div>
+                                <div className="text-gainsboro-800 font-medium">{String.fromCodePoint(125)};</div>
                             </div>
                         </div>
                     </div>

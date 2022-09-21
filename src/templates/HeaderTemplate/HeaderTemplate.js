@@ -10,7 +10,7 @@ export default class HeaderTemplate extends React.Component
         return (
             <div id="Header"
                 className="relative shrink-0 grid grid-cols-header justify-evenly content-center place-items-center box-content w-full h-fit py-2 
-                           overflow-hidden bg-eerie-black rounded-lg"
+                           overflow-hidden bg-eerie-black rounded-lg shadow-md shadow-eerie-black/80"
             >
                 <div id="Left-Button-Wrapper"
                     className="relative flex justify-center items-center col-start-1 w-full h-full max-w-full max-h-full"

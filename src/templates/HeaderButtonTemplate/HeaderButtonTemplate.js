@@ -16,7 +16,8 @@ export default class HeaderButtonTemplate extends React.Component
         return(
             <Link href={encodeURI(this.props.Href ?? "/")}>
                 <div
-                    className="relative inline-flex justify-center items-center box-border w-8 h-8 aspect-square bg-dark-charcoal rounded-full"
+                    className="relative inline-flex justify-center items-center box-border w-8 h-8 aspect-square bg-dark-charcoal rounded-full
+                                shadow-sm shadow-black active:shadow-none"
                 >
                     <div
                         className="relative inline-flex justify-center items-center w-4 h-4 aspect-square text-smw text-gainsboro-500"

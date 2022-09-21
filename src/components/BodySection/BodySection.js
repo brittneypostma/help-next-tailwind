@@ -28,11 +28,11 @@ export default class BodySection extends React.Component
 
         return(
             <ContentContainer
-                className="w-full h-fit py-2 my-2"
+                className="w-full h-fit py-2 my-2 shadow-lg shadow-eerie-black"
             >
                 <div
                     className={
-                        "relative block w-full h-4 px-2 leading-none align-middle font-medium " + 
+                        "relative block w-full h-fit px-2 py-1.5 leading-none align-middle font-medium " + 
                         (this.props.TypeSize ?? "") + 
                         (!(this.props.Collapsible && this.state.IsCollapsed) && this.props.OpenBracketInline ? " mb-2" : "")}
                     onClick={this.SetCollapsedState.bind(this, !this.state.IsCollapsed)}

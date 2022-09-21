@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image"
 import Link from "next/link"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBullseye, faClock, faLanguage, faScrewdriverWrench, faTags, faUsers, faUserTag } from "@fortawesome/free-solid-svg-icons";
+import { faBullseye, faClock, faLanguage, faScrewdriverWrench, faTags, faUsers, faUserTag, faCircleArrowRight} from "@fortawesome/free-solid-svg-icons";
 
 import ContentContainer from "../../components/ContentContainer/ContentContainer"
 import { ParseContentItem } from "../../CMS/content"
@@ -46,9 +46,9 @@ export default class ProjectNavigationButton extends React.Component
             <Link href={encodeURI(this.props.ProjectHref ?? "projects/")}>
                 <div>
                     <ContentContainer
-                        className="pt-2"
+                        className="pt-2 shadow-lg shadow-eerie-black active:shadow"
                     >
-                        <div className="relative block w-full h-4 px-2 mb-2 leading-none align-middle font-medium">
+                        <div className="relative block w-full h-fit max-h-min px-2 py-1 mb-2 leading-none align-middle font-medium">
                             <span 
                                 className={"text-eucalyptus-700 whitespace-pre leading-none align-middle " + (TypeSize ?? "")}
                             >
@@ -59,6 +59,12 @@ export default class ProjectNavigationButton extends React.Component
                             >
                                 {this.props.ProjectName}
                             </span>
+                            <div className="relative inline-flex items-center w-fit h-full text-gainsboro text-sm float-right">
+                                <span className="hidden sm:inline whitespace-pre">
+                                    {"view project page "}
+                                </span>
+                                <FontAwesomeIcon icon={faCircleArrowRight} className="text-base"/>
+                            </div>
                         </div>
                         <div
                             className="relative block w-full h-auto aspect-4/3 overflow-hidden"
@@ -83,7 +89,7 @@ export default class ProjectNavigationButton extends React.Component
                                 </div>
                                 
                                 <div
-                                    className="relative block w-full h-fit pl-3 pr-2 text-sm text-gainsboro"
+                                    className="relative block w-full h-fit pl-4 pr-2 text-sm text-gainsboro"
                                 >
                                     {
                                         this.props.ProjectDescription ?
@@ -93,7 +99,7 @@ export default class ProjectNavigationButton extends React.Component
                                                     {"Description" + String.fromCodePoint(123)}
                                                 </span>
                                             </div>
-                                            <div className="pl-0">
+                                            <div className="pl-0 sm:pl-4">
                                                 {this.props.ProjectDescription}
                                             </div>
                                             <div className="relative block w-full h-4 mt-2   mb-2 leading-normal align-middle font-medium">
@@ -117,7 +123,7 @@ export default class ProjectNavigationButton extends React.Component
                                                     {"Details" + String.fromCodePoint(123)}
                                                 </span>
                                             </div>
-                                            <div className="pl-0">
+                                            <div className="pl-0 sm:pl-4">
                                                 {
                                                     Object.entries(this.props.ProjectDetails).map(([detailName, detailValue], index)=>{
 

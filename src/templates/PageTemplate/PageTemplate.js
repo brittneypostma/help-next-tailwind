@@ -22,7 +22,7 @@ export default class PageTemplate extends React.Component
                 >
                     <div id="Glass-Background"
                         className="relative flex flex-col flex-nowrap items-center box-border w-full h-full px-2 
-                                   rounded-lg overflow-hidden bg-black-olive/60 backdrop-blur-sm"
+                                   rounded-lg overflow-hidden bg-black-olive/60 backdrop-blur-sm shadow-lg shadow-eerie-black"
                     >
                         <div id="Content-Wrapper"
                             className="relative flex flex-col flex-nowrap box-border 

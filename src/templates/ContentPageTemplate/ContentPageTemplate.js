@@ -32,11 +32,13 @@ export default class ContentPageTemplate extends React.Component
         const LeftButton = 
             <HeaderButtonTemplate 
                 Icon={this.props.Header?.LeftButton?.Icon ?? faQuestionCircle}
+                Title={this.props.Header?.LeftButton?.Title ?? null}
                 Href={this.props.Header?.LeftButton?.Href}/>;
 
         const RightButton = 
             <HeaderButtonTemplate 
                 Icon={this.props.Header?.RightButton?.Icon ?? faQuestionCircle}
+                Title={this.props.Header?.RightButton?.Title ?? null}
                 Href={this.props.Header?.RightButton?.Href}/>;
 
 

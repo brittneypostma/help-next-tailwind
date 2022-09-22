@@ -212,3 +212,92 @@ function CreateFlexLayoutItem(description, itemIndex)
     ); 
     
 }
+
+
+
+export function ParseTextSize(size)
+{
+    switch(size)
+        {
+            case "xs":
+                return "text-xs";
+            case "sm":
+                return "text-sm";
+            case "base":
+                return "text-base";
+            case "lg":
+                return "text-lg";
+            case "xl":
+                return "text-xl";
+            case "2xl":
+                return "text-2xl";
+            case "3xl":
+                return "text-3xl";
+            case "4xl":
+                return "text-4xl";
+            case "5xl":
+                return "text-5xl";
+            case "6xl":
+                return "text-6xl";
+            case "7xl":
+                return "text-7xl";
+            case "8xl":
+                return "text-8xl";
+            case "9xl":
+                return "text-9xl";
+            default:
+                return "text-base";
+        }
+}
+
+export function ParseTextAlignment(alignment)
+{
+    return "text-" + alignment;
+}
+
+export function ParseFontWeight(weight)
+{
+    return "font-" + weight;
+}
+
+export function ParseAspectRatio(ratio)
+{
+    switch(ratio)
+    {
+        case "1/1":
+            return "aspect-1/1";
+        case "2/1":
+            return "aspect-2/1";
+        case "3/2":
+            return "aspect-3/2";
+        case "4/3":
+            return "aspect-4/3";
+        case "5/4":
+            return "aspect-5/4";
+        case "16/9":
+            return "aspect-16/9";
+        case "1/2":
+            return "aspect-1/2";
+        case "2/3":
+            return "aspect-2/3";
+        case "3/4":
+            return "aspect-3/4";
+        case "4/5":
+            return "aspect-4/5";
+        case "9/16":
+            return "aspect-9/16";
+        default:
+            return "1/1";
+    }
+}
+
+export function ParseWidth(width)
+{
+    switch(width)
+    {
+        case "fit-content":
+            return "w-fit";
+        case "full":
+            return "w-full";
+    }
+}

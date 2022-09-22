@@ -21,8 +21,8 @@ export default class ProjectPage extends React.Component
                     Icon: this.props.ProjectIcon ?? faCode
                 }}
                 Header={{
-                    LeftButton:{ Icon: faCode, Href: "/projects" },
-                    RightButton:{ Icon: faComment, Href: "/contact" }
+                    LeftButton:{ Icon: faCode, Href: "/projects", Title: "Projects" },
+                    RightButton:{ Icon: faComment, Href: "/contact", Title: "Contact"}
                 }}
                 RenderBackground=
                 {

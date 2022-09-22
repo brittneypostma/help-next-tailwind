@@ -7,5 +7,13 @@
       "layout": "fill",
       "image": "/public/media/pages/Home/images/finalresult_bistrointerior1.jpg"
     }
-  ]
+  ],
+  "avatar": {
+    "image": {
+      "image": "/public/media/pages/Home/images/avatar.jpg",
+      "aspectRatio": "3/4",
+      "fit": "cover",
+      "layout": "fill"
+    }
+  }
 }

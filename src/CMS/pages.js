@@ -24,7 +24,8 @@ export function FetchPageContent(pageName)
         {
 
             background: pageContentsJson.background[0],
-            body: pageContentsJson.body ?? null
+            avatar: pageContentsJson.avatar ?? null,
+            body: pageContentsJson.body ?? null,
         }
 
         pageCache.pages.set(pageName, pageObject);

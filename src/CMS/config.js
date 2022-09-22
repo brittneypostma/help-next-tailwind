@@ -727,7 +727,7 @@ function PageBackgroundObjectConfig(configLabel, imageMediaFolder, videoMediaFol
     });
 }
 
-function PageConfig(pageName, hasBody)
+function PageConfig(pageName, hasBody, extraFields)
 {
     const imageMediaFolder = pageImageMediaFolder(pageName);
     const imagePublicFolder = pageImagePublicFolder(pageName);
@@ -751,6 +751,14 @@ function PageConfig(pageName, hasBody)
                     imagePublicFolder, videoPublicFolder)
             ]
         };
+
+    extraFields?.forEach?.((value)=>
+    {
+        if(value.index && value.field)
+        {
+            PageConfig.fields.splice(value.index, 0, value.field);
+        }
+    });
 
     if(hasBody)
     {
@@ -778,6 +786,20 @@ function PageConfig(pageName, hasBody)
     return(PageConfig);
 }
 
+function AvatarConfigObject(pageName)
+{
+    return(
+        {
+            name: "avatar",
+            label: "Avatar",
+            widget: "object",
+            fields:
+            [
+                ImageObjectConfig("Avatar Content", pageImageMediaFolder(pageName), pageImagePublicFolder(pageName))
+            ]
+        });
+}
+
 
 
 const CMSConfig =
@@ -802,8 +824,8 @@ const CMSConfig =
             extension: "json",
             files:
             [
-                PageConfig("Home",      false),
-                PageConfig("About",     true),
+                PageConfig("Home",      false, [{index: 2, field: AvatarConfigObject("Home")}]),
+                PageConfig("About",     true, [{index: 2, field: AvatarConfigObject("About")}]),
                 PageConfig("Contact",   true),
                 PageConfig("Projects",  false)
             ]

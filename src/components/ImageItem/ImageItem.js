@@ -2,6 +2,8 @@ import React from "react";
 import Image from "next/image";
 import BodyItem from "../BodyItem/BodyItem";
 
+import { ParseAspectRatio } from "../../CMS/content";
+
 
 
 export default class ImageItem extends React.Component
@@ -33,33 +35,7 @@ export default class ImageItem extends React.Component
 
     ParseImageAspectRatio()
     {
-        switch(this.props.ImageAspectRatio)
-        {
-            case "1/1":
-                return "aspect-1/1";
-            case "2/1":
-                return "aspect-2/1";
-            case "3/2":
-                return "aspect-3/2";
-            case "4/3":
-                return "aspect-4/3";
-            case "5/4":
-                return "aspect-5/4";
-            case "16/9":
-                return "aspect-16/9";
-            case "1/2":
-                return "aspect-1/2";
-            case "2/3":
-                return "aspect-2/3";
-            case "3/4":
-                return "aspect-3/4";
-            case "4/5":
-                return "aspect-4/5";
-            case "9/16":
-                return "aspect-9/16";
-            default:
-                return "4/3";
-        }
+        return ParseAspectRatio(this.props.ImageAspectRatio);
     }
 
     render()

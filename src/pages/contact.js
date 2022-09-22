@@ -20,7 +20,7 @@ export default class ContactPage extends React.Component
                     Icon: faComment
                 }}
                 Header={{
-                    LeftButton:{ Icon: faHome, Href: "/home" }
+                    LeftButton:{ Icon: faHome, Href: "/home", Title: "Home" }
                 }}
                 RenderBackground=
                 {

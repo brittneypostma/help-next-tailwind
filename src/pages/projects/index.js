@@ -35,8 +35,8 @@ export default class ProjectOverviewPage extends React.Component
                         Icon: faCode
                     }}
                     Header={{
-                        LeftButton:{ Icon: faHome, Href: "/home" },
-                        RightButton:{ Icon: faComment, Href: "/contact" }
+                        LeftButton:{ Icon: faHome, Href: "/home", Title: "Home" },
+                        RightButton:{ Icon: faComment, Href: "/contact", Title: "Contact" }
                     }}
                     RenderBackground=
                     {
@@ -53,8 +53,8 @@ export default class ProjectOverviewPage extends React.Component
                 >
                     <BodySection
                         SectionName="Featured_Projects"
-                        TypeSize="text-sm"
-                        NameSize="text-base"
+                        TypeSize="text-sm md:text-base lg:text-lg xl:text-xl"
+                        NameSize="text-base md:text-lg lg:text-xl xl:text-2xl"
                         OpenBracketInline
                         LastSection={this.props.OtherProjects.length == 0}
                     >

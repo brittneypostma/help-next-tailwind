@@ -3,6 +3,7 @@ import * as FontAwesomeIcons from "react-icons/fa"
 
 import BodyItem from "../BodyItem/BodyItem";
 import CustomIcon from "../CustomIcon/CustomIcon"
+import { ParseWidth, ParseTextSize, ParseAspectRatio, ParseFontWeight } from "../../CMS/content";
 
 
 
@@ -11,13 +12,7 @@ export default class ButtonItem extends React.Component
 
     ParseButtonWidth()
     {
-        switch(this.props.Width)
-        {
-            case "fit-content":
-                return "w-fit";
-            case "full":
-                return "w-full";
-        }
+        return ParseWidth(this.props.Width);
     }
     
     ParseIcon()
@@ -44,92 +39,22 @@ export default class ButtonItem extends React.Component
 
     ParseIconSize()
     {
-        switch(this.props.IconSize)
-        {
-            case "xs":
-                return "text-xs";
-            case "sm":
-                return "text-sm";
-            case "base":
-                return "text-base";
-            case "lg":
-                return "text-lg";
-            case "xl":
-                return "text-xl";
-            case "2xl":
-                return "text-2xl";
-            case "3xl":
-                return "text-3xl";
-            case "4xl":
-                return "text-4xl";
-            case "5xl":
-                return "text-5xl";
-            case "6xl":
-                return "text-6xl";
-            case "7xl":
-                return "text-7xl";
-            case "8xl":
-                return "text-8xl";
-            case "9xl":
-                return "text-9xl";
-            default:
-                return "text-base";
-        }
+        return ParseTextSize(this.props.IconSize);
     }
 
     PaseIconAspectRatio()
     {
-        switch(this.props.IconAspectRatio)
-        {
-            case "1/1":
-                return "aspect-1/1";
-            case "2/1":
-                return "aspect-2/1";
-            case "3/2":
-                return "aspect-3/2";
-            case "4/3":
-                return "aspect-4/3";
-            case "5/4":
-                return "aspect-5/4";
-            case "16/9":
-                return "aspect-16/9";
-            case "1/2":
-                return "aspect-1/2";
-            case "2/3":
-                return "aspect-2/3";
-            case "3/4":
-                return "aspect-3/4";
-            case "4/5":
-                return "aspect-4/5";
-            case "9/16":
-                return "aspect-9/16";
-            default:
-                return "4/3";
-        }
+        return ParseAspectRatio(this.props.IconAspectRatio);
     }
 
     ParseTitleSize(size)
     {
-        switch(size)
-        {
-            case "xs":
-                return "text-xs";
-            case "sm":
-                return "text-sm";
-            case "base":
-                return "text-base";
-            case "lg":
-                return "text-lg";
-            case "xl":
-                return "text-xl";
-            default:
-                return "text-base";
-        }
+        return ParseTextSize(size);
     }
 
     ParseTitleWeight(weight)
     {
-        return "font-" + weight;
+        return ParseFontWeight(weight);
     }
 
     ParseTitleAlignment(alignment)
@@ -170,8 +95,12 @@ export default class ButtonItem extends React.Component
             <div
                 className=
                 {
-                    "relative flex items-center justify-center w-auto h-fit " +
-                    (this.props.IconAlignment == "left" ? "mr-2 " : "ml-2 ") +
+                    "grow-0 shrink-0 relative flex items-center justify-center w-auto h-fit my-1 " +
+                    (   this.props.IconAttached ? 
+                        "" : 
+                        this.props.IconAlignment == "left" ? 
+                        "mr-4 md:mr-5 lg:mr-6 xl:mr-7 " :
+                        "ml-4 md:ml-5 lg:ml-6 xl:ml-7 ") +
                     this.PaseIconAspectRatio() + " " + 
                     this.ParseIconSize()
                 }
@@ -225,20 +154,16 @@ export default class ButtonItem extends React.Component
                 Styles={"shadow-md shadow-black active:shadow"}
             >
                 <div
-                    className="relative w-full h-fit flex flex-row flex-nowrap items-center justify-center px-4 text-gainsboro"
-                >   
+                    className=
                     {
-                        this.props.IconAlignment == "left" ?
-                        <>
-                            {icon}
-                            {title}
-                        </>:
-                        <>
-                            {title}
-                            {icon}
-                        </>
-                        
+                        "relative w-full h-fit flex flex-nowrap items-center justify-center text-gainsboro " +
+                        "px-4 md:px-5 lg:px-6 xl:px-7 " +
+                        (this.props.IconAttached? "gap-x-2 md:gap-x-3 lg:gap-x-4 xl:gap-x-5 " : "") +
+                        (this.props.IconAlignment == "left" ? "flex-row" : "flex-row-reverse")
                     }
+                >   
+                    {icon}
+                    {title}
                 </div>
             </BodyItem>
         );

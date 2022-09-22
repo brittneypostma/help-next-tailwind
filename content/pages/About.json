@@ -116,7 +116,7 @@
       "icon": {
         "aspectRatio": "1/1",
         "alignment": "right",
-        "attached": false,
+        "attached": true,
         "content": [
           {
             "type": "fontawesome",
@@ -295,5 +295,13 @@
         }
       ]
     }
-  ]
+  ],
+  "avatar": {
+    "image": {
+      "image": "/public/media/pages/About/images/avatar.jpg",
+      "aspectRatio": "3/4",
+      "fit": "cover",
+      "layout": "fill"
+    }
+  }
 }

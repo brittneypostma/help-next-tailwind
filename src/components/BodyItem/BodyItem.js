@@ -47,7 +47,8 @@ export default class BodyItem extends React.Component
                                 <span 
                                     className={"text-eucalyptus-700 whitespace-pre leading-none align-middle " + (this.props.TypeSize ?? "")}
                                 >
-                                    {this.props.ItemType + " "}
+                                    {this.props.ItemType}
+                                    {" "}
                                 </span>
                                 <span 
                                     className={"text-winter-wizard whitespace-pre leading-none align-middle " + (this.props.NameSize ?? "")}
@@ -57,9 +58,9 @@ export default class BodyItem extends React.Component
                                 {
                                     this.props.OpenBracketInline ?
                                     <span 
-                                        className={"text-eucalyptus-700 whitespace-pre leading-none align-middle " + (this.props.TypeSize ?? "")}
+                                        className={(this.props.BracketColor ?? "text-eucalyptus-700") + " whitespace-pre leading-none align-middle " + (this.props.TypeSize ?? "")}
                                     >
-                                        &#123;
+                                        {String.fromCodePoint(123)}
                                     </span> :
                                     null
                                 }
@@ -68,9 +69,9 @@ export default class BodyItem extends React.Component
                                 !this.props.OpenBracketInline ?
                                 <div className="relative block w-full h-4 leading-none align-middle font-medium">
                                     <span 
-                                        className={"text-eucalyptus-700 whitespace-pre " + (this.props.TypeSize ?? "")}
+                                        className={(this.props.BracketColor ?? "text-eucalyptus-700") + " whitespace-pre " + (this.props.TypeSize ?? "")}
                                     >
-                                        &#123;
+                                        {String.fromCodePoint(123)}
                                     </span>
                                 </div>:
                                 null
@@ -94,7 +95,7 @@ export default class BodyItem extends React.Component
                             }
                         >
                             <span 
-                                className={"text-eucalyptus-700 whitespace-pre leading-none align-middle " + (this.props.TypeSize ?? "")}
+                                className={(this.props.BracketColor ?? "text-eucalyptus-700") + " whitespace-pre leading-none align-middle " + (this.props.TypeSize ?? "")}
                             >
                                 {String.fromCodePoint(125)}
                             </span>

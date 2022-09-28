@@ -838,7 +838,7 @@ const CMSConfig =
             create: true,
             path: "{{year}}/{{slug}}",
             slug: "{{slug}}",
-            summary: "({{fields.category}}) [priority: {{fields.priority}} ] {{fields.year}} - {{fields.title}}",
+            summary: "({{fields.category}}) (priority: {{fields.priority}}) {{fields.year}} - {{fields.title}}",
             fields:
             [
                 {
@@ -871,7 +871,7 @@ const CMSConfig =
                     label: "Project Order Priority",
                     widget: "number",
                     value_type: "int",
-                    default: 0,
+                    default: "0",
                     min: 0,
                     hint: "Determines the order of the projects to appear in the overview." +
                           "If projects have the same priority, they will be sorted alphabetically."

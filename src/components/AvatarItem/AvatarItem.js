@@ -54,14 +54,18 @@ export default class AvatarItem extends React.Component
                             (this.props.AvatarHeight ?? "") 
                         }
                     >
-                        <Image
-                            className={this.ParseImageFit()}
-                            src={this.props.ImageSource ?? null}
-                            alt={this.props.ImageAlt ?? ""}
-                            width={this.props.ImageWidth ?? null}
-                            height={this.props.ImageHeight ?? null}         
-                            layout={this.props.ImageLayout ?? null}
-                        />
+                        {   
+                            this.props.ImageSource ?
+                            <Image
+                                className={this.ParseImageFit()}
+                                src={this.props.ImageSource ?? null}
+                                alt={this.props.ImageAlt ?? ""}
+                                width={this.props.ImageWidth ?? null}
+                                height={this.props.ImageHeight ?? null}         
+                                layout={this.props.ImageLayout ?? null}
+                            />:
+                            null
+                        }
                     </div>
                 </div>
             </BodyItem>

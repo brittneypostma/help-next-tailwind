@@ -80,7 +80,8 @@ export default class ProjectNavigationButton extends React.Component
                             
                             <div
                                 className="relative flex flex-col w-full h-full overflow-x-hidden overflow-y-auto bg-dark-charcoal/85
-                                          scrollbar-thin scrollbar-track-gainsboro-600 scrollbar-thumb-black-olive scrollbar-track-rounded-full scrollbar-thumb-rounded-full"
+                                          scrollbar-thin scrollbar-track-gainsboro scrollbar-thumb-black-olive 
+                                          scrollbar-track-rounded-full scrollbar-thumb-rounded-full"
                             >
 
                                 <div className="relative block w-full h-4 px-2 mb-1 leading-none align-middle font-medium">

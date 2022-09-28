@@ -91,7 +91,7 @@ export default class BodySection extends React.Component
                         }
                         
                         <div 
-                            className="relative block box-border w-full h-fit bg-dark-charcoal/50"
+                            className="relative block box-border w-full h-fit bg-black-olive"
                         >
                             {this.props.children}
                         </div>

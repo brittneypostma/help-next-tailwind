@@ -59,15 +59,20 @@ export default class ImageItem extends React.Component
                 <div
                     className={"relative block w-full " + this.ParseImageAspectRatio() }
                 >
-                    <Image
-                        className={this.ParseImageFit()}
-                        src={this.props.ImageSource}
-                        alt={this.props.ImageAlt ?? ""}
-                        width={this.props.ImageWidth ?? null}
-                        height={this.props.ImageHeight ?? null}
-                        layout={this.props.ImageLayout ?? null}
-                        priority={this.props.BackgroundItem ? true : false}
-                    />
+                    {
+                        this.props.ImageSource ?
+                        <Image
+                            className={this.ParseImageFit()}
+                            src={this.props.ImageSource}
+                            alt={this.props.ImageAlt ?? ""}
+                            width={this.props.ImageWidth ?? null}
+                            height={this.props.ImageHeight ?? null}
+                            layout={this.props.ImageLayout ?? null}
+                            priority={this.props.BackgroundItem ? true : false}
+                        />:
+                        null
+                    }
+                    
                 </div>
             </BodyItem>
         );

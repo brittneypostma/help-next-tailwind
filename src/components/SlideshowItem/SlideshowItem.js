@@ -100,14 +100,18 @@ class ImageSlide extends React.Component
                 }}
             >
                 <div className={"relative block w-full " + this.ParseImageAspectRatio()}>
-                    <Image
-                        className={this.ParseImageFit()}
-                        src={this.props.ImageSource}
-                        alt={this.props.ImageAlt ?? ""}
-                        width={this.props.ImageWidth ?? null}
-                        height={this.props.ImageHeight ?? null}
-                        layout={this.props.ImageLayout ?? null}
-                    />
+                    {
+                        this.props.ImageSource ?
+                        <Image
+                            className={this.ParseImageFit()}
+                            src={this.props.ImageSource}
+                            alt={this.props.ImageAlt ?? ""}
+                            width={this.props.ImageWidth ?? null}
+                            height={this.props.ImageHeight ?? null}
+                            layout={this.props.ImageLayout ?? null}
+                        />:
+                        null
+                    }
                 </div>
             </motion.div>
         );

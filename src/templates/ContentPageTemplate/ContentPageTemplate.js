@@ -55,7 +55,8 @@ export default class ContentPageTemplate extends React.Component
             >
                 <div
                     className="relative flex flex-col justify-start items-center w-full h-full overflow-x-hidden overflow-y-auto 
-                               scrollbar-thin scrollbar-track-gainsboro-600 scrollbar-thumb-black-olive scrollbar-track-rounded-full scrollbar-thumb-rounded-full"
+                               scrollbar-thin scrollbar-track-gainsboro scrollbar-thumb-black-olive 
+                               scrollbar-track-rounded-full scrollbar-thumb-rounded-full"
                 >
                     
                         <div id="Content-Header"

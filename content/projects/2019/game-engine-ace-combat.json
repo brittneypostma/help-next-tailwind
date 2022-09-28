@@ -12,7 +12,7 @@
       "aspectRatio": "4/3",
       "fit": "cover",
       "layout": "fill",
-      "image": "/public/media/projects/2019/game-engine-ace-combat/images/thumbnail_0.jpg"
+      "image": "/public/media/projects/2019/game-engine-ace-combat/images/thumbnail_0.png"
     }
   ],
   "background": [
@@ -21,7 +21,7 @@
       "aspectRatio": "4/3",
       "fit": "cover",
       "layout": "fill",
-      "image": "/public/media/projects/2019/game-engine-ace-combat/images/thumbnail_0.jpg"
+      "image": "/public/media/projects/2019/game-engine-ace-combat/images/thumbnail_0.png"
     }
   ]
 }

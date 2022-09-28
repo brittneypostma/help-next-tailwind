@@ -83,7 +83,37 @@ export function FetchProjectsContent(projectDir)
     });
 
     projectsCache.directory = projectDir;
-    projectsCache.contents = projectsContent.sort((left, right)=>{ left.meta.priority < right.meta.priority});
+    projectsCache.contents = projectsContent.sort((left, right)=>
+    {
+        //Projects should be sorted:
+        //1. by priority
+        //2. by year
+        //Higher priority comes first
+        //Higher year comes first
+        //A project with a higher priority but a lower year goes before a project with a lower priority but a higher year.
+        //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+
+        const sortBefore = -1;
+        const sortAfter = 1;
+        const sortKeep = 0;
+
+        const leftPriority = left.meta.priority;
+        const rightPriority = right.meta.priority;
+
+        if(leftPriority > rightPriority){ return sortBefore; }
+        if(leftPriority < rightPriority){ return sortAfter; }
+
+        if(leftPriority === rightPriority)
+        {
+            const leftYear = Number.parseInt(left.meta.year);
+            const rightYear = Number.parseInt(right.meta.year);
+
+            if(leftYear > rightYear){ return sortBefore; }
+            if(leftYear < rightYear){ return sortAfter; }
+            return sortKeep;
+        }
+
+    });
 
     return projectsCache.contents;
 

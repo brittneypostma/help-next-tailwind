@@ -838,7 +838,7 @@ const CMSConfig =
             create: true,
             path: "{{year}}/{{slug}}",
             slug: "{{slug}}",
-            summary: "({{fields.details.type}}) {{fields.year}} - {{fields.title}}",
+            summary: "({{fields.category}}) [priority: {{fields.priority}} ] {{fields.year}} - {{fields.title}}",
             fields:
             [
                 {

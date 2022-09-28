@@ -46,7 +46,8 @@ export default class ProjectNavigationButton extends React.Component
             <Link href={encodeURI(this.props.ProjectHref ?? "projects/")}>
                 <div>
                     <ContentContainer
-                        className="pt-2 shadow-lg shadow-eerie-black active:shadow"
+                        className="pt-2 shadow-lg shadow-eerie-black active:shadow group"
+                        
                     >
                         <div className="relative flex items-center w-full h-fit px-2 py-1 mb-2 leading-none align-middle font-medium">
                             <div className="relative inline-flex items-center w-full h-full">
@@ -62,7 +63,7 @@ export default class ProjectNavigationButton extends React.Component
                                 </span>
                             </div>
                             <div className="relative inline-flex items-center w-fit h-full text-gainsboro text-sm md:text-base">
-                                <span className="hidden sm:inline whitespace-pre">
+                                <span className="hidden sm:inline whitespace-pre no-hover:underline group-hover:underline">
                                     {"view project page "}
                                 </span>
                                 <FontAwesomeIcon icon={faCircleArrowRight} className="text-base"/>
@@ -74,7 +75,7 @@ export default class ProjectNavigationButton extends React.Component
                             <div
                                 className="absolute block w-full h-full aspect-4/3 blur-xxs"
                             >
-                                {ParseContentItem(this.props.ProjectThumbnail, null)}
+                                {ParseContentItem(this.props.ProjectThumbnail, null, true)}
                             </div>
                             
                             <div

@@ -60,7 +60,7 @@ export default class ProjectOverviewPage extends React.Component
                     >
                         <div
                             className="relative flex flex-col 
-                                       gap-y-2 sm:gap-y-3 md:gapy-y-4
+                                       gap-y-2 sm:gap-y-4 md:gap-y-5 lg:gap-y-6
                                        w-full h-fit
                                        px-2 sm:px-3 md:px-4 lg:px-5
                                        py-3 sm:py-4 md:py-5 lg:py-6"
@@ -96,7 +96,7 @@ export default class ProjectOverviewPage extends React.Component
                         >
                             <div
                                 className="relative flex flex-col 
-                                           gap-y-2 sm:gap-y-3 md:gapy-y-4
+                                           gap-y-2 sm:gap-y-4 md:gap-y-5 lg:gap-y-6
                                            w-full h-fit
                                            px-2 sm:px-3 md:px-4 lg:px-5
                                            py-3 sm:py-4 md:py-5 lg:py-6"

@@ -159,8 +159,8 @@ function CreateSlideshowItem(description, itemIndex, backgroundItem)
     return(
         <SlideshowItem
             SlideshowAspectRatio={description.aspectRatio}
-            SlideshowAutoPlay={description.autoPlay}
-            SlideshowControls={description.controls}
+            SlideshowAutoPlay={backgroundItem ? true : description.autoPlay}
+            SlideshowControls={backgroundItem ? false : description.controls}
             SlideshowAxis={description.direction}
             SlideshowSlides={slides}
             BackgroundItem={backgroundItem}

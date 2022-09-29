@@ -252,12 +252,40 @@ export function ParseTextSize(size)
 
 export function ParseTextAlignment(alignment)
 {
-    return "text-" + alignment;
+    switch(alignment)
+    {
+        case "left":
+            return "text-left";
+        case "right":
+            return "text-right";
+        case "center":
+            return "text-center";
+        case "justify":
+            return "text-justify";
+    }
 }
 
 export function ParseFontWeight(weight)
 {
-    return "font-" + weight;
+    switch(weight)
+    {
+        case "extralight":
+            return "font-extralight";
+        case "light":
+            return "font-light";
+        case "normal":
+            return "font-normal";
+        case "medium":
+            return "font-medium";
+        case "semibold":
+            return "font-semibold";
+        case "bold":
+            return "font-bold";
+        case "extrabold":
+            return "font-extrabold";
+        case "black":
+            return "font-black";
+    }
 }
 
 export function ParseAspectRatio(ratio)

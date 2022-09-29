@@ -1,11 +1,199 @@
 {
-  "category": "Featured",
-  "priority": 3,
+  "body": [
+    {
+      "type": "header",
+      "content": [
+        {
+          "line": {
+            "content": "Lumen Renderer",
+            "size": "2xl",
+            "weight": "bold",
+            "alignment": "center"
+          }
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "aspectRatio": "16/9",
+      "fit": "cover",
+      "controls": true,
+      "autoPlay": true,
+      "muted": false,
+      "looped": false,
+      "video": "https://www.youtube.com/embed/Z1EpJndtVDc"
+    },
+    {
+      "type": "header",
+      "content": [
+        {
+          "line": {
+            "content": "Project Summary",
+            "size": "lg",
+            "weight": "bold",
+            "alignment": "center"
+          }
+        }
+      ]
+    },
+    {
+      "type": "textblock",
+      "alignment": "left",
+      "content": "During the third year at IGAD you get to choose the project that you want to work on, which you usually work on for the full year. The project I choose to work on is a demo renderer, which I worked on with 6 to 5 other peers. The renderer we created is capable of rendering 3d triangle meshes and lights in real-time using path-tracing exclusively as well as homogeneous volumes by using ray-marching. The shading uses a Disney BSDF model implementation.\n\nLoading scene data is done using the GLTF2.0 file format, which is then converted into the binary format that our renderer used and stored in a file for faster loading during the next time. Loading scenes and meshes can be done using the editor tools. The editor tools also allow for editing of material data and mesh positions in real-time.\n\nTo optimize performance and output quality it uses our own implementation of the ReSTIR algorithm, which is a resampled importance sampling algorithm used in the NVidia RTX DI SDK and allows for having millions of lights in a scene. We also implemented the Wavefront path-tracing algorithm, also known as Streaming path-tracing, to improve performance by eliminating idling threads on the GPU by tracing breadth-first instead of the usual depth-first approach to path-tracing.\n\nTo reduce the noisy image that is usually a result from real-time, which is often achieved by having a small amount of samples per pixel which the case in our renderer, we implemented denoising with a denoiser from the NVidia Optix API.\n\nThe Nvidia Optix API is also what allows us to use hardware-accelerated ray tracing. To output the result we use OpenGL and CUDA interoperability as Optix is based on CUDA and thus doesnt provide the ability to output to a window.",
+      "size": "base",
+      "weight": "normal"
+    },
+    {
+      "type": "header",
+      "content": [
+        {
+          "line": {
+            "content": "The project assignment and requirements",
+            "size": "lg",
+            "weight": "bold",
+            "alignment": "center"
+          }
+        }
+      ]
+    },
+    {
+      "type": "textblock",
+      "alignment": "left",
+      "content": "The project was a third-year study assignment with a lot of freedom provided to the team to choose our own assignment and thus learning opportunities. The constraints that were placed upon the project by the teaching staff were the following:\n\nGenre: A state of the art rendering technology showcase demo\nPlatforms: Release on PC\nRequirements:\n- Custom fully real-time path-traced renderer aiming for next-gen NVidia or AMD GPUs e.g. RTX3080\n- Small high-quality photorealistic environment\n- Interactive camera\n- Support USD file format\n- Leveraging huge and fast SSDs\n- HDR\n- Includes animation (which can be simple linear motion of objects)\n- Use scenes built from existing high-quality assets from libraries that clearly showcase rendering features\n\nThese requirements were guidelines and we had the flexibility to change or ignore these with good argumentation as to why we did so. We tried our best to align our goals for the project with the requirements that we received. There were however two original requirements that we failed to meet. These requirements were not met due to the scope increasing too much without a lot of benefit if we would have implemented USD file format loading, the DirectStorage API we intended to use for data streaming directly to the GPU from large SSDs not being released in time.",
+      "size": "base",
+      "weight": "normal"
+    },
+    {
+      "type": "header",
+      "content": [
+        {
+          "line": {
+            "content": "The project plan",
+            "size": "lg",
+            "weight": "bold",
+            "alignment": "center"
+          }
+        }
+      ]
+    },
+    {
+      "type": "textblock",
+      "alignment": "left",
+      "content": "As we were allowed to set our own goals for the project’s end-product, taking into account the requirements of the project set by the teaching staff, we set following goals:\n\n- Real-time physically-based rendering of 3D scenes with solid geometry and homogeneous volumes:\nThis is the core feature of the end-product and all of the other features that we have been working on contribute to this goal. There are some features that implement the basics for a physically-based renderer and there are features that implement optimizations to increase the performance and quality.\n\n- Path-tracing using the Wavefront Path Tracing algorithm, also known as Streaming Path Tracing:\nUsually path-tracers work with a depth-first approach where at each intersection, it is determined if the ray needs to reflect or refract and a new ray is traced immediately after this. The wavefront path-tracing algorithm approaches path-tracing breadth-first, meaning that it does not immediately trace the continuing rays. This algorithm tries to optimize performance and hardware-usage by eliminating idling threads, which is what happens when a path terminates earlier than the maximum depth.\n\nThis feature is one of the features that I worked on the most. I have been using Optix and CUDA to implement this. Optix is used to trace rays using the hardware-acceleration that the new NVidia RTX and AMD cards provide,  while CUDA kernels are used for generating primary rays and continuation rays that come from reflection or refraction as well as shadow rays.\n\n- Physically-based shading by using the Disney BSDF:\nAs one of our project requirement was to have photo-realistic rendering, we wanted to use physically-based shading calculations. At first we used a BRDF implementation that one of our team members implemented from a reference. However, as the BRDF did not support transmittance and the implementation was not fully correct and did not conserve energy correctly. This meant that we used an existing implementation from a Disney BSDF.\n\n- Loading 3D triangle-meshes scenes from file:\nThe loading of our scene uses the TinyGLTF library to load GLTF2.0 files. We load triangle meshes from the file and use the transformations if it is loaded as a scene. We also load the materials for the meshes through this file format. Light sources are also modelled as triangle meshes and are detected at load time by evaluating the material for emissive properties and iterating all triangles to sample for lighting.\n\n- Loading 3D volumes using the VDB file format:\nAs we wanted to implement homogeneous volume rendering, we needed to load volume data. To do this we used the VDB file format and the OpenVDB and NanoVDB libraries.\n\n- A ReSTIR implementation to optimize performance and quality:\nTo optimize the performance and quality of shading calculations, and provide the ability to have a millions of lights in the scene,we implemented our own version of the ReSTIR DI algorithm. The ReSTIR algorithm is a spatiotemporal resevoir resampled importance sampling algorithm, which was the result of research done by NVidia researched and is also used in the RTX Direct Illumination SDK.\n\n- Optimizing performance and quality by using the DLSS SDK from NVidia:\nDLSS, which stands for Deep Learning Super-Sampling, allows us to render at a lower resolution and then upscale the result while maintaining good quality output. During the development of the project this library was in closed-beta access but we managed to get access to it during the last quarter of the year. However, in the end it turned out to be too late for us to still implement it. As we did not know the implementation details before, we still needed to implement D3D11 and CUDA interoperability which was necessary due to the library not having a CUDA implementation and all our output buffers being CUDA texture or memory buffers. The D3D11 and CUDA interoperability was implemented by me. However, we didn’t manage to get the library working correctly.\n\n- Optimizing image quality through denoising using the NVidia NRD SDK:\nAt the time we were working on the project, the NRD denoising SDK was still in closed-beta. We requested access at the start of the project and received access during the last quarter of the year. This meant that we also did not know the implementation details and were unable to prepare for the integration. This library is, like the DLSS, not available as a CUDA implementation. It meant that it also needed to use D3D11 and CUDA interoperability, which I implemented,as all our output buffers are CUDA textures or memory buffers.We have attempted to implement one of the NRD SDK denoisers that it provides into our project but did not succeed to complete it in time due to unexpected bugs and unknown implementation details. As a backup plan, we used a denoising solution that the Optix API provided us.\n\n- Implementing data streaming from mass storage directly to the GPU using the DirectStorage API from Microsoft.\nWe expected the announced DirectStorage API from Microsoft to be released during the duration of the project. With this API we wanted to implement data streaming for data such as the scene geometry and volume data directly from the SSD to the GPU. This would allow for faster loading of data to the GPU because it would not need to go through the RAM to the GPU anymore if the hardware supports it. However, the API did not release during the duration of the project.",
+      "size": "base",
+      "weight": "normal"
+    },
+    {
+      "type": "header",
+      "content": [
+        {
+          "line": {
+            "content": "The development process",
+            "size": "lg",
+            "weight": "bold",
+            "alignment": "center"
+          }
+        }
+      ]
+    },
+    {
+      "type": "textblock",
+      "alignment": "left",
+      "content": "The project was divided in four phases, which each had one quarter of the year allocated to it. The phases are; a concepting phase, a pre-production phase, a production phase and the release phase. ",
+      "size": "base",
+      "weight": "normal"
+    },
+    {
+      "type": "header",
+      "content": [
+        {
+          "line": {
+            "content": "The Concept phase",
+            "size": "base",
+            "weight": "semibold",
+            "alignment": "center"
+          }
+        }
+      ]
+    },
+    {
+      "type": "textblock",
+      "alignment": "left",
+      "content": "During the concepting phase we had to decide the goals for our project and determine our end product.  In order to set goals and meet the requirements of the assignment we did a lot of research into the latest technologies that were being developed and released in the area of path-tracing and real-time graphics. \n\nWe had to find a graphics API that would allow us to make use of the hardware accelerated ray-tracing capabilities of the new NVidia or AMD GPUs.  The two feasible options we found were D3D12 and Optix. After some prototyping with both graphics APIs we decided to use Optix because it is easier to use as it requires less memory management, command list synchronization, resource state tracking and descriptor handling to be set up than is required when using D3D12.\n\nPersonally, I researched the difference between making a hybrid renderer vs a path-tracing only renderer to determine part of goals that we want to set.  After this research, I focused on learning to use the D3D12 API for path-tracing before we switched to the Optix API, which I then also learned to use. At the end of this phase I worked on researching and designing the rendering pipeline that our project would use. Finally, I also made a little prototype to test how the amount of rays generated in different ways affect the performance and quality of the image in a prototype application.",
+      "size": "base",
+      "weight": "normal"
+    },
+    {
+      "type": "header",
+      "content": [
+        {
+          "line": {
+            "content": "The Pre-production phase",
+            "size": "base",
+            "weight": "semibold",
+            "alignment": "center"
+          }
+        }
+      ]
+    },
+    {
+      "type": "textblock",
+      "alignment": "left",
+      "content": " In the pre-production phase the team focused first on setting up the project and everything that we needed to develop the project during the rest of the phase and during the next phases. We have set up the conventions and rules for things like source-control and version management, folder structure and code conventions to follow. \n\nDuring this phase our project goals were not yet finalized and we still did some research into possible options for what would be our end product. We looked into the option making our renderer a Maya or Blender plugin. The final decision was to keep it a standalone application as we already had quite a large scope with the goals of implementing real-time volumetric rendering.\n\nAs we were still deciding between the different options for what our project end product would be, my first work during this phase was to research what it would involve to make our renderer a Blender or Maya plugin or integration. This research has later been used to decide that while it was possible to make a Maya or Blender plugin or integration, we would make a standalone application to keep the scope of our project feasible.\n\nAfter doing some research, I have worked on setting up a small and simple Continuous Development/Continuous Integration pipeline using Jenkins, for which I had to learn the Jenkins pipeline script. As we planned to use CMake as our project build tool, I could use it in the CI/CD pipeline to compile our project.\n\nDesigning the architecture of the classes and logic flow of the renderer was the next thing that I worked on together with a couple of other team members. We wanted to have a good overview of the systems that needed to be implemented so that we could work on them in a efficient matter, taking into account dependencies and priorities.\n\nI also searched for tools to help us debug and test the program in the future, which turned out to be quite difficult as there are not a lot of tools that allow to debug the Optix API as in-depth and in a similar way to tools that allow you to debug D3D12. The only tool that was somewhat capable of debugging and profiling the Optix API and our CUDA kernels was NVidia Nsight Compute.\n\nThe final thing I worked on during this phase was implementing the wavefront path-tracing algorithm, while in the mean-while other team members worked on other features such as model loading and used a more traditional depth-first approach to path-tracing.",
+      "size": "base",
+      "weight": "normal"
+    },
+    {
+      "type": "header",
+      "content": [
+        {
+          "line": {
+            "content": "The Production phase",
+            "size": "base",
+            "weight": "semibold",
+            "alignment": "center"
+          }
+        }
+      ]
+    },
+    {
+      "type": "textblock",
+      "alignment": "left",
+      "content": "During the production phase of the project we started to really work on creating the end product. We used the foundations that we had created during the pre-production phase and reused some of the code from prototypes and tests made during the concept phase. \n\nWe also tried to make our work process more efficient by working with feature branches, allowing us to work on multiple features in parallel without hindering other team members with bugs or broken code that result from unfinished code sharing between team members working together. This turned out to work quite well and mitigated similar situations as we experienced during the previous phase.\n\nThis phase the team worked on ensuring that all of the necessary rendering features were implemented in the project at least in a basic way. As we first worked on implementing the Wavefront path-tracing algorithm we did not yet work on the shading, which is something that we worked on implementing during this phase. We first implemented a simple Lambertian shading solution before moving onto a PBR shading model with A BRDF implementation.\n\nWhen the mesh loading system was in place, we needed to be able to detect meshes with emissive properties and extract the triangles that were emissive into a buffer to be able to use the data in the ReSTIR algorithm. One of our team members implemented a basic solution for this.\n\nAs we wanted to achieve a real-time performance but still achieve a realistic and good quality output, we needed to optimize our performance. We planned to do this with our custom implementation of the ReSTIR algorithm that was researched by NVidia and used in their RTX DI SDK. This algorithm improves the quality of the output and performance by improving the sample quality over time by reusing spatial information and improving the chance of rays going into a more significant directions. During concept phase, one of our team members implemented this algorithm on the CPU and during this phase he ported the algorithm to the  GPU by using CUDA kernels.\n\nVolumetric rendering was one of our goals, which one of our team members had been researching and prototyping this during the concept phase and the pre-production phase. During this phase he and some other team members started to work on implementing it into our renderer. They first did this in the old pipeline, which was a typical depth-first path-tracing approach, after which they ported it over to the new Wavefront path-tracing pipeline with my help.\n\nSince we didn’t have a lot of useful tools to debug the GPU process, we made some tools ourself that used ImGUI and OpenGL. Through these tools we were able to display buffers by using our own function to convert the data to a visual. This was very handy to verify buffers such as the depth-buffer and surface normal of each pixel. The process was multithreaded so that it was able to deal with slow frame-rate rendering but the GUI was actually very responsive.\n\nAt the start of this phase, I started by debugging and simplifying the Wavefront algorithm implementation. This implementation was all done in one iteration as in my mind everything in the algorithm depended on each other and needed to be in place for it to work. However as there was a lot of bugs that we had to fix which were hard to track down due to the large amount of logic implemented all at once, we decided to simplify the implementation. This instance made it very clear why I needed to have done this in multiple smaller iterations, verifying smaller amounts of logic to be working as expected more regularly.\n\nAfter the Wavefront algorithm was redone and worked, I started to work on setting up the CUDA kernel structure that we were going to be using for the different steps in the rendering pipeline. The actual implementation of the kernels was done by different other team members, including me for some of the steps. This task taught me a lot about how CUDA kernels work meaning that other team members would occasionally ask me for advice on how they should implement their kernels and how we could structure certain processes.\n\nThis phase we also wanted to start testing the output from our renderer. To do this I started working on an automated testing pipeline by creating an application that could take testing configurations and run comparison algorithms on the outputs. We planned to use the Root Mean Square Error deviation algorithm to test for differences between our renderer output and reference renderer outputs. However, this turned out to be quite a large task and as it had less priority than implementing all the necessary features, we paused the progress on the task until we had more time available.\n\nAs we were implementing volumetric rendering into the new Wavefront path-tracing pipeline, I helped my team members that had worked on volumetric rendering earlier by teaching them about CUDA kernels and the way that the Wavefront path-tracing algorithm works. This allowed us to come up with a way to fit volumetric rendering into a Wavefront path-tracing pipeline.",
+      "size": "base",
+      "weight": "normal"
+    },
+    {
+      "type": "header",
+      "content": [
+        {
+          "line": {
+            "content": "The Release phase",
+            "size": "base",
+            "weight": "semibold",
+            "alignment": "center"
+          }
+        }
+      ]
+    },
+    {
+      "type": "textblock",
+      "alignment": "left",
+      "content": "The last phase of the project we worked mostly on wrapping up all the loose ends. This means implementing critical features that were not fully implemented or improving features\n\nDuring the last week of each phase there are playdays where you can present the progress of your team. The previous phase’s playday revealed some issues with the way we packaged the project. The issue was that the paths to files that were used by default such as the default scene and the shaders were not relative but absolute paths that got compiled into the executable. This meant that the files that were consumed by the application needed to be in the same path as they were when they were compiled. At the start of the phase I worked on fixing this by using a configuration file which is the only file that is referenced with an absolute path.\n\nI also worked on converting the CUDA data buffers that we used for the rendering output to CUDA surface objects. Those objects get the benefit of texture memory access which can speed up the process if the memory is accessed like a texture is. But most importantly this object supports CUDA and D3D11 interoperability which is necessary for the NRD and DLSS SDKs that we wanted to implement. These libraries don’t provide a CUDA or OpenGL implementation which means that we had to use another implementation. Luckily CUDA has support for D3D11 interoperability as well meaning that we should have been able to use the memory in both CUDA and D3D11.\n\nThis phase I also wanted to learn how GitHub Actions worked. I thought it would be a better and easier solution for our project with multiple feature branches. To learn this I set up the same building pipeline that we had on Jenkins through GitHub Actions. GitHub Actions also allowed us to easily set up a custom build machine, which is what we needed in order to build our application because we needed to use the CUDA SDK and Nvidia drivers which can only be used on a machine with an NVidia GPU. \n\nThe emissive triangle detection and data buffer building that was previously implemented by another team member had to be sped up which could be done by running it in parallel. We needed it to be faster as this could have to happen frequently depending on the changes that happened in the scene. This mean that I reworked the system for detecting emissive geometry and extracting light data by using CUDA kernels to parallelize the process as much as possible.",
+      "size": "base",
+      "weight": "normal"
+    }
+  ],
   "details": {
-    "type": "Other"
+    "type": "School Project",
+    "duration": "40 weeks, 4 quarters of 10 weeks.",
+    "goals": "",
+    "teamsize": "7 programmers",
+    "roles": "Graphics programmer, CI/CD Maintenance, Generalist programmer",
+    "tech": "Visual Studio 2019, CMake, GitHub, GitKraken, Jenkins, Github Actions, Jira",
+    "languages": "C++, CUDA, Optix, OpenGL, D3D11, ImGUI, TinyGLTF"
   },
-  "year": "2020",
-  "title": "LumenRenderer",
+  "priority": 3,
   "thumbnail": [
     {
       "type": "image",
@@ -23,5 +211,9 @@
       "layout": "fill",
       "image": "/public/media/projects/2020/lumenrenderer/images/sanmiguel2.jpeg"
     }
-  ]
+  ],
+  "title": "LumenRenderer",
+  "description": "LumenRenderer is a real-time, physically-based, path-tracing-predominantly renderer that is capable of rendering 3d triangle geometry and homogeneous volumes.\n\nIt has been made as a school project by 7 students during the 3rd year.\n\nThe goals and requirements of the project were to use recently developed techniques and hardware to achieve real-time and interactive performance with realistically-looking results.\n\nSome of the techniques that we have used are our own implementation of the ReSTIR algorithm, also used in the NVidia RTX DI SDK, and a Wavefront/Streaming path-tracing implementation.",
+  "year": "2020",
+  "category": "Featured"
 }

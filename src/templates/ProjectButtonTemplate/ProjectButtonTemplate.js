@@ -94,19 +94,19 @@ export default class ProjectNavigationButton extends React.Component
                                 
                                 <div
                                     className="relative block w-full h-fit 
-                                               pl-4 md:pl-5 lg:pl-6 xl:pl-7
+                                               pl-2 md:pl-3 lg:pl-4 xl:pl-5
                                                pr-2 md:pr-3 lg:pr-4 xl:pr-5
                                                text-sm md:text-base xl:text-lg text-gainsboro"
                                 >
                                     {
                                         this.props.ProjectDescription ?
-                                        <div>
+                                        <div className="pl-2">
                                             <div className="relative block w-full h-fit mb-3 leading-normal align-middle font-medium">
                                                 <span className={"text-eucalyptus-700 whitespace-pre " + (TitleSize ?? "")}>
                                                     {"Description" + String.fromCodePoint(123)}
                                                 </span>
                                             </div>
-                                            <div className="pl-0 sm:pl-4">
+                                            <div className="px-2 sm:px-4 py-1 sm:py-2 md:py-3 lg:py-4 rounded-lg bg-eerie-black/70 whitespace-pre-wrap">
                                                 {this.props.ProjectDescription}
                                             </div>
                                             <div className="relative block w-full h-fit mt-2 mb-2 leading-normal align-middle font-medium">
@@ -125,14 +125,14 @@ export default class ProjectNavigationButton extends React.Component
                                     {
                                         this.props.ProjectDetails ?
                                         <div
-                                            className="relative flex flex-col"
+                                            className="relative flex flex-col pl-2"
                                         >
                                             <div className="relative block w-full h-fit mb-3 leading-normal align-middle font-medium">
                                                 <span className={"text-eucalyptus-700 whitespace-pre " + (TitleSize ?? "")}>
                                                     {"Details" + String.fromCodePoint(123)}
                                                 </span>
                                             </div>
-                                            <div className="pl-0 sm:pl-4">
+                                            <div className="relative flex flex-col w-fit gap-y-1 sm:gap-y-2">
                                                 {
                                                     Object.entries(this.props.ProjectDetails).map(([detailName, detailValue], index)=>{
 
@@ -140,7 +140,7 @@ export default class ProjectNavigationButton extends React.Component
                                                         let icon = detailIcons.get(detailName);
 
 
-                                                        if(name && icon && detailValue != null)
+                                                        if(name && icon && detailValue && !detailValue?.empty?.() != null)
                                                         {
 
                                                             return(
@@ -196,21 +196,26 @@ class ProjectDetail extends React.Component
     {
 
         return(
-            <div>
-                <div 
-                    className="relative inline-block aspect-square
-                               w-4 lg:w-5 xl:w-6 
-                               h-4 lg:h-5 xl:h-6 
-                               text-base lg:text-xl xl:text-2xl"
-                >
-                    {
-                        this.props.DetailIcon ?
-                        <FontAwesomeIcon icon={this.props.DetailIcon} className="w-fit h-fit aspect-square"/> :
-                        null
-                    }
+            <div className="relative block w-fit h-fit px-2 sm:px-4 py-1 sm:py-2 md:py-3 rounded-lg bg-eerie-black/70">
+                <div>
+                    <div 
+                        className="relative inline-block aspect-square
+                                w-4 lg:w-5 xl:w-6 
+                                h-4 lg:h-5 xl:h-6 
+                                text-base lg:text-xl xl:text-2xl"
+                    >
+                        {
+                            this.props.DetailIcon ?
+                            <FontAwesomeIcon icon={this.props.DetailIcon} className="w-fit h-fit aspect-square"/> :
+                            null
+                        }
+                    </div>
+                    <span className="font-bold whitespace-pre-wrap">{" " + this.props.DetailName + ":"}</span>
                 </div>
-                <span className="font-bold whitespace-pre-wrap">{" " + this.props.DetailName + ":"}</span>
-                <div className="relative block w-full h-auto pl-5 leading-tight">
+                <div 
+                    className="relative block w-fit h-auto w-max-full leading-tight 
+                               pl-5 lg:pl-6 xl:pl-7"
+                >
                     {this.props.children}
                 </div>
             </div>

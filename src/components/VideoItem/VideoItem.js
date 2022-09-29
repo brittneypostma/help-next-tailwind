@@ -57,6 +57,12 @@ export default class VideoItem extends React.Component
         }
     }
 
+    IsExternalSource()
+    {
+        const RegexMatch = this.props.VideoSource.match(RegExp("https:\\/\\/www\\.youtube\\.com\\/embed\\/.+"));
+        return (RegexMatch != null);
+    }
+
     render()
     {
 
@@ -78,18 +84,35 @@ export default class VideoItem extends React.Component
                 <div
                     className={"relative block w-full " + this.ParseVideoAspectRatio() }
                 >
-                    <video
-                        className={"relative block w-full h-full " + this.ParseVideoFit()}
-                        src={this.props.VideoSource}
-                        controls={this.props.VideoControls}
-                        autoPlay={this.props.VideoAutoPlay}
-                        muted={this.props.VideoMuted}
-                        loop={this.props.VideoLooped}
-                    />
+                    {
+                        this.props.VideoSource ?
+                            (this.IsExternalSource() ?
+                            <iframe 
+                                width="100%" 
+                                height="100%"
+                                src={this.props.VideoSource}
+                                title={this.props.VideoTitle ?? "Video"}
+                                frameBorder="0" 
+                                allow=
+                                {
+                                    "accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture " + 
+                                    (this.props.VideoAutoPlay ? "autoplay; " : "")
+                                }
+                                allowFullScreen 
+                            />:
+                            <video
+                                className={"relative block w-full h-full " + this.ParseVideoFit()}
+                                src={this.props.VideoSource}
+                                controls={this.props.VideoControls}
+                                autoPlay={this.props.VideoAutoPlay}
+                                muted={this.props.VideoMuted}
+                                loop={this.props.VideoLooped}
+                            />):
+                            null
+                    }
                 </div>
             </BodyItem>
         );
-
 
     }
 

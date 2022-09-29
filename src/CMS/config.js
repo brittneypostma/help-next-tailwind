@@ -563,7 +563,12 @@ function VideoObjectConfig(configLabel, mediaFolder, publicFolder)
                 name: "video",
                 label: "Video",
                 widget: "file",
-                pattern: [RegExp(".+\\.(mp4|webm|ogg)"), "File has to be of type .mp4, .webm or .ogg"],
+                pattern: 
+                [
+                    // RegExp("(?:.+\\.(?:mp4|webm|ogg)$)|(?:https:\\/\\/www\\.youtube\\.com\\/embed\\/.+)"),
+                    RegExp(".+"), 
+                    "File has to be of type .mp4, .webm, .ogg or a youtube link"
+                ],
                 media_folder: mediaFolder,
                 // public_folder: publicFolder
             },

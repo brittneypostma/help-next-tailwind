@@ -119,6 +119,7 @@ class ImageSlide extends React.Component
 
 }
 
+//TODO: add support for youtube embeds - https://developers.google.com/youtube/iframe_api_reference
 class VideoSlide extends React.Component
 {
 

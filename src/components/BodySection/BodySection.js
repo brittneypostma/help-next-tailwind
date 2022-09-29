@@ -85,24 +85,20 @@ export default class BodySection extends React.Component
                         {
                             !this.props.OpenBracketInline ?
                             <div className={"relative block w-full h-4 px-2 mb-2 leading-none align-middle font-medium " + (this.props.TypeSize ?? "")}>
-                                <span className="text-eucalyptus-700 whitespace-pre">&#123;</span>
+                                <span className="text-eucalyptus-700 whitespace-pre">{ String.fromCodePoint(123) }</span>
                             </div> :
                             null
                         }
                         
                         <div 
-                            className="relative block box-border w-full h-fit bg-black-olive"
+                            className="relative block box-border w-full h-fit bg-black-olive shadow-inner shadow-eerie-black"
                         >
                             {this.props.children}
                         </div>
 
                         <div className={"relative block w-full h-fit px-2 mt-2 leading-none align-middle font-medium " + (this.props.TypeSize ?? "")}>
-                            <span className="text-eucalyptus-700 whitespace-pre">
-                                {String.fromCodePoint(125)}
-                            </span>
-                            <span className="text-gainsboro whitespace-pre">
-                                {(this.props.LastSection ? "" : ",")}
-                            </span>
+                            <span className="text-eucalyptus-700 whitespace-pre">{ String.fromCodePoint(125) }</span>
+                            <span className="text-gainsboro whitespace-pre">{ (this.props.LastSection ? "" : ",") }</span>
                         </div> 
                     </> :
                     null

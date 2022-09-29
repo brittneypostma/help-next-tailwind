@@ -40,18 +40,13 @@ export default class HeaderItem extends React.Component
                 {
                     this.props.HeaderContent?.map?.((contentDesc, index)=>
                     {
-
-                        let textSize = this.ParseHeaderSize(contentDesc.line.size);
-                        let textWeight = this.ParseHeaderWeight(contentDesc.line.weight);
-                        let textAlignment = this.ParseHeaderAlignment(contentDesc.line.alignment);
-                        
                         return(
                             <div
                                 className={
                                     "relative block w-full h-fit text-gainsboro px-4 md:px-5 lg:px-6 xl:px-7 py-1 " 
-                                    + textSize + " "
-                                    + textWeight + " "
-                                    + textAlignment}
+                                    + (this.ParseHeaderSize(contentDesc.line.size)) + " "
+                                    + (this.ParseHeaderWeight(contentDesc.line.weight)) + " "
+                                    + (this.ParseHeaderAlignment(contentDesc.line.alignment))}
                                 key={index}
                             >
                                 {contentDesc.line.content}

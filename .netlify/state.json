@@ -1,0 +1,17 @@
+{
+	"geolocation": {
+		"data": {
+			"city": "Holland",
+			"country": {
+				"code": "US",
+				"name": "United States"
+			},
+			"subdivision": {
+				"code": "MI",
+				"name": "Michigan"
+			}
+		},
+		"timestamp": 1664624036539
+	},
+	"siteId": "82d9a9f4-7a20-47a6-9652-99be2a2601c0"
+}

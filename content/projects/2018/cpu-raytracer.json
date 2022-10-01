@@ -1,11 +1,34 @@
 {
-  "category": "Featured",
-  "priority": 3,
+  "body": [
+    {
+      "type": "header",
+      "content": [
+        {
+          "line": {
+            "content": "CPU Ray Tracer",
+            "size": "4xl",
+            "weight": "bold",
+            "alignment": "center"
+          }
+        }
+      ]
+    },
+    {
+      "type": "textblock",
+      "alignment": "left",
+      "content": "During the second quarter of the first year we received the assignment to create a Whitted-style ray tracer, which is where rays are traced backwards from the eye into the scene. It was a solo project and involved creating a math library for the vector and matrix math involved in a basic ray tracer from scratch. It also required us to learn about the basics of rendering such as the visibility problem and shading models. The performance of the renderer was not a priority and as long as the result could be produced in a reasonable amount of time for the quality of the result it was fine. One of the optimizations that was a requirement for this project however, was a custom bounding volume hierarchy structure to improve efficiency of ray collision testing.\n\nI started the project out with researching how ray tracing works to render 3d scenes. To learn about these concepts I used the resources provided by www.scratchapixel.com and the Ray Tracing in One Weekend series.\n\n After that I learned the concepts of the vector and matrix math that are commonly used in ray tracers and other 3d game transformations, which I used to implement the custom math library that was to be used in the project. The math library involved concepts like dot-products, cross-products, matrix multiplications, matrix inversion and projection matrices.\n\nDuring this project I also learned how to create Unified Modeling Language (UML) Class Diagrams to design the class structure that is used to create programs. This is what I worked on after creating the math library in order to plan how the rest of the program would be structured.\n\nWhen the design of my program was done, I started working on implementing it. The first rendering process that I implemented was visibility testing through generating rays from a camera position and direction and testing the rays for intersections with geometry in the scene. A requirement of the project was that all intersection testing had to be implemented using analytical solving of intersections and for certain shapes, being spheres and cuboids, planes and rectangles. Now that visibility of objects could be determined, it was time to learn and implement shading. The first iteration of shading used only flat shading. The second iteration added Lambertian shading rendering direct diffuse lighting with shadow testing to see if lights can be reached. The third iteration implemented the Blinn-Phong shading model that adds specular reflections.\n\nUp until now the shading had only involved direct illumination to which I added perfect reflection and refraction. For perfect reflection I had to learn how to calculate the direction of a perfect reflection. Whereas for refraction I had to learn how to calculate the refraction direction using the index of refraction as well as dealing with total internal reflection. I also had to add the Fresnel effect to the shading which determines the ratio of light that gets refracted versus the light that gets reflected\n\nAt the end of the project I worked on implementing a Bounding Volume Hierarchy (BVH) structure in order to optimize the efficiency of ray-object intersection. This made it possible to render more complex scenes with more geometry objects faster but it does add an extra overhead cost that can affect very simple scenes.",
+      "size": "base",
+      "weight": "normal"
+    }
+  ],
   "details": {
-    "type": "Other"
+    "type": "School Project",
+    "duration": "10 weeks, 1 quarter",
+    "roles": "Graphics programmer",
+    "tech": "Visual Studio 2017, Perforce",
+    "languages": "C++, SDL2.0"
   },
-  "year": "2018",
-  "title": "CPU Raytracer",
+  "priority": 3,
   "thumbnail": [
     {
       "type": "slideshow",
@@ -57,5 +80,9 @@
       "layout": "fill",
       "image": "/public/media/projects/2018/cpu-raytracer/images/thumbnail_0.png"
     }
-  ]
+  ],
+  "title": "CPU Ray Tracer",
+  "description": "The CPU Ray tracer is a school project that was assigned to use during the second quarter of year 1. It is a Whitted-style ray tracer, running on the CPU on a single thread using a self-made math library for vector and matrix math. The goal of the project was to get familiar with rendering and basic 3D math that is common in games.",
+  "year": "2018",
+  "category": "Featured"
 }

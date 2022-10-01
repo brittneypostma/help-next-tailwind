@@ -867,7 +867,9 @@ const CMSConfig =
                     options:
                     [
                         "Featured",
-                        "Other"
+                        "Other",
+                        "Planned",
+                        "Unlisted"
                     ],
                     default: "Featured"
                 },

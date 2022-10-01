@@ -10,6 +10,26 @@ import HeaderButtonTemplate from "../HeaderButtonTemplate/HeaderButtonTemplate";
 export default class ContentPageTemplate extends React.Component
 {
 
+    constructor(props)
+    {
+        super(props);
+
+        this.ContentWrapperRef = React.createRef();
+    }
+
+    OnScrollBody(delta, keys)
+    {
+        if(!this.ContentWrapperRef.current){ return; }
+        const scrollDeltaY = ConvertScrollDeltaToPX(delta.y, delta.mode, this.ContentWrapperRef.current);
+        this.ContentWrapperRef.current.scrollBy(0, scrollDeltaY);
+    }
+
+    OnDragBody(delta)
+    {
+        if(!this.ContentWrapperRef.current){ return; }
+        this.ContentWrapperRef.current.scrollBy(0, delta.y);
+    }
+
     render()
     {
 
@@ -52,11 +72,14 @@ export default class ContentPageTemplate extends React.Component
                     RenderRightButton: this.props.Header?.RightButton ? ()=>{ return RightButton; } : null
                 }}
                 RenderBackground={this.props.RenderBackground ?? null}
+                OnScrollBody={this.OnScrollBody.bind(this)}
+                OnDragBody={this.OnDragBody.bind(this)}
             >
                 <div
                     className="relative flex flex-col justify-start items-center w-full h-full overflow-x-hidden overflow-y-auto 
                                scrollbar-thin scrollbar-track-gainsboro scrollbar-thumb-black-olive 
-                               scrollbar-track-rounded-full scrollbar-thumb-rounded-full"
+                               scrollbar-track-rounded-full scrollbar-thumb-rounded-full overscroll-contain"
+                    ref={this.ContentWrapperRef}
                 >
                     
                         <div id="Content-Header"
@@ -101,6 +124,28 @@ export default class ContentPageTemplate extends React.Component
                 </div>
             </PageTemplate>
         );
+    }
+
+}
+
+
+
+function ConvertScrollDeltaToPX(delta, deltaMode, eventTarget)
+{
+
+    switch(deltaMode)
+    {
+        case WheelEvent.DOM_DELTA_PIXEL:
+            return delta
+            break;
+        case WheelEvent.DOM_DELTA_LINE:
+            return 0;
+            break;
+        case WheelEvent.DOM_DELTA_PAGE:
+            return 0;
+            break;
+        default:
+            break;
     }
 
 }

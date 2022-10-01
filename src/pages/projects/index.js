@@ -7,7 +7,6 @@ import BodySection from "../../components/BodySection/BodySection";
 import ProjectNavigationButton from "../../templates/ProjectButtonTemplate/ProjectButtonTemplate";
 import { FetchPageContent } from "../../CMS/pages";
 import { FetchProjectsContent } from "../../CMS/projects";
-import { ParseContentItem } from "../../CMS/content";
 import { projectDirectory } from "../../CMS/config";
 
 
@@ -23,6 +22,11 @@ export default class ProjectOverviewPage extends React.Component
         {
             ShowAll : false
         };
+    }
+
+    SetShowAll(newState)
+    {
+        if(this.state.ShowAll != newState){ this.setState({ShowAll: newState}); }
     }
 
     render()
@@ -60,10 +64,10 @@ export default class ProjectOverviewPage extends React.Component
                     >
                         <div
                             className="relative flex flex-col 
-                                       gap-y-2 sm:gap-y-4 md:gap-y-5 lg:gap-y-6
-                                       w-full h-fit
-                                       px-2 sm:px-3 md:px-4 lg:px-5
-                                       py-3 sm:py-4 md:py-5 lg:py-6"
+                                       w-full h-fit box-border
+                                       gap-y-2 sm:gap-y-4 md:gap-y-5 lg:gap-y-6 xl:gap-y-7 2xl:gap-y-8
+                                       px-2 sm:px-4 md:px-5 lg:px-6 xl:px-8 2xl:px-10
+                                       py-3 sm:py-4 md:py-5 lg:py-6 xl:py-8 2xl:py-10"
                         >
                             {
                                 this.props.FeaturedProjects.length > 0  ?
@@ -92,6 +96,8 @@ export default class ProjectOverviewPage extends React.Component
                             OpenBracketInline
                             Collapsible={true}
                             StartCollapsed={!this.state.ShowAll}
+                            OnCollapse={this.SetShowAll.bind(this, false)}
+                            OnExpand={this.SetShowAll.bind(this, true)}
                             LastSection={true}
                         >
                             <div
@@ -107,6 +113,8 @@ export default class ProjectOverviewPage extends React.Component
                                     {
                                         return (
                                         <ProjectNavigationButton
+                                            Inactive={project.category == "planned" ? true : false}
+                                            IsPlanned={project.category == "planned" ? true : false}
                                             ProjectHref={project.path}
                                             ProjectName={project.name}
                                             ProjectThumbnail={project.thumbnail}
@@ -137,7 +145,8 @@ function extractProjectData(project)
         name: (project.meta.name ?? null),
         thumbnail: (project.thumbnail ?? null),
         description: (project.description ?? null),
-        details: (project.details ?? null)
+        details: (project.details ?? null),
+        category: (project.meta.category ?? null)
     };
 
     return projectData;
@@ -153,13 +162,13 @@ export async function getStaticProps(context)
     const featuredProjects = new Array();
     projects.forEach((project)=>
     {
-        if(project.meta.category == "Featured"){ featuredProjects.push(extractProjectData(project)); }
+        if(project.meta.category == "featured"){ featuredProjects.push(extractProjectData(project)); }
     })
 
     const otherProjects = new Array();
     projects.forEach((project)=>
     {
-        if(project.meta.category != "Featured"){ otherProjects.push(extractProjectData(project)); }
+        if(project.meta.category != "featured"){ otherProjects.push(extractProjectData(project)); }
     });
 
     return { props: {

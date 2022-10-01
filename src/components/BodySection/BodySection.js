@@ -20,7 +20,15 @@ export default class BodySection extends React.Component
 
     SetCollapsedState(newState)
     {
-        this.setState({IsCollapsed : newState});
+        if(this.state.IsCollapsed != newState)
+        {
+            const callback = 
+            newState == true?
+            this.props.OnCollapse :
+            this.props.OnExpand;
+
+            this.setState({IsCollapsed : newState}, callback);
+        }
     }
 
     render()

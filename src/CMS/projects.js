@@ -48,16 +48,17 @@ export function FetchProjectsContent(projectDir)
             //Parse string to JSON object.
             const projectContentsJson = JSON.parse(projectContentsString);
 
+            if(String(projectContentsJson.category).toLowerCase() == "unlisted"){ return; }
             //TODO: verify validity off the required properties.
 
-            //Create object containing data in convenient format.
+            //Create object containing data in convenient format. 
             const projectObject =
             {
                 meta:
                 {
                     year: String(projectContentsJson.year),
                     name: String(projectContentsJson.title),
-                    category: String(projectContentsJson.category),
+                    category: String(projectContentsJson.category).toLowerCase(),
                     priority: Number.parseInt(projectContentsJson.priority),
                 },
                 thumbnail: projectContentsJson.thumbnail[0],
@@ -75,7 +76,7 @@ export function FetchProjectsContent(projectDir)
                 },
                 body: projectContentsJson.body
             }
-            
+
             projectsContent.push(projectObject);
 
         });

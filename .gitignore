@@ -59,3 +59,5 @@ typings/
 .DS_Store
 out/
 build/
+# Local Netlify folder
+.netlify
